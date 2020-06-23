@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="lizishoppingModel1StoreContainer" CdmEntityContainer="shoppingEntities1">
+    <EntitySetMapping Name="UserTable">
+      <EntityTypeMapping TypeName="lizishoppingModel1.UserTable">
+        <MappingFragment StoreEntitySet="UserTable">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPassWord" ColumnName="UserPassWord" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="limits" ColumnName="limits" />
+          <ScalarProperty Name="Userstatus" ColumnName="Userstatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,453 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>栗子商城</title>
+    <script src="~/Content/js/popper.min.js"></script>
+    <link href="~/Content/css/eys_stly.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+    <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="~/Content/js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="~/Content/js/plugins.js"></script>
+    <!-- Ajax Mail -->
+    <script src="~/Content/js/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="~/Content/js/main.js"></script>
+    <style>
+        /*主图上传文件样式*/
+        #imgPreview {
+            width: 150px;
+            height: 150px;
+            margin: 15px 0px 0px 180px;
+            border: 2px dashed #888888;
+            text-align: center;
+            float: left;
+            margin-left: 160px;
+        }
+
+        #prompt3 {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            text-align: center;
+        }
+
+        #imgSpan {
+            position: absolute;
+            top: 13%;
+            left: 25%;
+        }
+
+        .filepath {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        #img3 {
+            height: 150px;
+            width: 150px;
+            display: none;
+        }
+
+        /*副图1上传文件样式*/
+        #imgPreview1 {
+            width: 150px;
+            height: 150px;
+            margin: 15px 0px 0px 180px;
+            border: 2px dashed #888888;
+            text-align: center;
+            float: left;
+            margin-left: 30px;
+        }
+
+        #prompt31 {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            text-align: center;
+        }
+
+        #imgSpan1 {
+            position: absolute;
+            top: 13%;
+            left: 25%;
+        }
+
+        .filepath1 {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        #img31 {
+            height: 150px;
+            width: 150px;
+            display: none;
+        }
+
+        /*副图2上传文件样式*/
+        #imgPreview2 {
+            width: 150px;
+            height: 150px;
+            margin: 15px 0px 0px 180px;
+            border: 2px dashed #888888;
+            text-align: center;
+            float: left;
+            margin-left: 30px;
+        }
+
+        #prompt32 {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            text-align: center;
+        }
+
+        #imgSpan2 {
+            position: absolute;
+            top: 13%;
+            left: 25%;
+        }
+
+        .filepath2 {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        #img32 {
+            height: 150px;
+            width: 150px;
+            display: none;
+        }
+
+        /*副图3上传文件样式*/
+        #imgPreview3 {
+            width: 150px;
+            height: 150px;
+            margin: 15px 0px 0px 180px;
+            border: 2px dashed #888888;
+            text-align: center;
+            float: left;
+            margin-left: 30px;
+        }
+
+        #prompt33 {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            text-align: center;
+        }
+
+        #imgSpan3 {
+            position: absolute;
+            top: 13%;
+            left: 25%;
+        }
+
+        .filepath3 {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        #img33 {
+            height: 150px;
+            width: 150px;
+            display: none;
+        }
+
+        /*副图1上传文件样式*/
+        #imgPreview4 {
+            width: 150px;
+            height: 150px;
+            margin: 15px 0px 0px 180px;
+            border: 2px dashed #888888;
+            text-align: center;
+            float: left;
+            margin-left: 30px;
+        }
+
+        #prompt34 {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            text-align: center;
+        }
+
+        #imgSpan4 {
+            position: absolute;
+            top: 13%;
+            left: 25%;
+        }
+
+        .filepath4 {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        #img34 {
+            height: 150px;
+            width: 150px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
+    <div class=" index_buy">
+        <h5 class=" h5_all_s">所在位置：<a>子商品图片添加</a></h5>
+        <form action="/admin/addimginfo" method="post" enctype="multipart/form-data">
+            <p>
+                <input type="text" name="SKUId" value="@ViewBag.SKUId" readonly="readonly" style="display:none;" />
+                <div id="page-wrapper" style="overflow:hidden;">
+                    <div style="margin-left: 25px;margin-right: 25px;width: 1593px;background-color: white;margin-top: 10px;">
+                        <h4 style="margin-left:20px;">宝贝图片</h4>
+                        <hr style="margin-top:10px;border:1px solid #E0E8F5" />
+                        <div style="overflow:hidden">
+                            <div>
+                                <!--主图1上传图片-->
+                                <div id="imgPreview">
+                                    <div id="prompt3">
+                                        <span id="imgSpan">
+                                            宝贝主图<br />
+                                            <img src="~/Content/image/jiahao.png" height="70" width="70" />
+                                            <br />
+                                            点击上传
+                                        </span>
+                                        <input type="file" id="file1" name="file1" class="filepath" onchange="changepic(this)" accept="/images/jpg,/images/jpeg,/images/png,/images/PNG" />
+                                        <!--当vaule值改变时执行changepic函数，规定上传的文件只能是图片-->
+                                    </div>
+                                    <img src="#" id="img3" />
+                                </div>
+                                <!--副图1上传文件-->
+                                <div id="imgPreview1">
+                                    <div id="prompt31">
+                                        <span id="imgSpan1">
+                                            <br />
+                                            <img src="~/Content/image/jiahao.png" height="70" width="70" />
+                                            <br />
+                                            点击上传
+                                        </span>
+                                        <input type="file" id="file2" name="file2" class="filepath1" onchange="changepic1(this)" accept="/images/jpg,/images/jpeg,/images/png,/images/PNG" />
+                                        <!--当vaule值改变时执行changepic函数，规定上传的文件只能是图片-->
+                                    </div>
+                                    <img src="#" id="img31" />
+                                </div>
+                                <!--副图2上传文件-->
+                                <div id="imgPreview2">
+                                    <div id="prompt32">
+                                        <span id="imgSpan2">
+                                            <br />
+                                            <img src="~/Content/image/jiahao.png" height="70" width="70" />
+                                            <br />
+                                            点击上传
+                                        </span>
+                                        <input type="file" id="file3" name="file3" class="filepath2" onchange="changepic2(this)" accept="/images/jpg,/images/jpeg,/images/png,/images/PNG" />
+                                        <!--当vaule值改变时执行changepic函数，规定上传的文件只能是图片-->
+                                    </div>
+                                    <img src="#" id="img32" />
+                                </div>
+                                <!--副图3上传文件-->
+                                <div id="imgPreview3">
+                                    <div id="prompt33">
+                                        <span id="imgSpan3">
+                                            <br />
+                                            <img src="~/Content/image/jiahao.png" height="70" width="70" />
+                                            <br />
+                                            点击上传
+                                        </span>
+                                        <input type="file" id="file4" name="file4" class="filepath3" onchange="changepic3(this)" accept="/images/jpg,/images/jpeg,/images/png,/images/PNG" />
+                                        <!--当vaule值改变时执行changepic函数，规定上传的文件只能是图片-->
+                                    </div>
+                                    <img src="#" id="img33" />
+                                </div>
+                                <!--副图4上传文件-->
+                                <div id="imgPreview4">
+                                    <div id="prompt34">
+                                        <span id="imgSpan4">
+                                            <br />
+                                            <img src="~/Content/image/jiahao.png" height="70" width="70" />
+                                            <br />
+                                            点击上传
+                                        </span>
+                                        <input type="file" id="file5" name="file5" class="filepath4" onchange="changepic4(this)" accept="/images/jpg,/images/jpeg,/images/png,/images/PNG" />
+                                        <!--当vaule值改变时执行changepic函数，规定上传的文件只能 是图片-->
+                                    </div>
+                                    <img src="#" id="img34" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p>
+            <p>
+                <input type="submit" class="button_style button_margin" name="name" value="确认添加" />
+            </p>
+        </form>
+
+    </div>
+
+    <script>
+
+        //图片显示
+        //主图上传
+        function changepic() {
+            $("#prompt3").css("display", "none");
+            var reads = new FileReader();
+            f = document.getElementById('file1').files[0];
+            reads.readAsDataURL(f);
+            reads.onload = function (e) {
+                document.getElementById('img3').src = this.result;
+                $("#img3").css("display", "block");
+            };
+        }//副图1上传
+        function changepic1() {
+            $("#prompt31").css("display", "none");
+            var reads = new FileReader();
+            f = document.getElementById('file2').files[0];
+            reads.readAsDataURL(f);
+            reads.onload = function (e) {
+                document.getElementById('img31').src = this.result;
+                $("#img31").css("display", "block");
+            };
+        }//副图2上传
+        function changepic2() {
+            $("#prompt32").css("display", "none");
+            var reads = new FileReader();
+            f = document.getElementById('file3').files[0];
+            reads.readAsDataURL(f);
+            reads.onload = function (e) {
+                document.getElementById('img32').src = this.result;
+                $("#img32").css("display", "block");
+            };
+        }//副图3上传
+        function changepic3() {
+            $("#prompt33").css("display", "none");
+            var reads = new FileReader();
+            f = document.getElementById('file4').files[0];
+            reads.readAsDataURL(f);
+            reads.onload = function (e) {
+                document.getElementById('img33').src = this.result;
+                $("#img33").css("display", "block");
+            };
+        }//副图4上传
+        function changepic4() {
+            $("#prompt34").css("display", "none");
+            var reads = new FileReader();
+            f = document.getElementById('file5').files[0];
+            reads.readAsDataURL(f);
+            reads.onload = function (e) {
+                document.getElementById('img34').src = this.result;
+                $("#img34").css("display", "block");
+            };
+        }
+
+        $(function () {
+
+            $("#SPUGoodName").blur(function () {
+                if ($(this).val() == "") {
+                    $("#SPUGoodNamemsg").css("color", "red");
+                    $("#SPUGoodNamemsg").html("商品名称不能为空");
+                }
+                else {
+                    $("#SPUGoodNamemsg").css("color", "black");
+                    $("#SPUGoodNamemsg").html("");
+                }
+            });
+
+            $("#GoodInfo").blur(function () {
+                if ($(this).val() == "") {
+                    $("#GoodInfomsg").css("color", "red");
+                    $("#GoodInfomsg").html("商品简介不能为空");
+                }
+                else {
+                    $("#GoodInfomsg").css("color", "black");
+                    $("#GoodInfomsg").html("");
+                }
+            });
+
+            $("#SKUGoodName").blur(function () {
+                if ($(this).val() == "") {
+                    $("#SKUGoodNamemsg").css("color", "red");
+                    $("#SKUGoodNamemsg").html("商品型号不能为空");
+                }
+                else {
+                    $("#SKUGoodNamemsg").css("color", "black");
+                    $("#SKUGoodNamemsg").html("");
+                }
+            });
+
+            $("#Goods_Description").blur(function () {
+                if ($(this).val() == "") {
+                    $("#Goods_Descriptionmsg").css("color", "red");
+                    $("#Goods_Descriptionmsg").html("商品型号描述不能为空");
+                }
+                else {
+                    $("#Goods_Descriptionmsg").css("color", "black");
+                    $("#Goods_Descriptionmsg").html("");
+                }
+            });
+
+            $("#GoodPrice").blur(function () {
+                if ($(this).val() == "") {
+                    $("#GoodPricemsg").css("color", "red");
+                    $("#GoodPricemsg").html("商品价格不能为空");
+                }
+                else {
+                    $("#GoodPricemsg").css("color", "black");
+                    $("#GoodPricemsg").html("");
+                }
+            });
+
+            $("#inventory").blur(function () {
+                if ($(this).val() == "") {
+                    $("#inventorymsg").css("color", "red");
+                    $("#inventorymsg").html("商品库存不能为空");
+                }
+                else {
+                    $("#inventorymsg").css("color", "black");
+                    $("#inventorymsg").html("");
+                }
+            });
+
+
+            $("#btn").click(function () {
+                if ($("#SPUGoodName").val() != "" && $("#GoodInfo").val() != "" && $("#SKUGoodName").val() != "" && $("#Goods_Description").val() != "" && $("#GoodPrice").val() != "" && $("#inventory").val() != "") {
+
+                }
+                else {
+                    alert("请填写完整数据");
+                }
+
+
+            });
+        })
+
+    </script>
+
+</body>
+</html>
+
+
+

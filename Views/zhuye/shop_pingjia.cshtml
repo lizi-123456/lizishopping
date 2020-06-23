@@ -1,0 +1,187 @@
+﻿
+@{
+    ViewBag.Title = "shop_pingjia";
+    Layout = "~/Views/Shared/_muban.cshtml";
+}
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area product_bread">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/zhuye/Index">主页</a></li>
+                        <li>/</li>
+                        <li>商品评价</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+<div class="product_details">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in ViewData["pro_xq"] as List<栗子商城.Models.selpro_detials_id_Result>)
+            {
+                <div class="col-lg-4 col-md-5">
+                    <div class="product-details-tab">
+
+                        <div id="img-1" class="zoomWrapper single-zoom">
+                            <a href="#">
+                                <img id="zoom1" src="~/Content/img/product/@item.GoodPhoto" style="height:320px;width:270px" data-zoom-image="~/Content/img/product/product4.jpg" alt="暂无预览大图">
+                            </a>
+                        </div>
+                        <span style="font-size:20px;">商品其他照片</span>
+                        <div class="single-zoom-thumb mt-20">
+                            <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
+                                <li>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="~/Content/img/product/product4.jpg" data-zoom-image="~/Content/img/product/product4.jpg">
+                                        <img src="~/Content/img/product/@item.Photo_one" alt="暂无其他照片" />
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="~/Content/img/product/product4.jpg" data-zoom-image="~/Content/img/product/product4.jpg">
+                                        <img src="~/Content/img/product/@item.Photo_two" alt="暂无其他照片" />
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="~/Content/img/product/product4.jpg" data-zoom-image="~/Content/img/product/product4.jpg">
+                                        <img src="~/Content/img/product/@item.Photo_three" alt="暂无其他照片" />
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="~/Content/img/product/product4.jpg" data-zoom-image="~/Content/img/product/product4.jpg">
+                                        <img src="~/Content/img/product/@item.Photo_four" alt="暂无其他照片" />
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="~/Content/img/product/product6.jpg" data-zoom-image="~/Content/img/product/product6.jpg">
+                                        <img src="~/Content/img/product/@item.Photo_five" alt="暂无其他照片" />
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-7">
+                    <div class="product_d_right">
+                        <h1 id="skuid_pingjia" title="@item.SKUId">@item.SKUGoodName</h1>
+                        <br />
+                        <div class="product_price">
+                            <span class="current_price">价格：</span>
+                            <span class="current_price">£@item.GoodPrice</span>
+                        </div>
+                        <div class="product_desc">
+                            <p>@item.Goods_Description</p>
+                        </div>
+
+                        <div class="product_color">
+                        </div>
+                        <div class="product_size">
+                            <h3>型号:</h3><br />
+                            <p style="font-size:20px;">@item.SKUGoodName</p>
+                        </div>
+                        <br /><br />
+                        <div class="product_d_action">
+                            <ul>
+                                <li><a href="#" title="Add to wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick View"><i class="fa fa-eye"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="priduct_social">
+                            <h3>分享:</h3>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                                <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<br />
+<!--blog body area start-->
+<div class="blog_area blog_details">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12">
+                <!--blog grid area start-->
+                <div class="blog_wrapper">
+                    <div class="blog_info_wrapper">
+                        
+                        <div class="comments_form">
+                            <h2>商品评价 </h2>
+                            <br />
+                            <h4>商品评价等级</h4>
+                            <p>
+                                <!-- 这种input和label配合使用用户体验更好，单击按钮或者文字都会选中-->
+                                <input type="radio" name="demo" id="temp1" value="5" /><label for="temp1">好评</label><br />
+                                <input type="radio" name="demo" id="temp2" value="3" /><label for="temp2">中评</label><br />
+                                <input type="radio" name="demo" id="temp3" value="1" /><label for="temp3">差评</label><br />
+                            </p>
+                            <form action="#">
+                                <div class="row">
+                                    
+                                    <div class="col-12">
+                                        <label for="review_comment">请输入评价内容</label>
+                                        <textarea name="comment" id="review_comment"></textarea>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <label for="author">昵称(默认以您的昵称作为发布评价时发布者的名字)</label>
+                                        <input id="nicheng" class="form-control" value="@ViewBag.nicheng" type="text">
+
+                                    </div>
+                                </div>
+                                <input type="button" class="button" name="name" id="tijiaopingjia" value="评价" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--blog grid area start-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        var Grade = "";
+        var myDate = new Date();
+        $('input:radio[name="demo"]').click(function () {
+            Grade = $('input:radio[name="demo"]:checked').val();
+        });
+
+        $("#tijiaopingjia").click(function () {
+            var content = $("#review_comment").val();
+            var UserId = localStorage.getItem("userid");
+            var SKUId = $("#skuid_pingjia").attr("title");
+            var Ratetime = myDate.toLocaleString();
+            $.ajax({
+                url: "/zhuye/shop_pingjiainfo",
+                type: "post",
+                data: { "content": content, "Grade": Grade, "Ratetime": Ratetime, "SKUId": SKUId, "UserId": UserId},
+                success: function(data) {
+                    if (data == "true") {
+                        window.location.href = "/zhuye/userzhuye?UserID=" + UserId;
+                    }
+                }
+            })
+        })
+    })
+</script>
+
+<!--blog section area end-->

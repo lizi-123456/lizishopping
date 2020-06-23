@@ -1,0 +1,689 @@
+﻿<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>栗子商城</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.ico">
+
+    <!-- CSS
+    ========================= -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="~/Content/css/plugins.css">
+    <!-- Jquery JS -->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="~/Content/css/style.css">
+
+    <!-- Modernizer JS -->
+    <script src="~/Content/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body>
+    <!-- Main Wrapper Start -->
+    <!--header area start-->
+    <header class="header_area">
+        <div class="header_inner">
+            <!--header top css here-->
+            <div class="header_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3">
+                            <div class="language_select">
+                                <ul>
+                                    <li class="language">
+                                        <a href="#">English <i class="fa fa-angle-down"></i></a>
+                                        <ul class="dropdown_language">
+                                            <li><a href="#">French</a></li>
+                                            <li><a href="#">German</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9">
+                            <div class="header_top_menu text-right">
+                                <ul>
+                                    <li><a href="#" id="username_cookies">登录</a></li>
+                                    <li><a href="#" id="zhuce">注册</a></li>
+                                    <li><a href="#" class="btn_cart">购物车</a></li>
+                                    <li><a href="#" class="chakan">查看</a></li>
+                                </ul>
+                                <script>
+                                    var username_cookies = document.getElementById("username_cookies");
+                                    var zhuce = document.getElementById("zhuce");
+                                    $(".btn_cart").click(function () {
+                                        if (localStorage.getItem("username") == null) {
+                                            alert("请先登录才能使用购物车功能")
+                                        }
+                                        else {
+                                            window.location.href = "/zhuye/shopcart?UserID=" + localStorage.getItem("userid");
+                                        }
+                                    }
+                                    );
+
+                                    $(".chakan").click(function () {
+                                        alert("暂无可查看的东西")
+                                    });
+
+                                    if (localStorage.getItem("username") == null) {
+                                        username_cookies.innerHTML = "登录";
+                                    }
+                                    else {
+                                        username_cookies.innerHTML = "欢迎："+localStorage.getItem("username");
+                                    }
+
+                                    if (username_cookies.innerHTML == "登录") {
+                                        username_cookies.onclick = function () {
+                                            window.location.href = "/loginRegister/Login";
+                                        }
+
+                                        zhuce.innerHTML = "注册";
+                                        zhuce.onclick = function () {
+                                            window.location.href = "/loginRegister/Zhuce";
+                                        }
+                                    }
+                                    else {
+
+                                        username_cookies.onclick = function () {
+                                            window.location.href = "/zhuye/userzhuye?UserID=" + localStorage.getItem("userid");
+                                        }
+
+                                        zhuce.innerHTML = "退出";
+                                        zhuce.onclick = function () {
+                                            localStorage.removeItem("username");
+                                            localStorage.removeItem("userid");
+                                            window.location.href = "/loginRegister/Login";
+                                        }
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--header top css end-->
+            <!--header middel css here-->
+            <div class="header_middel">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-3">
+                            <div class="logo">
+                                <a href="/zhuye/Index"><img src="~/Content/img/logo/logo00.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-6">
+                            <div class="header_search">
+                                <form action="#">
+                                    <div class="select_categorie">
+                                        <span class="categorie_toggle">所有类别<i class="fa fa-caret-down"></i></span>
+                                        <div class="dropdown_categorie">
+                                            <ul>
+                                                <li><a href="jsvascript:">所有类别</a></li>
+                                                <li><a href="/zhuye/serach_fenlei?ShopID=8&title=手机">手机</a></li>
+                                                <li><a href="/zhuye/serach_fenlei?ShopID=1&title=电脑">电脑</a></li>
+                                                <li><a href="/zhuye/serach_fenlei?ShopID=11&title=家具">家具</a></li>
+                                                <li><a href="/zhuye/serach_fenlei?ShopID=7&title=女装">女装</a></li>
+                                                <li><a href="#">服装类</a></li>
+                                                <li><a href="#">男子</a></li>
+                                                <li><a href="#">青少年</a></li>
+                                                <li><a href="#">孩子</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="SKUGoodName">
+                                    <button type="button" id="serach_pro"><i class="fa fa-search"></i></button>
+                                </form>
+                                @* 用户搜索商品js代码 *@
+                                <script>
+                                    $(function () {
+                                        $("#serach_pro").click(function () {
+                                            if ($("#SKUGoodName").val() == "") {
+                                                alert("请输入要搜索商品的名字");
+                                            }
+                                            else {
+                                                var SKUGoodName = $("#SKUGoodName").val();
+                                                $.ajax({
+                                                    url: "/zhuye/serach_pro",
+                                                    type: "post",
+                                                    data: { "SKUGoodName": SKUGoodName },
+                                                    success: function () {
+                                                        window.location.href = "/zhuye/serach_pro?SKUGoodName=" + SKUGoodName;
+                                                    }
+                                                })
+                                            }
+                                        });
+                                    })
+                                </script>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3">
+                            <div class="shipping_cart">
+                                <a href="#">
+                                    <span>购物车</span>
+                                    <span class="cart_icon"><i class="fa fa-shopping-bag"></i></span>
+                                </a>
+                                <!--mini cart-->
+                                <div class="mini_cart">
+
+
+
+                                    <div class="cart_item">
+                                        <div class="cart_img">
+                                            <a href="product-details.html"><img src="~/Content/img/s_product/product1.jpg" alt=""></a>
+                                        </div>
+                                        <div class="cart_info">
+                                            <a href="product-details.html">Etiam molestie</a>
+                                            <span class="cart_price">£95.00</span>
+                                            <div class="cart_remove">
+                                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="cart_item">
+                                        <div class="cart_img">
+                                            <a href="product-details.html"><img src="~/Content/img/s_product/product2.jpg" alt=""></a>
+                                        </div>
+                                        <div class="cart_info">
+                                            <a href="product-details.html">Congue lectus</a>
+                                            <span class="cart_price">£115.00</span>
+                                            <div class="cart_remove">
+                                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="total_price">
+                                        <span> Subtotal:  </span>
+                                        <span class="prices">  $160.00  </span>
+                                    </div>
+                                    <div class="cart_button">
+                                        <a class="button" href="checkout.html"> Check out</a>
+                                    </div>
+                                </div>
+                                <!--mini cart end-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--header middel css here-->
+        </div>
+
+        <!--header bottom css here-->
+        <div class="header_bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-12">
+                        <div class="bottom_left">
+                            <div class="home_icone">
+                                <a href="/zhuye/Index"><i class="fa fa-home"></i></a>
+                            </div>
+                            <div>
+                                <div class="menu_inner">
+                                    <div class="main_menu d-none d-lg-block">
+                                        <ul>
+                                            <li>
+                                                <a href="/zhuye/Index">主页</a>
+                                            </li>
+                                            <li>
+                                                <a href="blog.html">社区</a>
+
+                                            </li>
+                                            <li>
+                                                <a href="#">排行</a>
+
+                                            </li>
+                                            <li>
+                                                <a href="#">人工客服</a>
+
+                                            </li>
+                                            <li>
+                                                <a href="index.html">售后服务</a>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12">
+                        <div class="contact_link text-right">
+                            <ul>
+                                <li><i class="fa  fa-phone"></i><strong>Phone:</strong> 0987. 654. 321</li>
+                                <li>/</li>
+                                <li><strong><i class="fa fa-envelope"></i> Email:</strong><a href="#">info@roadthemes.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--header bottom css here-->
+    </header>
+    <!--header area end-->
+    @RenderBody()
+    <!--footer area start-->
+    <footer class="footer_widgets_area">
+        <div class="container">
+            <div class="footer_top">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="widgets_container">
+                            <div class="footer_title">
+                                <h3>友情外链（大佬项目）</h3>
+                            </div>
+                            <div class="footer_contact">
+                                <p>
+                                    <i class="fa fa-map-marker"></i>
+                                    <span><a href="http://timemusic.vip/" target="_blank">时光音乐</a></span>
+                                </p>
+                                <br />
+                                <p>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="http://www.hanqian.club/">九里商城</a></span>
+                                </p>
+                                <br />
+                                <p>
+                                    <i class="fa fa-phone"></i>
+                                    <span><a href="https://mvc.lizixs.top/">靓装商城</a></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="widgets_container">
+                            <div class="footer_title">
+                                <h3>消费者保障</h3>
+                            </div>
+                            <div class="footer_menu">
+                                <ul>
+                                    <li><a href="javascript:void(0)">保障范围</a></li>
+                                    <li><a href="javascript:void(0)">退货退款流程</a></li>
+                                    <li><a href="javascript:void(0)">服务中心</a></li>
+                                    <li><a href="javascript:void(0)">更多特色服务</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4">
+                        <div class="widgets_container">
+                            <div class="footer_title">
+                                <h3>新手上路</h3>
+                            </div>
+                            <div class="footer_menu">
+                                <ul>
+                                    <li><a href="javascript:void(0)">新手专区</a></li>
+                                    <li><a href="javascript:void(0)">消费警示</a></li>
+                                    <li><a href="javascript:void(0)">交易安全</a></li>
+                                    <li><a href="javascript:void(0)">24小时在线帮助</a></li>
+                                    <li><a href="javascript:void(0)">免费开店</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4">
+                        <div class="widgets_container">
+                            <div class="footer_title">
+                                <h3>付款方式</h3>
+                            </div>
+                            <div class="footer_menu">
+                                <ul>
+                                    <li><a href="javascript:void(0)">快捷支付</a></li>
+                                    <li><a href="javascript:void(0)">信用卡</a></li>
+                                    <li><a href="javascript:void(0)">余额宝</a></li>
+                                    <li><a href="javascript:void(0)">蚂蚁花呗</a></li>
+                                    <li><a href="javascript:void(0)">货到付款</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4">
+                        <div class="widgets_container">
+                            <div class="footer_title">
+                                <h3>服务</h3>
+                            </div>
+                            <div class="footer_menu">
+                                <ul>
+                                    <li><a href="javascript:void(0)">商城规则</a></li>
+                                    <li><a href="javascript:void(0)">商家入驻</a></li>
+                                    <li><a href="javascript:void(0)">物流服务</a></li>
+                                    <li><a href="javascript:void(0)">运营服务</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="payment_icons">
+                            <ul>
+                                <li><img src="~/Content/img/icon/payment1.png" alt=""></li>
+                                <li><img src="~/Content/img/icon/payment2.png" alt=""></li>
+                                <li><img src="~/Content/img/icon/payment3.png" alt=""></li>
+                                <li><img src="~/Content/img/icon/payment4.png" alt=""></li>
+                            </ul>
+                        </div>
+                        <div class="copyright_info">
+                            <p>版权 &copy; 2018 <a href="https://test.lizixs.top">栗子商城</a> 版权所有</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <div class='modal fade' id='modal_box' tabindex='-1' role='dialog' aria-hidden='true'>
+        <div class='modal-dialog modal-dialog-centered' role='document'>
+            <div class='modal-content'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true' id="guanbimodal">&times;</span>
+                </button>
+                <div class='modal_body'>
+                    <div class='container'>
+                        <div class='row'>
+
+                            <div class='col-lg-5 col-md-5 col-sm-12'>
+                                <div class='modal_tab'>
+                                    <div class='tab-content product-details-large'>
+                                        <div class='tab-pane fade show active' id='tab1' role='tabpanel'>
+                                            <div class='modal_tab_img'>
+                                                <a href='#'><img src='' alt='' id="tp1_motai" style="width:326px;height:382px"></a>
+                                            </div>
+                                        </div>
+                                        <div class='tab-pane fade' id='tab2' role='tabpanel'>
+                                            <div class='modal_tab_img'>
+                                                <a href='#'><img src='' alt='' id="tp2_motai" style="width:326px;height:382px"></a>
+                                            </div>
+                                        </div>
+                                        <div class='tab-pane fade' id='tab3' role='tabpanel'>
+                                            <div class='modal_tab_img'>
+                                                <a href='#'><img src='' alt='' id="tp3_motai" style="width:326px;height:382px"></a>
+                                            </div>
+                                        </div>
+                                        <div class='tab-pane fade' id='tab4' role='tabpanel'>
+                                            <div class='modal_tab_img'>
+                                                <a href='#'><img src='' alt='' id="tp4_motai" style="width:326px;height:382px"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='modal_tab_button'>
+                                        <ul class='nav product_navactive owl-carousel' role='tablist'>
+                                            <li>
+                                                <a class='nav-link active' data-toggle='tab' href='#tab1' role='tab' aria-controls='tab1' aria-selected='false'><img src='' alt='' id="tp1_link_motai" style="width:103px;height:133px"></a>
+                                            </li>
+                                            <li>
+                                                <a class='nav-link' data-toggle='tab' href='#tab2' role='tab' aria-controls='tab2' aria-selected='false'><img src='' alt='' id="tp2_link_motai" style="width:103px;height:133px"></a>
+                                            </li>
+                                            <li>
+                                                <a class='nav-link button_three' data-toggle='tab' href='#tab3' role='tab' aria-controls='tab3' aria-selected='false'><img src='' alt='' id="tp3_link_motai" style="width:103px;height:133px"></a>
+                                            </li>
+                                            <li>
+                                                <a class='nav-link' data-toggle='tab' href='#tab4' role='tab' aria-controls='tab4' aria-selected='false'><img src='' alt='' id="tp4_link_motai" style="width:103px;height:133px"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-lg-7 col-md-7 col-sm-12'>
+                                <div class='modal_right'>
+                                    <div class='modal_title mb-10'>
+                                        <h4>型号：</h4>
+                                        <h2 id="motai_SKUGoodName"></h2><br />
+                                    </div>
+                                    <div class='modal_price mb-10'>
+                                        <span class='new_price'>价格：</span>
+                                        <span class='new_price' id="motai_GoodPrice"></span>
+                                    </div>
+                                    <div class='modal_content mb-10'>
+                                        <br />
+                                        <h4>所属产品：</h4>
+                                        <h4 id="motai_SPUGoodName"></h4>
+                                    </div>
+                                    <div class='modal_size mb-15'>
+                                    </div>
+                                    <div class='modal_add_to_cart mb-15'>
+                                        <button type='button' id="chakanxq" class="btn btn-success">查看详情</button>
+                                    </div>
+                                    <div class='modal_description mb-15'>
+                                        <p id="motai_Goods_Description"></p>
+                                    </div>
+                                    <div class='modal_social'>
+                                        <h2>分享此产品</h2>
+                                        <ul>
+                                            <li><a href='#'><i class='fa fa-facebook'></i></a></li>
+                                            <li><a href='#'><i class='fa fa-twitter'></i></a></li>
+                                            <li><a href='#'><i class='fa fa-pinterest'></i></a></li>
+                                            <li><a href='#'><i class='fa fa-google-plus'></i></a></li>
+                                            <li><a href='#'><i class='fa fa-linkedin'></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $("#guanbimodal").click(function () {
+                location.reload();
+            })
+
+            $(".motaikuang_xiangqing").click(function () {
+                var SKUId = $(this).attr("title");
+                $.ajax({
+                    url: "/zhuye/motaichakan",
+                    type: "post",
+                    data: { "SKUId": SKUId },
+                    success: function (data) {
+                        if (data != "false") {
+                            var shuju = data.split("分隔符");
+
+                            $("#tp1_motai").attr("src", "../Content/img/product/" + shuju[0] + '?' + Math.random())
+                            $("#tp1_link_motai").attr("src", "../Content/img/product/" + shuju[0] + '?' + Math.random())
+                            $("#tp2_motai").attr("src", "../Content/img/product/" + shuju[1] + '?' + Math.random())
+                            $("#tp2_link_motai").attr("src", "../Content/img/product/" + shuju[1] + '?' + Math.random())
+                            $("#tp3_motai").attr("src", "../Content/img/product/" + shuju[2] + '?' + Math.random())
+                            $("#tp3_link_motai").attr("src", "../Content/img/product/" + shuju[2] + '?' + Math.random())
+                            $("#tp4_motai").attr("src", "../Content/img/product/" + shuju[3] + '?' + Math.random())
+                            $("#tp4_link_motai").attr("src", "../Content/img/product/" + shuju[3] + '?' + Math.random())
+                            $("#motai_SKUGoodName").html(shuju[6]);
+                            $("#motai_GoodPrice").html(shuju[7]);
+                            $("#motai_SPUGoodName").html(shuju[8]);
+                            $("#motai_Goods_Description").html(shuju[9]);
+                            $("#chakanxq").attr("title", shuju[10])
+                        }
+                        else {
+                            alert("暂无信息")
+                        }
+                    }
+                })
+            });
+            $("#chakanxq").click(function () {
+                var id = $(this).attr("title");
+                window.location.href = "/zhuye/pro_details?SKUId=" + id;
+            });
+        })
+    </script>
+
+
+    <!--footer area end-->
+    <!-- modal area start-->
+    @*<div class="modal fade" id="modal_box" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal_body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-12">
+                                    <div class="modal_tab">
+                                        <div class="tab-content product-details-large">
+                                            <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                                                <div class="modal_tab_img">
+                                                    <a href="#"><img src="~/Content/img/product/product4.jpg" alt=""></a>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="tab2" role="tabpanel">
+                                                <div class="modal_tab_img">
+                                                    <a href="#"><img src="~/Content/img/product/product6.jpg" alt=""></a>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="tab3" role="tabpanel">
+                                                <div class="modal_tab_img">
+                                                    <a href="#"><img src="~/Content/img/product/product7.jpg" alt=""></a>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="tab4" role="tabpanel">
+                                                <div class="modal_tab_img">
+                                                    <a href="#"><img src="~/Content/img/product/product3.jpg" alt=""></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal_tab_button">
+                                            <ul class="nav product_navactive owl-carousel" role="tablist">
+                                                <li>
+                                                    <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="false"><img src="~/Content/img/s_product/product1.jpg" alt=""></a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false"><img src="~/Content/img/s_product/product2.jpg" alt=""></a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link button_three" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false"><img src="~/Content/img/s_product/product9.jpg" alt=""></a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" data-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="false"><img src="~/Content/img/s_product/product10.jpg" alt=""></a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-7 col-sm-12">
+                                    <div class="modal_right">
+                                        <div class="modal_title mb-10">
+                                            <h2>Handbag feugiat</h2>
+                                        </div>
+                                        <div class="modal_price mb-10">
+                                            <span class="new_price">$64.99</span>
+                                            <span class="old_price">$78.99</span>
+                                        </div>
+                                        <div class="modal_content mb-10">
+                                            <p>Short-sleeved blouse with feminine draped sleeve detail.</p>
+                                        </div>
+                                        <div class="modal_size mb-15">
+                                            <h2>size</h2>
+                                            <ul>
+                                                <li><a href="#">s</a></li>
+                                                <li><a href="#">m</a></li>
+                                                <li><a href="#">l</a></li>
+                                                <li><a href="#">xl</a></li>
+                                                <li><a href="#">xxl</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal_add_to_cart mb-15">
+                                            <form action="#">
+                                                <input min="0" max="100" step="2" value="1" type="number">
+                                                <button type="submit">add to cart</button>
+                                            </form>
+                                        </div>
+                                        <div class="modal_description mb-15">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                        </div>
+                                        <div class="modal_social">
+                                            <h2>Share this product</h2>
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                $(function () {
+                                    $(".motaikuang_xiangqing").click(function () {
+                                        var SKUId = $(this).attr("title");
+                                        $.ajax({
+                                            url: "",
+                                            type: "",
+                                            data: { "SKUId": SKUId },
+                                            success: function(data) {
+
+                                            }
+                                        })
+                                    });
+                                })
+                            </script>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    <!-- modal area start-->
+    <!--news letter popup start-->
+    <!--<div class="newsletter_popup">
+        <div class="popup_container">
+            <div class="popup_close">
+                <span>close</span>
+            </div>
+            <div class="popup_text">
+                <h2>Subscribe to our Newsletter</h2>
+                <p>Subscribe to the Pebona mailing list to receive updates on new arrivals, special offers and other discount information.</p>
+                <form action="#">
+                    <input placeholder="Enter your email address" type="text">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="popup_footer">
+                <form action="#">
+                    <input id="check_newsletter" class="form_check" type="checkbox">
+                    <span class="checkmark"></span>
+                    <label class="form_check" for="check_newsletter">Don't show this popup again</label>
+                </form>
+            </div>
+        </div>
+    </div>-->
+    <!--news letter popup start-->
+    <!-- JS
+    ============================================ -->
+    <!-- jQuery JS -->
+    <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="~/Content/js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="~/Content/js/plugins.js"></script>
+    <!-- Ajax Mail -->
+    <script src="~/Content/js/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="~/Content/js/main.js"></script>
+</body>
+
+</html>
+

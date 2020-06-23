@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="lizishoppingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Appraise">
+    <Key>
+      <PropertyRef Name="AppraiseID" />
+    </Key>
+    <Property Name="AppraiseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="content" Type="nvarchar(max)" />
+    <Property Name="Grade" Type="int" />
+    <Property Name="Ratetime" Type="nvarchar" MaxLength="100" />
+    <Property Name="SKUId" Type="int" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="GoodsPhotoTable">
+    <Key>
+      <PropertyRef Name="PhotoID" />
+    </Key>
+    <Property Name="PhotoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Photo_one" Type="nvarchar" MaxLength="150" />
+    <Property Name="Photo_two" Type="nvarchar" MaxLength="150" />
+    <Property Name="Photo_three" Type="nvarchar" MaxLength="150" />
+    <Property Name="Photo_four" Type="nvarchar" MaxLength="150" />
+    <Property Name="Photo_five" Type="nvarchar" MaxLength="150" />
+    <Property Name="SKUId" Type="int" />
+  </EntityType>
+  <EntityType Name="goodsSKUTables">
+    <Key>
+      <PropertyRef Name="SKUId" />
+    </Key>
+    <Property Name="SKUId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SKUGoodName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Goods_Description" Type="nvarchar" MaxLength="300" />
+    <Property Name="GoodPrice" Type="money" />
+    <Property Name="inventory" Type="int" />
+    <Property Name="GoodPhoto" Type="nvarchar" MaxLength="100" />
+    <Property Name="SPUID" Type="int" />
+    <Property Name="BusinName" Type="nvarchar" MaxLength="20" />
+    <Property Name="onclicknum" Type="int" />
+  </EntityType>
+  <EntityType Name="goodsSPUTables">
+    <Key>
+      <PropertyRef Name="SPUID" />
+    </Key>
+    <Property Name="SPUID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SPUGoodName" Type="nvarchar" MaxLength="50" />
+    <Property Name="GoodInfo" Type="nvarchar" MaxLength="500" />
+    <Property Name="ShopID" Type="int" />
+  </EntityType>
+  <EntityType Name="MangeAdmin">
+    <Key>
+      <PropertyRef Name="MangeAdminID" />
+    </Key>
+    <Property Name="MangeAdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Admins" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pwd" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OrderGoodslist">
+    <Key>
+      <PropertyRef Name="OGid" />
+    </Key>
+    <Property Name="OGid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SKUId" Type="int" />
+    <Property Name="GoodNum" Type="int" />
+    <Property Name="GoodPrice" Type="int" />
+    <Property Name="OrderID" Type="int" />
+  </EntityType>
+  <EntityType Name="OrderInfo">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="AddressId" Type="int" />
+    <Property Name="Total" Type="money" />
+    <Property Name="TranMoney" Type="money" />
+    <Property Name="PayState" Type="nvarchar" MaxLength="20" />
+    <Property Name="CreateTime" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ShopCategory">
+    <Key>
+      <PropertyRef Name="ShopID" />
+    </Key>
+    <Property Name="ShopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ShoppCar">
+    <Key>
+      <PropertyRef Name="ShopCardID" />
+    </Key>
+    <Property Name="ShopCardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="SKUId" Type="int" />
+  </EntityType>
+  <EntityType Name="User_addressTable">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="consigneeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="50" />
+    <Property Name="postal_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="contact_way" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="default_Address" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="UserTable">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserPassWord" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="limits" Type="nvarchar" MaxLength="50" />
+    <Property Name="Userstatus" Type="int" />
+    <Property Name="nicheng" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="add_order" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="AddressId" Type="int" Mode="In" />
+    <Parameter Name="Total" Type="money" Mode="In" />
+    <Parameter Name="TranMoney" Type="money" Mode="In" />
+    <Parameter Name="PayState" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateTime" Type="nvarchar" Mode="In" />
+    <Parameter Name="SKUId" Type="int" Mode="In" />
+    <Parameter Name="GoodNum" Type="int" Mode="In" />
+    <Parameter Name="GoodPrice" Type="int" Mode="In" />
+  </Function>
+  <Function Name="del_orders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="orderid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="insertin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SPUGoodName" Type="varchar" Mode="In" />
+    <Parameter Name="GoodInfo" Type="varchar" Mode="In" />
+    <Parameter Name="ShopID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="selpro_detials_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="selpro_detials_SKUGoodName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SKUGoodName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="selpro_pingjia_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="selpro_zuixin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="selprocart_userid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="selproorders_all" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="selproorders_zhuangtai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="zhuangtai" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="selproxaingqing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="selproxiangqing_rexiao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="selspuandshoptype" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="selspuandtype_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="selspuandtype_top" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="lizishoppingModelStoreContainer">
+    <EntitySet Name="Appraise" EntityType="Self.Appraise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GoodsPhotoTable" EntityType="Self.GoodsPhotoTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="goodsSKUTables" EntityType="Self.goodsSKUTables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="goodsSPUTables" EntityType="Self.goodsSPUTables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MangeAdmin" EntityType="Self.MangeAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderGoodslist" EntityType="Self.OrderGoodslist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderInfo" EntityType="Self.OrderInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShopCategory" EntityType="Self.ShopCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShoppCar" EntityType="Self.ShoppCar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_addressTable" EntityType="Self.User_addressTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

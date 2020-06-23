@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "left";
+    Layout = "~/Views/Shared/_houtaimuban.cshtml";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="~/Content/css/eys_stly.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+    <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="~/Content/js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="~/Content/js/plugins.js"></script>
+    <!-- Ajax Mail -->
+    <script src="~/Content/js/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="~/Content/js/main.js"></script>
+</head>
+
+<body>
+    <div class="index2">
+        <h5>所在位置：<a>用户管理</a></h5>
+            <table id="table" style="margin: 0 auto">
+                <tr>
+                    <th>用户编号</th>
+                    <th>用户账号</th>
+                    <th>用户邮箱</th>
+                    <th>用户密码</th>
+                    <th title="注意,本页商品一旦删除，则对应的子商品也将删除">用户等级</th>
+                    <th title="0为解封状态，可以正常使用。1为封禁状态，无法使用">用户等级（0为解封状态，可以正常使用。1为封禁状态，无法正常使用）</th>
+                    <th>封禁用户</th>
+                    <th>解封用户</th>
+                </tr>
+                @foreach (var item in ViewData["users"] as List<栗子商城.Models.UserTable>)
+                {
+            <tr>
+                <td>@item.UserId</td>
+                <td>@item.UserName</td>
+                <td>@item.Email</td>
+                <td>@item.UserPassWord</td>
+                <td>@item.limits</td>
+                <td>@item.Userstatus</td>
+                <td><a href="#" class="fengjin" title="@item.UserId">封禁</a></td>
+                <td><a href="#" class="jiefeng" title="@item.UserId">解封</a></td>
+            </tr>
+                }
+            </table>
+        </p>
+
+    </div>
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/ss/js/bootstrap-table.js"></script>
+    <script src="~/Content/ss/js/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".fengjin").click(function () {
+                var UserId = $(this).attr("title");
+                        $.ajax({
+                            url: "/admin/fengjinuserinfo",
+                            type: "POST",
+                            data: { "UserId": UserId, "Userstatus": 1},
+                            success: function (data) {
+                                if (data == "1") {
+                                    window.location.href = "/admin/fengjinuser";
+                                }
+                                else {
+                                    alert("封禁失败，用户已经封禁，无需再次封禁")
+                                }
+                            }
+                        });
+            })
+
+            $(".jiefeng").click(function () {
+                var UserId = $(this).attr("title");
+
+                $.ajax({
+                    url: "/admin/fengjinuserinfo",
+                    type: "POST",
+                    data: { "UserId": UserId, "Userstatus": 0 },
+                    success: function (data) {
+                        if (data == "0") {
+                            window.location.href = "/admin/fengjinuser";
+                        }
+                        else {
+                            alert("解封失败，用户已经解封，无需再次解封")
+                        }
+                    }
+                });
+            })
+
+
+            $('#table').bootstrapTable({
+                method: "get",
+                striped: true,
+                singleSelect: false,
+                url: "json/data.json",
+                dataType: "json",
+                pagination: true, //分页
+                pageSize: 10,
+                pageNumber: 1,
+                search: false, //显示搜索框
+                contentType: "application/x-www-form-urlencoded",
+                queryParams: null,
+            });
+        })
+
+    </script>
+
+</body>
+</html>
+

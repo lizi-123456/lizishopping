@@ -1,0 +1,146 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IEnumerable<栗子商城.Models.selproxaingqing_Result>
+@{
+    ViewBag.Title = "left";
+    Layout = "~/Views/Shared/_houtaimuban.cshtml";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>无标题文档</title>
+        <link href="~/Content/css/eys_stly.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+        <script src="~/Content/js/bootstrap.min.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+        <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+        <!-- Popper JS -->
+        <script src="~/Content/js/popper.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="~/Content/js/bootstrap.min.js"></script>
+        <!-- Plugins JS -->
+        <script src="~/Content/js/plugins.js"></script>
+        <!-- Ajax Mail -->
+        <script src="~/Content/js/ajax-mail.js"></script>
+        <!-- Main JS -->
+        <script src="~/Content/js/main.js"></script>
+        <style>
+            .pagination-container ul li {
+                width: 80px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 20px;
+                float: left;
+                list-style: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="index2">
+            <h5>所在位置：<a>子商品主页</a></h5>
+            @using (Ajax.BeginForm("prochild_Index_fenbu", new AjaxOptions
+            {
+                UpdateTargetId = "show_zi",
+                InsertionMode = InsertionMode.Replace
+            }))
+            {
+        <p class="p_line"><input type="text" class="form-control" name="SKUGoodName" placeholder="请输入商品名称" /><button type="submit" class=" button_style">查询</button><button class=" button_style" id="chakanquanbu">查看全部</button> </p>
+            }
+            <script>
+                $("#chakanquanbu").click(function () {
+                    location.reload();
+                })
+            </script>
+            <div id="show_zi" style="width:100%;margin:0px auto">
+                <table id="table" data-toggle="table" data-height="500px"  style="margin: 0 auto;width:100%;">
+                    <tr>
+                        <th>商品编号</th>
+                        <th>商品型号</th>
+                        <th>商品型号介绍</th>
+                        <th>商品价格</th>
+                        <th>商品库存</th>
+                        <th>商品图片</th>
+                        <th>商品名称</th>
+                        <th>商品类型</th>
+                        <th>是否上传副图</th>
+                        <th>删除此商品</th>
+                        <th>修改商品型号</th>
+                        <th>上传副图(注意：不上传副图的商品将无法在主页显示)</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.SKUId</td>
+                            <td>@item.SKUGoodName</td>
+                            <td>@item.Goods_Description</td>
+                            <td>@item.GoodPrice</td>
+                            <td>@item.inventory</td>
+                            <td><img src="~/Content/img/product/@item.GoodPhoto" width="60" height="60" /> </td>
+                            <td>@item.SPUGoodName</td>
+                            <td>@item.TypeName</td>
+                            <td>@item.BusinName</td>
+                            <td><a href="#" class="prochilddel" title="@item.SKUId">删除</a></td>
+                            <td><a href="#">修改</a></td>
+                            <td><a href="/admin/addimg?SKUId=@item.SKUId">上传</a></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+
+            <div id="fenye" style="margin:0px auto;width:500px;height:50px;">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("prochild_Index", new { page }))
+            </div>
+        </div>
+        <script src="~/Content/js/jquery.js"></script>
+        <script src="~/Content/js/bootstrap.min.js"></script>
+        <script src="~/Content/ss/js/bootstrap-table.js"></script>
+        <script src="~/Content/ss/js/bootstrap-table-zh-CN.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+
+                $(".prochilddel").click(function () {
+                    var id = $(this).attr("title");
+                    if (confirm("是否确认删除？")) {
+                        $.ajax({
+                            url: "/admin/prochilddel",
+                            type: "POST",
+                            data: { "SKUId": id },
+                            success: function (data) {
+                                if (data == "true") {
+                                    window.location.href = "/admin/prochild_Index";
+                                }
+                                if (data == "false") {
+                                    alert("删除失败")
+                                }
+                            }
+                        });
+                    }
+                })
+
+                $('#table').bootstrapTable({
+                    method: "get",
+                    striped: true,
+                    singleSelect: false,
+                    url: "json/data.json",
+                    dataType: "json",
+                    pagination: true, //分页
+                    pageSize: 10,
+                    pageNumber: 1,
+                    search: false, //显示搜索框
+                    contentType: "application/x-www-form-urlencoded",
+                    queryParams: null,
+                });
+            })
+
+        </script>
+    </body>
+</html>
+</div>
+

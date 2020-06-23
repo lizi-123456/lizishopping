@@ -1,0 +1,97 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IEnumerable<栗子商城.Models.selproxaingqing_Result>
+@{
+    ViewBag.Title = "left";
+    Layout = "~/Views/Shared/_houtaimuban.cshtml";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="~/Content/css/eys_stly.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <style>
+        .pagination-container ul li {
+            width:80px;
+            height:50px;
+            text-align:center;
+            line-height:50px;
+            font-size:20px;
+            float:left;
+            list-style:none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="index2">
+        <h5>所在位置：<a>主页</a></h5>
+
+
+        <p class="p_line"><input type="text" class="form-control" value="请输入商品名称" /><input type="text" class="form-control" value="商品品牌" /> <button class=" button_style">查询</button></p>
+        
+            <table id="table" style="margin: 0 auto">
+                <tr>
+                    <th>商品编号</th>
+                    <th>商品型号</th>
+                    <th>商品型号介绍</th>
+                    <th>商品价格</th>
+                    <th>商品库存</th>
+                    <th>商品图片</th>
+                    <th>商品名称</th>
+                    <th>商品简介</th>
+                    <th>商品类型</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.SKUId</td>
+                        <td>@item.SKUGoodName</td>
+                        <td>@item.Goods_Description</td>
+                        <td>@item.GoodPrice</td>
+                        <td>@item.inventory</td>
+                        <td><img src="~/Content/img/product/@item.GoodPhoto" width="60" height="60" /> </td>
+                        <td>@item.SPUGoodName</td>
+                        <td>@item.GoodInfo</td>
+                        <td>@item.TypeName</td>
+                    </tr>
+                }
+            </table>
+            <div style="margin:0px auto;width:500px;height:50px;">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("content", new { page }))
+            </div>
+        </p>
+    </div>
+
+
+    
+
+
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/ss/js/bootstrap-table.js"></script>
+    <script src="~/Content/ss/js/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#table').bootstrapTable({
+                method: "get",
+                striped: true,
+                singleSelect: false,
+                url: "json/data.json",
+                dataType: "json",
+                pagination: true, //分页
+                pageSize: 10,
+                pageNumber: 1,
+                search: false, //显示搜索框
+                contentType: "application/x-www-form-urlencoded",
+                queryParams: null,
+            });
+        })
+
+    </script>
+
+</body>
+</html>

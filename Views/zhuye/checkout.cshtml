@@ -1,0 +1,184 @@
+﻿
+@{
+    ViewBag.Title = "checkout";
+    Layout = "~/Views/Shared/_muban.cshtml";
+}
+
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area other_bread">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="index.html">home</a></li>
+                        <li>/</li>
+                        <li>checkout</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+<!--Checkout page section-->
+<div class="Checkout_section">
+    <div class="container">
+        <div class="checkout_form">
+            <div class="row">
+                
+                <div class="col-lg-9 col-md-9">
+
+                    <form action="#">
+                        请选择收货地址：
+                        <select name="email-name" class="form-control input-lg" id="default_Address">
+                            @foreach (var item in ViewData["pro_addres"] as List<栗子商城.Models.User_addressTable>)
+                            {
+                                <option value="@item.AddressId">@item.Adress</option>
+                            }
+
+                        </select>
+                        <br />
+                        <h3>您的订单信息如下</h3>
+                        <div class="order_table table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>条目1</th>
+                                        <th>条目2</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewData["pro_detial"] as List<栗子商城.Models.selpro_detials_id_Result>)
+                                    {
+                                        <tr>
+                                            <td>商品名称</td>
+                                            <td><strong id="SKUId" title="@item.SKUId">@item.SKUGoodName</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>商品数量</td>
+                                            <td><strong><span id="GoodNum">1</span></strong></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>商品介绍</td>
+                                            <td><strong id="tdpro2">@item.Goods_Description</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>商品价格</td>
+                                            <td>￥<strong id="Total" style="color:red;">@item.GoodPrice</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>商品图片</td>
+                                            <td><img src="~/Content/img/product/@item.GoodPhoto" style="width:270px;height:350px" alt="Alternate Text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>商品剩余件数</td>
+                                            <td><strong id="tdpro4">@item.inventory</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>运费</td>
+                                            <td><strong id="TranMoney">20</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>应付金额</td>
+                                            <td>￥<strong style="color:red;" id="tdpro6">@item.GoodPrice</strong></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>实付金额</td>
+                                            <td>
+                                                <strong style="color:red;" id="GoodPrice">
+                                                    <script>
+                                                        var ss = document.getElementById("tdpro6").innerHTML;
+                                                        var ss1 = document.getElementById("GoodPrice");
+                                                        ss1.innerHTML = parseFloat(ss) + 20;
+                                                    </script>
+                                                </strong>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="payment_method">
+                            <div class="panel-default">
+
+                            </div>
+                            <div class="order_button">
+                                <button type="button" id="queren_qian" >确认付款</button>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" id="quxiao_qian">取消付款</button>
+                            </div>
+                        </div>
+                    </form>
+                    <script>
+                        $(function () {
+                            var myDate = new Date();
+                            $("#queren_qian").click(function() {
+                                var UserId = localStorage.getItem("userid");
+                                var AddressId = $("#default_Address").val();
+                                var Total = $("#Total").html();
+                                var TranMoney = $("#TranMoney").html();
+                                var PayState = "已付款";
+                                var CreateTime = myDate.toLocaleString();
+                                var SKUId = $("#SKUId").attr("title");
+                                var GoodNum = $("#GoodNum").html().substring(0,1);
+                                var GoodPrice = $("#GoodPrice").html();
+                                var tdpro4 = Number($("#tdpro4").html());
+
+                                $.ajax({
+                                    url: "/zhuye/checkoutinfo",
+                                    type: "post",
+                                    data: { "UserId": UserId, "AddressId": AddressId, "Total": Total, "TranMoney": TranMoney, "PayState": PayState, "CreateTime": CreateTime, "SKUId": SKUId, "GoodNum": GoodNum, "GoodPrice": GoodPrice, "inventory": tdpro4 - 1},
+                                    success: function(data) {
+                                        if (data == "true") {
+
+                                            alert("取消付款")
+                                        }
+                                        if (data == "false") {
+                                            alert("付款成功")
+                                            window.location.href = "/zhuye/pro_details?SKUId=" + SKUId;
+                                        }
+                                    }
+                                    
+                                })
+                            })
+                            $("#quxiao_qian").click(function () {
+                                var UserId = localStorage.getItem("userid");
+                                var AddressId = $("#default_Address").val();
+                                var Total = $("#Total").html();
+                                var TranMoney = $("#TranMoney").html();
+                                var PayState = "未付款";
+                                var CreateTime = myDate.toLocaleString();
+                                var SKUId = $("#SKUId").attr("title");
+                                var GoodNum = $("#GoodNum").html();
+                                var GoodPrice = $("#GoodPrice").html();
+                                var tdpro4 = Number($("#tdpro4").html());
+
+                                $.ajax({
+                                    url: "/zhuye/checkoutinfo",
+                                    type: "post",
+                                    data: { "UserId": UserId, "AddressId": AddressId, "Total": Total, "TranMoney": TranMoney, "PayState": PayState, "CreateTime": CreateTime, "SKUId": SKUId, "GoodNum": GoodNum, "GoodPrice": GoodPrice, "inventory": tdpro4},
+                                    success: function (data) {
+                                        if (data == "true") {
+                                            alert("付款失败")
+                                        }
+                                        if (data == "false") {
+                                            alert("取消付款")
+                                            window.location.href = "/zhuye/pro_details?SKUId=" + SKUId;
+                                        }
+                                    }
+
+                                })
+                            })
+                        })
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Checkout page section end-->
+

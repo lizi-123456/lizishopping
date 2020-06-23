@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "pro_details";
+    Layout = null;
+}
+<h3>发表评论</h3>
+<p>您的电子邮件地址不会被公开。</p>
+<h4>商品评价等级</h4>
+<p>
+    <!-- 这种input和label配合使用用户体验更好，单击按钮或者文字都会选中-->
+    <input type="radio" name="demo" id="temp1" value="5" /><label for="temp1">好评</label><br />
+    <input type="radio" name="demo" id="temp2" value="3" /><label for="temp2">中评</label><br />
+    <input type="radio" name="demo" id="temp3" value="1" /><label for="temp3">差评</label><br />
+</p>
+<form action="#">
+    <div class="row">
+        <div class="col-12">
+            <label for="review_comment">请输入评论内容</label>
+            <textarea name="comment" id="review_comment"></textarea>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <label for="author">昵称：</label>
+            <input id="author" type="text" value="@ViewBag.pingjia.nicheng">
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <label for="email">电子邮箱</label>
+            <input id="email" type="text" value="@ViewBag.pingjia.Email">
+        </div>
+    </div>
+    <input type="button" name="name" title="@ViewBag.skuid" value="提交评论" id="tijiao_pingjia" class="btn btn-primary" />
+    <script>
+        $(function () {
+            $(".ass").click(function () {
+                var id = $(this).attr("title");
+                alert(id)
+            })
+        })
+        function sss() {
+
+        }
+    </script>
+
+    <script>
+        $(function () {
+            var Grade = "";
+            var myDate = new Date();
+            $('input:radio[name="demo"]').click(function () {
+                Grade = $('input:radio[name="demo"]:checked').val();
+            });
+
+            $("#tijiao_pingjia").click(function () {
+                var content = $("#review_comment").val();
+                var UserId = localStorage.getItem("userid");
+                var SKUId = $(this).attr("title");
+                var Ratetime = myDate.toLocaleString();
+                $.ajax({
+                    url: "/zhuye/shop_pingjiainfo",
+                    type: "post",
+                    data: { "content": content, "Grade": Grade, "Ratetime": Ratetime, "SKUId": SKUId, "UserId": UserId },
+                    success: function (data) {
+                        if (data == "true") {
+                            location.reload();
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+
+</form>
+

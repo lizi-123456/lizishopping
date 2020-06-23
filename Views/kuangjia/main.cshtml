@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "main";
+    Layout = "~/Views/Shared/_houtaimuban.cshtml";
+}
+
+<frameset rows="65,*,31" cols="*" frameborder="no" border="0" framespacing="0" id="leftwith">
+    <frame src="/kuangjia/top" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame" />
+    <frameset cols="250,*" frameborder="no" border="0" framespacing="0" id="leftFrameSet">
+        <frame src="/kuangjia/left" />
+        <frame src="/kuangjia/content" style="margin-top:-300px;" name="rightFrame" scrolling="yes" />
+    </frameset>
+    <frame src="/kuangjia/footer" />
+    <frame src="UntitledFrame-6">
+</frameset>
+<noframes>
+    <body>
+    </body>
+</noframes>

@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "addimg_demo";
+    Layout = "~/Views/Shared/_houtaimuban.cshtml";
+}
+
+<div class="modal fade" id="touGao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">发表贴子<span class="glyphicon glyphicon-pencil"></span>	</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>选择图片:</label>
+                    <label for="imglist" class="btn btn-success">上传图片</label>
+                    <input id="imglist" type="file" class="hidden" onchange="yulanimg(this)" multiple />
+                </div>
+                <div class="container-fluid" id="yu">
+                    @*图片预览区域*@
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    取消
+                </button>
+                <button type="button" class="btn btn-primary" onclick="fabiao()">发表</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=""></div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    //输入内容判断
+    function checkLength(a) {
+        if (a.value.length >= 3000)
+            return false;
+    }
+    //图片预览
+    function yulanimg(f) {
+        $("#yu").empty();
+        var file = f.files;
+        for (var i = 0; i < file.length; i++) {
+            var red = new FileReader();
+            //定义图片规则
+            var ImageFileExtend = ".gif,.png,.jpg,.ico,.bmp";
+            //获取图片后缀
+            var fileExtend = file[i].name.substring(file[i].name.lastIndexOf('.')).toLowerCase();
+            if (ImageFileExtend.indexOf(fileExtend) > -1) {
+                red.onload = function (e) {
+                    var img = "<img src='" + e.target.result + "' class='img-rounded' width='100 %' height='100%' style='display: block;'/>";
+                    var div2 = "	<div class='col-lg-3' style='height:100px;'>" + img + "</div>"
+                    $("#yu").append(div2);
+                }
+                red.readAsDataURL(file[i]);
+            }
+            
+        }
+        //console.log(file);
+    }
+    //帖子发表
+    function fabiao() {
+        //获取元素
+        var PostText = $("#PostText").val();
+        if (PostText != "") {
+            var ModelId = $("#ModelId").val();
+            var file = document.getElementById("imglist").files;
+            //发起请求上传文本
+                        var idenx = 0;
+                        for (var i = 0; i < file.length; i++) {
+                            //定义图片规则
+                            var ImageFileExtend = ".gif,.png,.jpg,.jpeg,.ico,.bmp";
+                            //获取图片后缀
+                            var fileExtend = file[i].name.substring(file[i].name.lastIndexOf('.')).toLowerCase();
+                            if (ImageFileExtend.indexOf(fileExtend) > -1) {
+                                var fd = new FormData();
+                                fd.append("file", file[i]);
+                                //发起请求上传图片
+                                idenx = sendimg(fd, idenx);
+                                console.log(fd.get("file"))
+                            } else {
+                                alert("选择了一个不是图片的文件，该文件取消上传操作");
+                            }
+                        }
+                        
+                        //if (idenx == file.length) {
+                        //	alert("上传成功");
+                        //	window.location.href = "/User_index/Index";
+                        //}
+
+                   
+        } else {
+            alert("请填写一些内容");
+        }
+    }
+    //提交图片方法
+    function sendimg(fd, inde) {
+        $.ajax({
+            url: "/admin/addimg_demoinfo",
+            type: "post",
+            processData: false,
+            contentType: false,
+            data: fd,
+            success: function (a) {
+                if (a != "") {
+                    alert(a);
+                }
+                inde += 1;
+            }
+        })
+        return inde;
+    }
+</script>
+

@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <title>登陆</title>
+    <link href="~/Content/css/bootstrap.min.css" title="" rel="stylesheet" />
+
+    <link title="orange" href="~/Content/css/login.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+    <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="~/Content/js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="~/Content/js/plugins.js"></script>
+    <!-- Ajax Mail -->
+    <script src="~/Content/js/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="~/Content/js/main.js"></script>
+
+</head>
+
+<body>
+    <div style="height:1px;"></div>
+    <div class="login">
+        <header>
+            <h1>登陆</h1>
+        </header>
+        <div class="sr">
+            <form>
+                <div class="name">
+                    <label>
+                        <i class="sublist-icon glyphicon glyphicon-user"></i>
+                    </label>
+                    <input type="text" placeholder="请输入登录名" class="name_inp" id="Admins" autocomplete="off">
+                </div>
+                <div class="name">
+                    <label>
+                        <i class="sublist-icon glyphicon glyphicon-pencil"></i>
+                    </label>
+                    <input type="password" placeholder="请输入登录密码" class="name_inp" id="Pwd">
+                </div>
+                <input type="button" name="name" value="登录" id="btn" />
+                @*<button class="dl" id="btn">登陆</button>*@
+            </form>
+        </div>
+        <script type="text/javascript">
+            var admins = $("#Admins").val();
+            var pwd = $("#Pwd").val();
+            $(function () {
+                $("#btn").click(function () {
+                    if ($("#Admins").val() != "" && $("#Pwd").val() != "") {
+                        if ($("#Admins").val() == "admin" && $("#Pwd").val() == "admin") {
+                            localStorage.setItem("admins", $("#Admins").val());
+                            window.location.href = "/kuangjia/main";
+                        }
+                        else {
+                            alert("管理员账号或密码错误");
+                        }
+                    }
+                    else {
+                        alert("管理员账号或密码为空");
+                    }
+
+                });
+            });
+        </script>
+    </div>
+
+
+</body>
+</html>
+
+
+

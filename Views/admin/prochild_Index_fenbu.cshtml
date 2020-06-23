@@ -1,0 +1,44 @@
+﻿@model IEnumerable<栗子商城.Models.selpro_detials_SKUGoodName_Result>
+@{
+    ViewBag.Title = "left";
+    Layout = null;
+}
+<table id="table" data-toggle="table" data-height="500px" style="margin:0 auto;width:96%;">
+    <tr>
+        <th>商品编号</th>
+        <th>商品型号</th>
+        <th>商品型号介绍</th>
+        <th>商品价格</th>
+        <th>商品库存</th>
+        <th>商品图片</th>
+        <th>商品名称</th>
+        <th>商品类型</th>
+        <th>是否上传副图</th>
+        <th>删除此商品</th>
+        <th>修改商品型号</th>
+        <th>上传副图(注意：不上传副图的商品将无法在主页显示)</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="border-left:1px solid #dddddd;border-right:1px solid #dddddd">@item.SKUId</td>
+            <td style="border-left:1px solid #dddddd;border-right:1px solid #dddddd">@item.SKUGoodName</td>
+            <td style="border-left:1px solid #dddddd;border-right:1px solid #dddddd">@item.Goods_Description</td>
+            <td style="border-left:1px solid #dddddd;border-right:1px solid #dddddd">@item.GoodPrice</td>
+            <td style="border-left:1px solid #dddddd;border-right:1px solid #dddddd">@item.inventory</td>
+            <td style="border-left:1px solid #dddddd;border-right:1px solid #dddddd"><img src="~/Content/img/product/@item.GoodPhoto" width="60" height="60" /> </td>
+            <td style="border-left:1px solid #dddddd;border-right:1px solid #dddddd">@item.SPUGoodName</td>
+            <td style="border-left:1px solid #dddddd;border-right:1px solid #dddddd">@item.TypeName</td>
+            <td style="border-left:1px solid #dddddd;border-right:1px solid #dddddd">@item.BusinName</td>
+            <td style="border-left:1px solid #dddddd;border-right:1px solid #dddddd"><a href="#" class="prochilddel" title="@item.SKUId">删除</a></td>
+            <td style="border-left:1px solid #dddddd;border-right:1px solid #dddddd"><a href="#">修改</a></td>
+            <td style="border-left:1px solid #dddddd;border-right:1px solid #dddddd"><a href="/admin/addimg?SKUId=@item.SKUId">上传</a></td>
+        </tr>
+    }
+</table>
+
+<script>
+    $("#fenye").css("display","none")
+</script>
+
+

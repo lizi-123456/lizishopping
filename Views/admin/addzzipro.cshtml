@@ -1,0 +1,143 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>栗子商城</title>
+    <script src="~/Content/js/popper.min.js"></script>
+    <link href="~/Content/css/eys_stly.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+    <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="~/Content/js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="~/Content/js/plugins.js"></script>
+    <!-- Ajax Mail -->
+    <script src="~/Content/js/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="~/Content/js/main.js"></script>
+</head>
+
+<body>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
+    <div class=" index_buy">
+        <h5 class=" h5_all_s">所在位置：<a>子商品添加</a></h5>
+        <form action="/admin/addzziproinfo" method="post" enctype="multipart/form-data">
+            <p>
+                <a>商品名称：</a><input type="text" class="form-control" name="SPUGoodName" id="SPUGoodName" value="@ViewBag.SPUGoodName" title="@ViewBag.SPUID" readonly="readonly" /><span id="SPUGoodNamemsg" style="color:red;">*</span><input type="text" name="SPUID" value="@ViewBag.SPUID" style="display:none;" />
+            </p>
+            <p>
+                <a>商品型号：</a><input type="text" class="form-control" name="SKUGoodName" id="SKUGoodName" /><span id="SKUGoodNamemsg" style="color:red;">*</span><br />
+                <a>商品型号描述：（商品的型号详细介绍）</a><textarea class="form-control textarea_stlye" rows="5" name="Goods_Description" id="Goods_Description"></textarea><span id="Goods_Descriptionmsg" style="color:red;">*</span>
+            </p>
+            <p><a>商品价格：</a><input type="text" class="form-control" name="GoodPrice" id="GoodPrice" /><span id="GoodPricemsg" style="color:red;">*</span><br /><a>商品库存：</a><input type="text" class="form-control" name="inventory" id="inventory" /><span id="inventorymsg" style="color:red;">*</span></p>
+            <p>
+                <a>商品照片：</a><input type="file" class="form-control" name="file" id="file" onchange="changepic(this)" /><i class="i_start"></i>
+                <img src="" height="90" width="90" id="img" /><br />
+            </p>
+            <p>
+                <input type="submit" class="button_style button_margin" name="name" value="提交" id="btn" />
+            </p>
+        </form>
+    </div>
+    <script>
+        function changepic() {
+            $("#file").css("display", "none");
+            var reads = new FileReader();
+            f = document.getElementById('file').files[0];
+            reads.readAsDataURL(f);
+            reads.onload = function (e) {
+                document.getElementById('img').src = this.result;
+                $("#img").css("display", "block");
+            };
+        }
+
+        $(function () {
+            $("#SPUGoodName").blur(function () {
+                if ($(this).val() == "") {
+                    $("#SPUGoodNamemsg").css("color", "red");
+                    $("#SPUGoodNamemsg").html("商品名称不能为空");
+                }
+                else {
+                    $("#SPUGoodNamemsg").css("color", "black");
+                    $("#SPUGoodNamemsg").html("");
+                }
+            });
+
+            $("#SKUGoodName").blur(function () {
+                if ($(this).val() == "") {
+                    $("#SKUGoodNamemsg").css("color", "red");
+                    $("#SKUGoodNamemsg").html("商品型号不能为空");
+                }
+                else {
+                    $("#SKUGoodNamemsg").css("color", "black");
+                    $("#SKUGoodNamemsg").html("");
+                }
+            });
+
+            $("#Goods_Description").blur(function () {
+                if ($(this).val() == "") {
+                    $("#Goods_Descriptionmsg").css("color", "red");
+                    $("#Goods_Descriptionmsg").html("商品型号描述不能为空");
+                }
+                else {
+                    $("#Goods_Descriptionmsg").css("color", "black");
+                    $("#Goods_Descriptionmsg").html("");
+                }
+            });
+
+            $("#GoodPrice").blur(function () {
+                if ($(this).val() == "") {
+                    $("#GoodPricemsg").css("color", "red");
+                    $("#GoodPricemsg").html("商品价格不能为空");
+                }
+                else {
+                    $("#GoodPricemsg").css("color", "black");
+                    $("#GoodPricemsg").html("");
+                }
+            });
+
+            $("#inventory").blur(function () {
+                if ($(this).val() == "") {
+                    $("#inventorymsg").css("color", "red");
+                    $("#inventorymsg").html("商品库存不能为空");
+                }
+                else {
+                    $("#inventorymsg").css("color", "black");
+                    $("#inventorymsg").html("");
+                }
+            });
+
+
+            $("#btn").click(function () {
+                if ($("#SPUGoodName").val() != "" && $("#GoodInfo").val() != "" && $("#SKUGoodName").val() != "" && $("#Goods_Description").val() != "" && $("#GoodPrice").val() != "" && $("#inventory").val() != "") {
+
+                }
+                else {
+                    alert("请填写完整数据");
+                }
+
+
+            });
+        })
+
+    </script>
+
+</body>
+</html>
+
+

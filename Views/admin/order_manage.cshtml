@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "order_manage";
+    Layout = "~/Views/Shared/_houtaimuban.cshtml";
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="~/Content/css/eys_stly.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+    <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="~/Content/js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="~/Content/js/plugins.js"></script>
+    <!-- Ajax Mail -->
+    <script src="~/Content/js/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="~/Content/js/main.js"></script>
+</head>
+
+<body>
+    <div class="index2">
+        <h5>所在位置：<a>订单管理</a></h5>
+        <table id="table" style="margin: 0 auto">
+            <tr>
+                <th>订单编号</th>
+                <th>用户名</th>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>下单时间</th>
+                <th title="注意,本页商品一旦删除，则对应的子商品也将删除">支付状态</th>
+                <th title="0为解封状态，可以正常使用。1为封禁状态，无法使用">订单操作</th>
+            </tr>
+            @foreach (var item in ViewData["orders_all"] as List<栗子商城.Models.selproorders_all_Result>)
+            {
+                <tr>
+                    <td>@item.OrderID</td>
+                    <td>@item.UserName</td>
+                    <td>@item.SKUGoodName</td>
+                    <td>@item.GoodPrice</td>
+                    <td>@item.CreateTime</td>
+                    <td>@item.PayState</td>
+                    <td><a href="#" class="del_order" title="@item.OrderID">删除此订单</a></td>
+                </tr>
+            }
+        </table>
+        </p>
+
+    </div>
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/ss/js/bootstrap-table.js"></script>
+    <script src="~/Content/ss/js/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".del_order").click(function () {
+                var OrderID = $(this).attr("title");
+
+                if (confirm("是否确认删除此订单?")) {
+                    $.ajax({
+                        url: "/admin/order_manageinfo",
+                        type: "POST",
+                        data: { "OrderID": OrderID },
+                        success: function (data) {
+                            if (data == "true") {
+                                alert("删除订单失败");
+                            }
+                            if (data == "false") {
+                                window.location.href = "/admin/order_manage";
+                            }
+                        }
+                    });
+                }
+            })
+
+
+            $('#table').bootstrapTable({
+                method: "get",
+                striped: true,
+                singleSelect: false,
+                url: "json/data.json",
+                dataType: "json",
+                pagination: true, //分页
+                pageSize: 10,
+                pageNumber: 1,
+                search: false, //显示搜索框
+                contentType: "application/x-www-form-urlencoded",
+                queryParams: null,
+            });
+        })
+
+    </script>
+
+</body>
+</html>
+

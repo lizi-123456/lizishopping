@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "shopcart";
+    Layout = "~/Views/Shared/_muban.cshtml";
+}
+
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area other_bread">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/zhuye/Index">主页</a></li>
+                        <li>/</li>
+                        <li>购物车</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+<!--wishlist area start -->
+<div class="wishlist_area">
+    <div class="container">
+        <form action="#">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table_desc wishlist">
+                        <div class="cart_page table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="product_remove">删除商品</th>
+                                        <th class="product_thumb">商品图片</th>
+                                        <th class="product_name">商品名称</th>
+                                        <th class="product-price">商品价格</th>
+                                        <th class="product_quantity">商品类型</th>
+                                        <th class="product_total">付款</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in ViewData["pro_cart"] as List<栗子商城.Models.selprocart_userid_Result>)
+                                    {
+                                    <tr>
+                                        <td class="product_remove"><a href="" title="@item.ShopCardID" id="delcart">删除</a></td>
+                                        <td class="product_thumb"><a href="#"><img src="~/Content/img/s_product/@item.GoodPhoto" alt="" style="width:100px;height:100px" /></a></td>
+                                        <td class="product_name"><a href="#">@item.SKUGoodName</a></td>
+                                        <td class="product-price">£@item.GoodPrice</td>
+                                        <td class="product_quantity">@item.TypeName</td>
+                                        <td class="product_total"><a href="#" class="btn_tijiao" title="@item.SKUId">去付款</a></td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <script>
+                                $(function () {
+                                    $("#delcart").click(function () {
+                                        var ShopCardID = $(this).attr("title");
+                                        $.ajax({
+                                            url: "/zhuye/shopcartdel",
+                                            type: "post",
+                                            data: { "ShopCardID": ShopCardID},
+                                            success: function(data) {
+                                                if (data == "true") {
+                                                    alert("删除成功")
+                                                }
+                                                if (data == "false") {
+                                                    alert("删除失败")
+                                                }
+                                            }
+
+                                        })
+                                    })
+
+                                    $(".btn_tijiao").click(function () {
+                                        
+                                            var SKUId = $(this).attr("title");
+                                            window.location.href = "/zhuye/checkout?SKUId=" + SKUId + "&UserID=" + localStorage.getItem("username");
+                                    })
+                                })
+                            </script>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <div class="row">
+            <div class="col-12">
+                <div class="wishlist_share">
+                    <h4>Share on:</h4>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                        <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--wishlist area end -->

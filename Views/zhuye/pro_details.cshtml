@@ -1,0 +1,359 @@
+﻿
+@{
+    ViewBag.Title = "pro_details";
+    Layout = "~/Views/Shared/_muban.cshtml";
+}
+
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area product_bread">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/zhuye/Index">主页</a></li>
+                        <li>/</li>
+                        <li>商品详情</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+<!--product details start-->
+<div class="product_details">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in ViewData["pro_xq"] as List<栗子商城.Models.selpro_detials_id_Result>)
+            {
+                <div class="col-lg-4 col-md-5">
+                    <div class="product-details-tab">
+
+                        <div id="img-1" class="zoomWrapper single-zoom">
+                            <a href="#">
+                                <img id="zoom1" src="~/Content/img/product/@item.GoodPhoto" style="height:320px;width:270px" data-zoom-image="~/Content/img/product/product4.jpg" alt="暂无预览大图">
+                            </a>
+                        </div>
+                        <span style="font-size:20px;">商品其他照片</span>
+                        <div class="single-zoom-thumb mt-20">
+                            <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
+                                <li>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="~/Content/img/product/product4.jpg" data-zoom-image="~/Content/img/product/product4.jpg">
+                                        <img src="~/Content/img/product/@item.Photo_one" alt="暂无其他照片" />
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="~/Content/img/product/product4.jpg" data-zoom-image="~/Content/img/product/product4.jpg">
+                                        <img src="~/Content/img/product/@item.Photo_two" alt="暂无其他照片" />
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="~/Content/img/product/product4.jpg" data-zoom-image="~/Content/img/product/product4.jpg">
+                                        <img src="~/Content/img/product/@item.Photo_three" alt="暂无其他照片" />
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="~/Content/img/product/product4.jpg" data-zoom-image="~/Content/img/product/product4.jpg">
+                                        <img src="~/Content/img/product/@item.Photo_four" alt="暂无其他照片" />
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="~/Content/img/product/product6.jpg" data-zoom-image="~/Content/img/product/product6.jpg">
+                                        <img src="~/Content/img/product/@item.Photo_five" alt="暂无其他照片" />
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-7">
+                    <div class="product_d_right">
+                        <h1>@item.SKUGoodName</h1>
+                        <br />
+                        <div class="product_price">
+                            <span class="current_price">价格：</span>
+                            <span class="current_price">£@item.GoodPrice</span>
+                        </div>
+                        <div class="product_desc">
+                            <p>@item.Goods_Description</p>
+                        </div>
+
+                        <div class="product_color">
+                        </div>
+                        <div class="product_size">
+                            <h3>型号:</h3><br />
+                            <p style="font-size:20px;">@item.SKUGoodName</p>
+                        </div>
+                        <br /><br />
+                        <div class="box_quantity">
+                            <button class="button" type="button" id="goumai" title="@item.SKUId">购买</button>
+                            <button class="button" type="button" id="shoppcart" title="@item.SKUId">添加购物车</button>
+                        </div>
+                        <div class="product_d_action">
+                            <ul>
+                                <li><a href="#" title="Add to wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick View"><i class="fa fa-eye"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="priduct_social">
+                            <h3>分享:</h3>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                                <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-0 col-md-6 offset-md-3">
+                    <div class="best_seller_product">
+                        <div class="best_seller_titile">
+                            <h3>BEST SELLER</h3>
+                        </div>
+                        <div class="bestseller_slider bestseller_column3">
+
+                            @foreach (var item_zi in ViewData["pro"] as List<栗子商城.Models.selproxiangqing_rexiao_Result>)
+                            {
+                                <div class="single_bestseller">
+                                    <div class="bestseller_thumb">
+                                        <a href="/zhuye/pro_details?SKUId=@item_zi.SKUId">
+                                            <img class="primary_img" src="~/Content/img/s_product/@item_zi.GoodPhoto" alt="">
+                                            <img class="secondary_img" src="~/Content/img/s_product/product5.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="bestseller_content">
+                                        <h3><a href="/zhuye/pro_details?SKUId=@item_zi.SKUId">@item_zi.SKUGoodName</a></h3>
+                                        <div class="product_ratting">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="product_price">
+                                            <span>£@item_zi.GoodPrice</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div>
+    <script>
+        $(function () {
+            $("#goumai").click(function () {
+                if (localStorage.getItem("userid") == null) {
+                    if (confirm("还没有登录，暂无法购买此商品，点击确定登陆您的账号")) {
+                        window.location.href = "/loginRegister/Login";
+                    }
+                    else {
+
+                    }
+                }
+                else {
+                    var SKUId = $(this).attr("title");
+
+                    window.location.href = "/zhuye/checkout?SKUId=" + SKUId + "&UserID=" + localStorage.getItem("userid");
+
+                }
+            })
+
+            $("#shoppcart").click(function () {
+                if (localStorage.getItem("userid") == null) {
+                    if (confirm("还没有登录，暂无法添加购物车，点击确定登陆您的账号")) {
+                        window.location.href = "/loginRegister/Login";
+                    }
+                    else {
+
+                    }
+                }
+                else {
+                    var SKUId = $(this).attr("title");
+                    var UserID = localStorage.getItem("userid");
+
+                    $.ajax({
+                        url: "/zhuye/shopcartinfo",
+                        type: "POST",
+                        data: { "SKUId": SKUId, "UserID": UserID },
+                        success: function (data) {
+                            if (data == "true") {
+                                alert("添加购物车成功")
+                            }
+                            if (data == "false") {
+                                alert("添加购物车失败")
+                            }
+                        }
+                    });
+                }
+            })
+        })
+    </script>
+</div>
+
+
+<!--product details end-->
+<!--product info start-->
+<div class="product_d_info">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="product_d_inner">
+                    <div class="product_info_button">
+                        <ul class="nav" role="tablist">
+                            <li>
+                                <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">更多信息</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="info" role="tabpanel">
+                            <div class="product_info_content">
+                                @foreach (var item in ViewData["pro_xq"] as List<栗子商城.Models.selpro_detials_id_Result>)
+                                {
+                                    <p>@item.Goods_Description</p>
+                                }
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--product info end-->
+<!--blog body area start-->
+<div class="blog_area blog_details">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12">
+                <!--blog grid area start-->
+                <div class="blog_wrapper">
+                    <div class="blog_info_wrapper">
+                        <div class="comments_box">
+                            <h1>商品评价</h1>
+                            <br />
+
+                            @foreach (var item in ViewData["pro_pingjia"] as List<栗子商城.Models.selpro_pingjia_id1_Result>)
+                            {
+                                <div class="comment_list">
+                                    <div class="comment-author-thumb">
+                                        <img src="~/Content/img/blog/comment2.png.jpg" alt="">
+                                    </div>
+                                    <div class="comment_content">
+                                        <div class="comment_meta">
+                                            <div class="comment_title">
+                                                <h5><a href="#"><span>用户邮箱：</span>@item.nicheng</a></h5>
+                                                <span><span>评价时间：</span>@item.Ratetime</span>
+                                            </div>
+                                        </div>
+                                        <p><span>评价内容：</span>@item.content</p>
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+
+                        @using (Ajax.BeginForm("pro_details_fenbu", new AjaxOptions
+                        {
+                            UpdateTargetId = "pro_details_fenbu",
+                            InsertionMode = InsertionMode.Replace
+                        }))
+                        {
+                            <input type="text" name="userid" id="yibujiazai_user" hidden="hidden" />
+                            <input type="text" name="skuid" id="yibujiazai_sku" value="@ViewBag.SKUId" hidden="hidden" />
+                            <script>
+                                $(function () {
+                                    var id = localStorage.getItem("userid");
+                                    $("#yibujiazai_user").val(id);
+                                })
+                            </script>
+                            <input type="submit" value="评论" class="btn btn-primary" /><span>(友情提示：登陆之后才能评论)</span>
+                        }
+                        <div class="comments_form" id="pro_details_fenbu">
+
+                        </div>
+
+                    </div>
+                </div>
+                <!--blog grid area start-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--blog section area end-->
+<!--Related Products section start-->
+<section class="product_section related_product">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section_title">
+                    <h3>其他产品</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="product_area product_column4 owl-carousel">
+
+                @foreach (var item in ViewData["pro_top"] as List<栗子商城.Models.selspuandtype_top_Result>)
+                {
+                    <div class="col-lg-3">
+                        <div class="single_product">
+                            <div class="product_thumb">
+                                <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="~/Content/img/product/@item.GoodPhoto" alt=""></a>
+                                <div class="product_hover">
+                                    <div class="product_ratting">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product_action">
+                                        <div class="action_button">
+                                            <ul>
+                                                <li><a class="add_links Wishlist" href="javascript:void(0)" title="Add to Wishlist"><i class="fa fa-heart"></i></a></li>
+                                                <li><a class="add_to_cart" href="/zhuye/pro_details?SKUId=@item.SKUId">查看详情</a></li>
+                                                <li><a class="add_links Compare" href="javascript:void(0)" title="Add to Compare"><i class="fa fa-retweet"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="quick_button">
+                                            <a href="#" data-toggle="modal" data-target="#modal_box" class="motaikuang_xiangqing" title="@item.SKUId"><i class="fa fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_content">
+                                <h3><a href="/zhuye/pro_details?SKUId=@item.SKUId">@item.SKUGoodName</a></h3>
+                                <span class="current_price">£@item.GoodPrice</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!--Related Products end-->

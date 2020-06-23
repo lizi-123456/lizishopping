@@ -1,0 +1,126 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IEnumerable<栗子商城.Models.selspuandshoptype_Result>
+@{
+    ViewBag.Title = "left";
+    Layout = "~/Views/Shared/_houtaimuban.cshtml";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="~/Content/css/eys_stly.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+    <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="~/Content/js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="~/Content/js/plugins.js"></script>
+    <!-- Ajax Mail -->
+    <script src="~/Content/js/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="~/Content/js/main.js"></script>
+    <style>
+        .pagination-container ul li {
+            width: 80px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            float: left;
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="index2">
+        <h5>所在位置：<a>主页</a></h5>
+
+
+        <p class="p_line"><input type="text" class="form-control" value="请输入商品名称" /><input type="text" class="form-control" value="商品品牌" /> <button class=" button_style">查询</button></p>
+        <p class="p_bottom_bule"><a href="#" class="p_bottom_bule_hover">全部</a><a href="#">母婴玩具</a><a href="#">食品饮料</a><a href="#">家具厨具</a><a href="#">家用电器</a><a href="#">服饰箱包</a><a href="#">手机数码</a><a href="#">个人护理</a></p>
+        <p>
+            <table id="table" style="margin: 0 auto">
+                <tr>
+                    <th>商品编号</th>
+                    <th>商品名称</th>
+                    <th>商品简介</th>
+                    <th>商品类型</th>
+                    <th title="注意,本页商品一旦删除，则对应的子商品也将删除">删除商品</th>
+                    <th>添加子商品</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.SPUID</td>
+                        <td>@item.SPUGoodName</td>
+                        <td>@item.GoodInfo</td>
+                        <td>@item.TypeName</td>
+                        <td><a href="" class="prodel" title="@item.SPUID">删除</a></td>
+                        <td><a href="/admin/addzzipro?SPUID=@item.SPUID">添加子商品</a></td>
+                    </tr>
+                }
+            </table>
+            <div style="margin:0px auto;width:500px;height:50px;">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("pro_Index", new { page }))
+            </div>
+        </p>
+
+    </div>
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/ss/js/bootstrap-table.js"></script>
+    <script src="~/Content/ss/js/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            $(".prodel").click(function () {
+                var id = $(this).attr("title");
+                if (confirm("是否确认删除？")) {
+                    $.ajax({
+                        url: "/admin/prodel",
+                        type: "POST",
+                        data: { "SPUID": id },
+                        success: function (data) {
+                            if (data == "true") {
+                                window.location.href = "/admin/pro_Index";
+                            }
+                            if (data == "false") {
+                                alert("删除失败")
+                            }
+                        }
+                    });
+                }
+            })
+
+
+            $('#table').bootstrapTable({
+                method: "get",
+                striped: true,
+                singleSelect: false,
+                url: "json/data.json",
+                dataType: "json",
+                pagination: true, //分页
+                pageSize: 10,
+                pageNumber: 1,
+                search: false, //显示搜索框
+                contentType: "application/x-www-form-urlencoded",
+                queryParams: null,
+            });
+        })
+
+    </script>
+
+</body>
+</html>
+

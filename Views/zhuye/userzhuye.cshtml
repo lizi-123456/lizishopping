@@ -1,0 +1,399 @@
+﻿
+@{
+    ViewBag.Title = "userzhuye";
+    Layout = "~/Views/Shared/_muban.cshtml";
+}
+
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area other_bread">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/zhuye/Index">主页</a></li>
+                        <li>/</li>
+                        <li>我的主页</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+<!-- my account start  -->
+<section class="main_content_area">
+    <div class="container">
+        <div class="account_dashboard">
+            <div class="row">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <!-- Nav tabs -->
+                    <div class="dashboard_tab_button">
+                        <ul role="tablist" class="nav flex-column dashboard-list">
+
+                            <li><a href="#xinxi" data-toggle="tab" class="nav-link active" id="wodexinxi">我的信息</a></li>
+                            <li> <a href="#orders" data-toggle="tab" class="nav-link">已付款订单</a></li>
+                            <li><a href="#downloads" data-toggle="tab" class="nav-link">未付款订单</a></li>
+                            <li><a href="#address" data-toggle="tab" class="nav-link">收货地址</a></li>
+                            <li><a href="#account-details" data-toggle="tab" class="nav-link">添加收货地址</a></li>
+                            <li><a href="#dashboard" data-toggle="tab" class="nav-link ">修改密码</a></li>
+                            <li><a href="#" class="nav-link" id="tuichu">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <script>
+                    $(function () {
+                        $("#tuichu").click(function () {
+                            if (confirm("是否退出登录")) {
+                                localStorage.removeItem("username");
+                                localStorage.removeItem("userid");
+                                window.location.href = "/loginRegister/Login";
+                            }
+                            else {
+
+                            }
+                            
+                        })
+                    })
+                </script>
+                <div class="col-sm-12 col-md-9 col-lg-9">
+                    <!-- Tab panes -->
+                    <div class="tab-content dashboard_content">
+                        <div class="tab-pane fade  show active" id="xinxi">
+                            <h3>我的信息</h3>
+                            <div class="table-responsive">
+                                
+                                @foreach (var item in ViewData["user_info"] as List<栗子商城.Models.UserTable>)
+                                        {
+                                <span>
+                                    邮箱：<input type="text" class="form-control" name="name" value="@item.Email" readonly="readonly" /><br />
+                                    密码：<input type="text" class="form-control" name="name" id="mima1" value="@item.UserPassWord" /><br />
+                                    昵称：<input type="text" class="form-control" name="name" id="nicheng1" value="@item.nicheng" /><br />
+                                </span>
+                                        }
+                                
+                                <input type="button" name="name" class="btn btn-primary" id="xiugaixinxi" value="修改" />
+                            </div>
+                        </div>
+                        <script>
+                            $(function () {
+                                $("#xiugaixinxi").click(function () {
+
+                                    var mima1 = $("#mima1").val();
+                                    var nicheng1 = $("#nicheng1").val();
+                                    var UserId = localStorage.getItem("userid");
+                                    if (confirm("是否确认修改，修改之后将失去登录状态")) {
+                                        $.ajax({
+                                            url: "/zhuye/xinxixiiugai",
+                                            type: "post",
+                                            data: { "UserId": UserId, "UserPassWord": mima1, "nicheng": nicheng1, },
+                                            success: function (data) {
+                                                if (data == "true") {
+                                                    window.location.href = "/loginRegister/Login";
+                                                }
+                                            }
+                                        })
+                                    }
+                                    else {
+
+                                    }
+                                    
+                                })
+                            }) 
+                        </script>
+                        <div class="tab-pane fade" id="orders">
+                            <h3>订单</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>商品名</th>
+                                            <th>商品价格</th>
+                                            <th>下单时间</th>
+                                            <th>付款状态</th>
+                                            <th>操作1</th>
+                                            <th>操作2</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in ViewData["pro_yifukuan"] as List<栗子商城.Models.selproorders_zhuangtai_Result>)
+                                        {
+                                            <tr>
+                                                <td>@item.SKUGoodName</td>
+                                                <td><span class="danger">@item.GoodPrice</span></td>
+                                                <td><span class="danger">@item.CreateTime</span></td>
+                                                <td><span class="danger">@item.PayState</span></td>
+                                                <td><a href="#" class="qupingjia" title="@item.SKUId">评价</a></td>
+                                                <td><a href="#" class="view">删除</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                                <script>
+                                    $(function () {
+                                        $(".qupingjia").click(function () {
+                                            var SKUId = $(this).attr("title");
+                                            var UserID = localStorage.getItem("userid");
+                                            window.location.href = "/zhuye/shop_pingjia?SKUId=" + SKUId + "&UserId=" + UserID;
+                                        })
+                                    })
+                                </script>
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="downloads">
+                            <h3>未付款订单</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>商品名</th>
+                                            <th>用户名</th>
+                                            <th>商品价格</th>
+                                            <th>下单时间</th>
+                                            <th>付款状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in ViewData["pro_weifukuan"] as List<栗子商城.Models.selproorders_zhuangtai_Result>)
+                                        {
+                                            <tr>
+                                                <td>@item.SKUGoodName</td>
+                                                <td>@item.UserName</td>
+                                                <td><span class="danger">@item.GoodPrice</span></td>
+                                                <td><span class="danger">@item.CreateTime</span></td>
+                                                <td><span class="danger">@item.PayState</span></td>
+                                                <td><a href="#" class="view" id="fukuan" title="@item.OrderID">点此直接付款</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <script>
+                                    $(function () {
+                                        $("#fukuan").click(function () {
+                                            var OrderID = $(this).attr("title");
+                                            $.ajax({
+                                                url: "/zhuye/zhuangtai_付款",
+                                                type: "POST",
+                                                data: { "OrderID": OrderID },
+                                                success: function (data) {
+                                                    if (data == "true") {
+                                                        alert("付款成功");
+                                                        window.location.href = "/zhuye/userzhuye";
+                                                    }
+                                                    if (data == "false") {
+                                                        alert("付款失败");
+                                                    }
+                                                }
+                                            });
+                                        })
+                                    })
+                                </script>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="address">
+                            <p>我的所有收货地址</p>
+                            @foreach (var item in ViewData["pro_addres"] as List<栗子商城.Models.User_addressTable>)
+                            {
+                                <h3 class="billing-address">@item.Adress</h3>
+                                <hr />
+                            }
+
+
+                        </div>
+                        <div class="tab-pane fade" id="account-details">
+                            <h3>添加收货地址</h3>
+                            <div class="login">
+                                <div class="login_form_container">
+                                    <div class="account_login_form">
+                                        <form action="#">
+                                            <br>
+                                            <label>收件人名字</label>
+                                            <input type="text" name="first-name" id="consigneeName"><span id="consigneeNamemsg"></span>
+                                            <br />
+                                            <label>收货地址：（请谨慎填写您的真实地址）</label>
+                                            <input type="text" name="last-name" id="Adress"><span id="Adressmsg"></span>
+                                            <br />
+                                            <label>邮编</label>
+                                            <br />
+                                            <input type="text" name="email-name" id="postal_code"><span id="postal_codemsg"></span><br />
+                                            <label>联系方式：（请务必写真实的联系方式，方便我们联系到您）</label>
+                                            <input type="text" name="user-password" id="contact_way"><span id="contact_waymsg"></span>
+                                            <label>是否设置为默认收货地址：</label>
+                                            <select name="email-name" class="form-control input-lg" id="default_Address">
+                                                <option value="0">是</option>
+                                                <option value="1">否</option>
+                                            </select>
+                                            <br>
+                                            <br>
+                                            <div class="save_button primary_btn default_button">
+                                                <h3><a href="#" style="font:20px" id="tijiaoshouhuo">保存收货地址</a></h3>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+
+                                $(function () {
+
+                                    $("#consigneeName").blur(function () {
+                                        if ($(this).val() == "") {
+                                            $("#consigneeNamemsg").css("color", "red");
+                                            $("#consigneeNamemsg").html("请填写您的姓名");
+                                        }
+                                        else {
+                                            $("#consigneeNamemsg").html("");
+                                        }
+                                    });
+                                    $("#Adress").blur(function () {
+                                        if ($(this).val() == "") {
+                                            $("#Adressmsg").css("color", "red");
+                                            $("#Adressmsg").html("请填写收货地址");
+                                        }
+                                        else {
+                                            $("#Adressmsg").html("");
+                                        }
+                                    });
+                                    $("#postal_code").blur(function () {
+                                        if ($(this).val() == "") {
+                                            $("#postal_codemsg").css("color", "red");
+                                            $("#postal_codemsg").html("请填写邮编");
+                                        }
+                                        else {
+                                            $("#postal_codemsg").html("");
+                                        }
+                                    });
+                                    $("#contact_way").blur(function () {
+                                        if ($(this).val() == "") {
+                                            $("#contact_waymsg").css("color", "red");
+                                            $("#contact_waymsg").html("请填写您的手机号");
+                                        }
+                                        else {
+                                            $("#UserPassWordmsg").html("");
+                                        }
+                                    });
+
+
+                                    $("#tijiaoshouhuo").click(function () {
+                                        if ($("#consigneeName").val() != "" && $("#Adress").val() != "" && $("#postal_code").val() != "" && $("#contact_way").val() != "") {
+                                            var consigneeName = $("#consigneeName").val();
+                                            var Adress = $("#Adress").val();
+                                            var postal_code = $("#postal_code").val();
+                                            var contact_way = $("#contact_way").val();
+                                            var default_Address = $("#default_Address").val();
+                                            var UserId = localStorage.getItem("userid");
+
+                                            $.ajax({
+                                                url: "/zhuye/shopaddressinfo",
+                                                type: "post",
+                                                data: { "consigneeName": consigneeName, "Adress": Adress, "postal_code": postal_code, "contact_way": contact_way, "UserId": UserId, "default_Address": default_Address },
+                                                success: function (data) {
+                                                    if (data == "true") {
+                                                        alert("添加收货地址成功");
+                                                        window.location.href = "/zhuye/userzhuye";
+                                                    }
+
+                                                    if (data == "false") {
+                                                        alert("添加收货地址成功");
+                                                    }
+                                                }
+                                            })
+                                        }
+                                        else {
+                                            alert("请把您的收货地址信息填写完整");
+                                        }
+
+                                    })
+                                })
+                            </script>
+                        </div>
+
+
+                        <div class="tab-pane fade" id="dashboard">
+                            <h3>在此处可以修改您的密码</h3>
+                            <label>请输入新密码</label>
+                            <input type="text" name="last-name" class="form-control" autocomplete="off" maxlength="16" id="xinmima"><span id="xinmimamsg"></span>
+                            <br />
+                            <label>请再次输入密码</label>
+                            <br />
+                            <input type="text" name="email-name" class="form-control" maxlength="16" autocomplete="off" id="zaicishuru"><span id="zaicishurumsg"></span><br />
+                            <input type="button" name="email-name" class="form-control btn btn-primary" value="确认修改" id="xiugaipwd"><br />
+                        </div>
+
+                        <script>
+                            $("#xinmima").blur(function () {
+                                if ($(this).val() == "") {
+                                    $("#xinmimamsg").css("color", "red");
+                                    $("#xinmimamsg").html("请输入您的密码");
+                                }
+                                else {
+                                    $("#xinmimamsg").html("");
+                                }
+                            });
+                            $("#zaicishuru").blur(function () {
+                                if ($(this).val() == "") {
+                                    $("#zaicishurumsg").css("color", "red");
+                                    $("#zaicishurumsg").html("请再次输入您的密码");
+                                }
+                                else {
+                                    $("#zaicishurumsg").html("");
+                                    if ($("#zaicishuru").val() != $("#xinmima").val()) {
+                                        $("#zaicishurumsg").css("color", "red");
+                                        $("#zaicishurumsg").html("两次输入的密码不一致");
+                                    }
+                                    else {
+
+                                    }
+                                }
+                            });
+
+                            $("#xiugaipwd").click(function () {
+                                if ($("#zaicishuru").val() != "" && $("#xinmima").val() != "") {
+                                    if ($("#zaicishuru").val() != $("#xinmima").val()) {
+                                        $("#zaicishurumsg").css("color", "red");
+                                        $("#zaicishurumsg").html("两次输入的密码不一致");
+                                    }
+                                    else {
+                                        if (confirm("是否确认修改密码，修改密码之后将退出此页面")) {
+                                            var ss = localStorage.getItem("userid");
+                                            var pwd = $("#zaicishuru").val()
+                                            $.ajax({
+                                                url: "/loginRegister/updatepwd",
+                                                type: "post",
+                                                data: { "UserId": ss, "UserPassWord": pwd },
+                                                success: function (data) {
+                                                    if (data == "true") {
+                                                        localStorage.removeItem("username");
+                                                        localStorage.removeItem("userid");
+                                                        window.location.href = "/loginRegister/Login";
+                                                    }
+                                                    if (data == "false") {
+
+                                                    }
+                                                }
+                                            })
+                                        }
+                                        else {
+
+                                        }
+                                    }
+                                }
+                                else {
+                                    alert("请把密码填写完整");
+                                }
+                            })
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- my account end   -->
+
