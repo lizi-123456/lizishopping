@@ -5,8 +5,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="single_shipping">
                     <p>
-
-                        <img src="~/Content/img/icon/shipping-icon.png" alt="">
+                        <img src="https://cdn.lizixs.top/img/lizishopping/img/icon/shipping-icon.png" alt="">
                         订单满$ 99免运费
                     </p>
                 </div>
@@ -14,7 +13,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="single_shipping">
                     <p>
-                        <img src="~/Content/img/icon/comment-icon.png" alt="">
+                        <img src="https://cdn.lizixs.top/img/lizishopping/img/icon/comment-icon.png" alt="">
                         订单满$ 99免运费
                     </p>
                 </div>
@@ -22,7 +21,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="single_shipping">
                     <p>
-                        <img src="~/Content/img/icon/star-icon.png" alt="">
+                        <img src="https://cdn.lizixs.top/img/lizishopping/img/icon/star-icon.png" alt="">
                         订单满$ 99免运费
                     </p>
                 </div>
@@ -30,7 +29,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="single_shipping">
                     <p>
-                        <img src="~/Content/img/icon/money-icon.png" alt="">
+                        <img src="https://cdn.lizixs.top/img/lizishopping/img/icon/money-icon.png" alt="">
                         订单满$ 99免运费
                     </p>
                 </div>
@@ -206,13 +205,13 @@
                         <h3>热销榜</h3>
                     </div>
                     <div class="bestseller_slider bestseller_column3">
-                        @foreach (var item in ViewData["pro"] as List<栗子商城.Models.selproxiangqing_rexiao_Result>)
+                        @foreach (var item in ViewData["pro"] as List<栗子商城.Models.SKUOrSPUOrShopCategory>)
                         {
                             <div class="single_bestseller">
                                 <div class="bestseller_thumb">
                                     <a href="/zhuye/pro_details?SKUId=@item.SKUId">
-                                        <img class="primary_img" src="~/Content/img/product/@item.GoodPhoto" style="height:95px;" alt="">
-                                        <img class="secondary_img" src="~/Content/img/product/huawei6.jpg" style="height:95px;" alt="">
+                                        <img class="primary_img" src="https://cdn.lizixs.top/img/lizishopping/img/product/@item.GoodPhoto" style="height:95px;" alt="">
+                                        <img class="secondary_img" src="https://cdn.lizixs.top/img/lizishopping/img/product/huawei6.jpg" style="height:95px;" alt="">
                                     </a>
                                 </div>
                                 <div class="bestseller_content">
@@ -247,10 +246,10 @@
                 <div class="newsletter_follow">
                     <div class="newsletter_area">
                         <div class="newsletter_title">
-                            <h3>Newsletter Signup</h3>
+                            <h3>通讯注册</h3>
                         </div>
                         <div class="newsletter_desc">
-                            <p>Subscribe to our newsletter and join our 36 subscribers.</p>
+                            <p>您可以在这里留下您的邮箱</p>
                             <form action="#">
                                 <input placeholder="Enter your email..." type="text">
                                 <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
@@ -258,7 +257,7 @@
                         </div>
                     </div>
                     <div class="follow_us">
-                        <h3>FOLLOW US</h3>
+                        <h3>关注我们</h3>
                         <ul>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
@@ -308,9 +307,11 @@
                                     </div>
                                 </div>
                                 <div class="deals_product_thumb">
-                                    <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="~/Content/img/product/@item.GoodPhoto" alt=""></a>
+                                    <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="https://cdn.lizixs.top/img/lizishopping/img/product/@item.GoodPhoto" alt=""></a>
                                     <div class="quick_view">
-                                        <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view"><i class="fa fa-eye"></i></a>
+                                        <a href="#" data-toggle="modal" class="motaikuang_xiangqing" data-target="#modal_box" title="@item.SKUId"><i class="fa fa-eye"></i></a>
+
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -321,7 +322,7 @@
             <div class="col-lg-3 col-md-4">
                 <div class="banner_section">
                     <div class="single_banner">
-                        <a href="#"><img src="~/Content/img/bg/banner1.jpg" alt=""></a>
+                        <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner1.jpg" alt=""></a>
                         <div class="banner_popup">
                             <a class="video_popup" href="https://www.youtube.com/watch?v=VXtiLczH79Y"><i class="fa fa-film"></i></a>
                         </div>
@@ -332,13 +333,13 @@
     </div>
 </section>
 <!--deals section area end-->
-<!--banner section area start-->
+<!--banner section area s5tart-->
 <div class="banner_section banner_column3">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div class="single_banner">
-                    <a href="#"><img src="~/Content/img/bg/banner2.jpg" alt=""></a>
+                    <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner2.jpg" alt=""></a>
                     <div class="banner_popup">
                         <a class="video_popup" href="https://www.youtube.com/watch?v=24BzH0Af4N4"><i class="fa fa-image"></i></a>
                     </div>
@@ -346,7 +347,7 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="single_banner">
-                    <a href="#"><img src="~/Content/img/bg/banner3.jpg" alt=""></a>
+                    <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner3.jpg" alt=""></a>
                     <div class="banner_popup">
                         <a class="video_popup" href="https://www.youtube.com/watch?v=zeZiu-pf1pI"><i class="fa fa-link"></i></a>
                     </div>
@@ -354,7 +355,7 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="single_banner banner_3">
-                    <a href="#"><img src="~/Content/img/bg/banner4.jpg" alt=""></a>
+                    <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner4.jpg" alt=""></a>
                     <div class="banner_popup">
                         <a class="video_popup" href="https://www.youtube.com/watch?v=kf32dH6mx3w"><i class="fa fa-tags"></i></a>
                     </div>
@@ -370,7 +371,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section_title">
-                    <h3>FEATURED PRODUCTS</h3>
+                    <h3>特色产品</h3>
                 </div>
             </div>
         </div>
@@ -382,7 +383,7 @@
                     <div class="col-lg-3">
                         <div class="single_product">
                             <div class="product_thumb">
-                                <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="~/Content/img/product/@item.GoodPhoto" style="width:270px;height:350px" alt=""></a>
+                                <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="https://cdn.lizixs.top/img/lizishopping/img/product/@item.GoodPhoto" style="width:270px;height:350px" alt=""></a>
                                 <div class="product_hover">
                                     <div class="product_ratting">
                                         <ul>
@@ -396,7 +397,7 @@
                                     <div class="product_action">
                                         <div class="action_button">
                                             <ul>
-                                                <li><a class="add_links Wishlist" href="javascript:void(0)" title="Add to Wishlist"><i class="fa fa-heart"></i></a></li>
+                                                <li><a class="add_links Wishlist add_shoucang" href="javascript:void(0)" title="@item.SKUId" onclick="add_shoucang(this)"><i class="fa fa-heart"></i></a></li>
                                                 <li><a class="add_to_cart" href="/zhuye/pro_details?SKUId=@item.SKUId" title="点击下方小眼睛可查看大致信息">查看详情</a></li>
                                                 <li><a class="add_links Compare" href="javascript:void(0)" title="Add to Compare"><i class="fa fa-retweet"></i></a></li>
                                             </ul>
@@ -429,7 +430,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="single_banner">
-                    <a href="#"><img src="~/Content/img/bg/banner5.jpg" alt=""></a>
+                    <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner5.jpg" alt=""></a>
                     <div class="banner_popup">
                         <a class="video_popup" href="https://www.youtube.com/watch?v=7OycwyrZ6Hc&list=RDxyuLlnnfDcI&index=9"><i class="fa fa-tags"></i></a>
                     </div>
@@ -473,7 +474,7 @@
                             <div class="col-lg-3">
                                 <div class="single_product">
                                     <div class="product_thumb">
-                                        <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="~/Content/img/product/@item.GoodPhoto" style="width:195px;height:252px;" alt=""></a>
+                                        <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="https://cdn.lizixs.top/img/lizishopping/img/product/@item.GoodPhoto" style="width:195px;height:252px;" alt=""></a>
                                         <div class="product_hover">
                                             <div class="product_ratting">
                                                 <ul>
@@ -487,7 +488,7 @@
                                             <div class="product_action">
                                                 <div class="action_button">
                                                     <ul>
-                                                        <li><a class="add_links Wishlist" href="javascript:void(0)" title="Add to Wishlist"><i class="fa fa-heart"></i></a></li>
+                                                        <li><a class="add_links Wishlist add_shoucang" href="javascript:void(0)" title="@item.SKUId" onclick="add_shoucang(this)"><i class="fa fa-heart"></i></a></li>
                                                         <li><a class="add_to_cart" href="/zhuye/pro_details?SKUId=@item.SKUId" title="点击下方小眼睛可查看大致信息">查看详情</a></li>
                                                         <li><a class="add_links Compare" href="javascript:void(0)" title="Add to Compare"><i class="fa fa-retweet"></i></a></li>
                                                     </ul>
@@ -518,7 +519,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="single_banner">
-                    <a href="#"><img src="~/Content/img/bg/banner6.jpg" alt=""></a>
+                    <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner6.jpg" alt=""></a>
                     <div class="banner_popup">
                         <a class="video_popup" href="https://www.youtube.com/watch?v=OC_7ch_v69Y"><i class="fa fa-link"></i></a>
                     </div>
@@ -563,7 +564,7 @@
                             <div class="col-lg-3">
                                 <div class="single_product">
                                     <div class="product_thumb">
-                                        <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="~/Content/img/product/@item.GoodPhoto" style="width:195px;height:252px;" alt=""></a>
+                                        <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="https://cdn.lizixs.top/img/lizishopping/img/product/@item.GoodPhoto" style="width:195px;height:252px;" alt=""></a>
                                         <div class="product_hover">
                                             <div class="product_ratting">
                                                 <ul>
@@ -577,7 +578,7 @@
                                             <div class="product_action">
                                                 <div class="action_button">
                                                     <ul>
-                                                        <li><a class="add_links Wishlist" href="javascript:void(0)" title="Add to Wishlist"><i class="fa fa-heart"></i></a></li>
+                                                        <li><a class="add_links Wishlist add_shoucang" href="javascript:void(0)" title="@item.SKUId" onclick="add_shoucang(this)"><i class="fa fa-heart"></i></a></li>
                                                         <li><a class="add_to_cart" href="/zhuye/pro_details?SKUId=@item.SKUId" title="点击下方小眼睛可查看大致信息">查看详情</a></li>
                                                         <li><a class="add_links Compare" href="javascript:void(0)" title="Add to Compare"><i class="fa fa-retweet"></i></a></li>
                                                     </ul>
@@ -608,7 +609,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="single_banner">
-                    <a href="#"><img src="~/Content/img/bg/banner7.jpg" alt=""></a>
+                    <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner7.jpg" alt=""></a>
                     <div class="banner_popup">
                         <a class="video_popup" href="https://www.youtube.com/watch?v=Yfq1-YGbRiU"><i class="fa fa-image"></i></a>
                     </div>
@@ -716,34 +717,34 @@
                     <div class="brands_carousel brand_column3 owl-carousel">
                         <div class="brands_items">
                             <div class="single_brand">
-                                <a href="#"><img src="~/Content/img/brand/brand2.png" alt=""></a>
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand2.png" alt=""></a>
                             </div>
                             <div class="single_brand">
-                                <a href="#"><img src="~/Content/img/brand/brand3.png" alt=""></a>
-                            </div>
-                        </div>
-                        <div class="brands_items">
-                            <div class="single_brand">
-                                <a href="#"><img src="~/Content/img/brand/brand4.png" alt=""></a>
-                            </div>
-                            <div class="single_brand">
-                                <a href="#"><img src="~/Content/img/brand/brand5.png" alt=""></a>
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand3.png" alt=""></a>
                             </div>
                         </div>
                         <div class="brands_items">
                             <div class="single_brand">
-                                <a href="#"><img src="~/Content/img/brand/brand6.png" alt=""></a>
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand4.png" alt=""></a>
                             </div>
                             <div class="single_brand">
-                                <a href="#"><img src="~/Content/img/brand/brand2.png" alt=""></a>
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand5.png" alt=""></a>
                             </div>
                         </div>
                         <div class="brands_items">
                             <div class="single_brand">
-                                <a href="#"><img src="~/Content/img/brand/brand3.png" alt=""></a>
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand6.png" alt=""></a>
                             </div>
                             <div class="single_brand">
-                                <a href="#"><img src="~/Content/img/brand/brand5.png" alt=""></a>
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand2.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="brands_items">
+                            <div class="single_brand">
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand3.png" alt=""></a>
+                            </div>
+                            <div class="single_brand">
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand5.png" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -752,7 +753,7 @@
             <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
                 <div class="banner_section">
                     <div class="single_banner">
-                        <a href="#"><img src="~/Content/img/bg/banner8.jpg" alt=""></a>
+                        <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner8.jpg" alt=""></a>
                         <div class="banner_popup">
                             <a class="video_popup" href="https://www.youtube.com/watch?v=7OycwyrZ6Hc&list=RDxyuLlnnfDcI&index=9"><i class="fa fa-link"></i></a>
                         </div>
@@ -763,6 +764,22 @@
     </div>
 </section>
 <!--bramd section area end-->
-<!--testimonial section area  start-->
+@*<script>
+    function add_shoucang(e) {
+        var userid = localStorage.getItem("userid");
+        $.ajax({
+            url: "/zhuye/add_shoucang",
+            type: "post",
+            data: { "UserID": userid, "SKUID": e.title, "shoucang": 0 },
+            success: function(data) {
+                if (data == "true") {
+                    alert("已添加收藏");
+                }
+                if (data == "false") {
+                    alert("已收藏过此商品，无需再次收藏");
+                }
 
-<!--testimonial section area  end-->
+            }
+        });
+    }
+</script>*@

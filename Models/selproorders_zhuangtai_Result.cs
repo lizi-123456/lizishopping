@@ -24,5 +24,6 @@ namespace 栗子商城.Models
         public int OrderID { get; set; }
         public string CreateTime { get; set; }
         public string PayState { get; set; }
+        public string Color_Name { get; set; }
     }
 }

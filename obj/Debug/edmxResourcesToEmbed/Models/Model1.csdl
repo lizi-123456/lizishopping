@@ -1,5 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="lizishoppingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Appraise">
+    <Key>
+      <PropertyRef Name="AppraiseID" />
+    </Key>
+    <Property Name="AppraiseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Grade" Type="Int32" />
+    <Property Name="Ratetime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SKUId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="GoodImg">
+    <Key>
+      <PropertyRef Name="GoodImg_ID" />
+    </Key>
+    <Property Name="GoodImg_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SKUID" Type="Int32" />
+    <Property Name="GoodImg_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="GoodsPhotoTable">
     <Key>
       <PropertyRef Name="PhotoID" />
@@ -11,6 +30,28 @@
     <Property Name="Photo_four" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Photo_five" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="SKUId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="goodsSKUColor">
+    <Key>
+      <PropertyRef Name="goodsSKUColor_ID" />
+    </Key>
+    <Property Name="goodsSKUColor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SKU_ID" Type="Int32" />
+    <Property Name="Color_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="goodsSKUTables">
+    <Key>
+      <PropertyRef Name="SKUId" />
+    </Key>
+    <Property Name="SKUId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SKUGoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Goods_Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="GoodPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="inventory" Type="Int32" />
+    <Property Name="GoodPhoto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SPUID" Type="Int32" />
+    <Property Name="BusinName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="onclicknum" Type="Int32" />
   </EntityType>
   <EntityType Name="goodsSPUTables">
     <Key>
@@ -38,6 +79,7 @@
     <Property Name="GoodNum" Type="Int32" />
     <Property Name="GoodPrice" Type="Int32" />
     <Property Name="OrderID" Type="Int32" />
+    <Property Name="Color_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="OrderInfo">
     <Key>
@@ -66,6 +108,15 @@
     <Property Name="UserID" Type="Int32" />
     <Property Name="SKUId" Type="Int32" />
   </EntityType>
+  <EntityType Name="shoucang">
+    <Key>
+      <PropertyRef Name="shoucang_id" />
+    </Key>
+    <Property Name="shoucang_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SKUID" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="shoucang_state" Type="Int32" />
+  </EntityType>
   <EntityType Name="User_addressTable">
     <Key>
       <PropertyRef Name="AddressId" />
@@ -78,15 +129,33 @@
     <Property Name="UserId" Type="Int32" />
     <Property Name="default_Address" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityContainer Name="lizishoppingEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityType Name="UserTable">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserPassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="limits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Userstatus" Type="Int32" />
+    <Property Name="nicheng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="lizishoppingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Appraise" EntityType="Self.Appraise" />
+    <EntitySet Name="GoodImg" EntityType="Self.GoodImg" />
     <EntitySet Name="GoodsPhotoTable" EntityType="Self.GoodsPhotoTable" />
+    <EntitySet Name="goodsSKUColor" EntityType="Self.goodsSKUColor" />
+    <EntitySet Name="goodsSKUTables" EntityType="Self.goodsSKUTables" />
     <EntitySet Name="goodsSPUTables" EntityType="Self.goodsSPUTables" />
     <EntitySet Name="MangeAdmin" EntityType="Self.MangeAdmin" />
     <EntitySet Name="OrderGoodslist" EntityType="Self.OrderGoodslist" />
     <EntitySet Name="OrderInfo" EntityType="Self.OrderInfo" />
     <EntitySet Name="ShopCategory" EntityType="Self.ShopCategory" />
     <EntitySet Name="ShoppCar" EntityType="Self.ShoppCar" />
+    <EntitySet Name="shoucang" EntityType="Self.shoucang" />
     <EntitySet Name="User_addressTable" EntityType="Self.User_addressTable" />
+    <EntitySet Name="UserTable" EntityType="Self.UserTable" />
     <FunctionImport Name="add_order">
       <Parameter Name="UserId" Mode="In" Type="Int32" />
       <Parameter Name="AddressId" Mode="In" Type="Int32" />
@@ -96,6 +165,7 @@
       <Parameter Name="CreateTime" Mode="In" Type="String" />
       <Parameter Name="SKUId" Mode="In" Type="Int32" />
       <Parameter Name="GoodNum" Mode="In" Type="Int32" />
+      <Parameter Name="GoodColorname" Mode="In" Type="String" />
       <Parameter Name="GoodPrice" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="del_orders">
@@ -106,11 +176,17 @@
       <Parameter Name="GoodInfo" Mode="In" Type="String" />
       <Parameter Name="ShopID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="selpro_detial_img" ReturnType="Collection(lizishoppingModel.selpro_detial_img_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="selpro_detials_id" ReturnType="Collection(lizishoppingModel.selpro_detials_id_Result)">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="selpro_detials_SKUGoodName" ReturnType="Collection(lizishoppingModel.selpro_detials_SKUGoodName_Result)">
       <Parameter Name="SKUGoodName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="selpro_pingjia_id" ReturnType="Collection(lizishoppingModel.selpro_pingjia_id_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="selpro_zuixin" ReturnType="Collection(lizishoppingModel.selpro_zuixin_Result)" />
     <FunctionImport Name="selprocart_userid" ReturnType="Collection(lizishoppingModel.selprocart_userid_Result)">
@@ -122,25 +198,33 @@
       <Parameter Name="zhuangtai" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="selproxaingqing" ReturnType="Collection(lizishoppingModel.selproxaingqing_Result)" />
-    <FunctionImport Name="selproxaingqing_id" ReturnType="Collection(lizishoppingModel.selproxaingqing_id_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
+    <FunctionImport Name="selproxiangqing_rexiao" ReturnType="Collection(lizishoppingModel.selproxiangqing_rexiao_Result)" />
     <FunctionImport Name="selspuandshoptype" ReturnType="Collection(lizishoppingModel.selspuandshoptype_Result)" />
     <FunctionImport Name="selspuandtype_id" ReturnType="Collection(lizishoppingModel.selspuandtype_id_Result)">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="selspuandtype_top" ReturnType="Collection(lizishoppingModel.selspuandtype_top_Result)" />
-    <EntitySet Name="goodsSKUTables" EntityType="lizishoppingModel.goodsSKUTables" />
-    <FunctionImport Name="selproxiangqing_rexiao" ReturnType="Collection(lizishoppingModel.selproxiangqing_rexiao_Result)" />
-    <EntitySet Name="UserTable" EntityType="lizishoppingModel.UserTable" />
-    <EntitySet Name="Appraise" EntityType="lizishoppingModel.Appraise" />
-    <FunctionImport Name="selpro_pingjia_id" ReturnType="Collection(lizishoppingModel.selpro_pingjia_id_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="selpro_pingjia_id1" ReturnType="Collection(lizishoppingModel.selpro_pingjia_id1_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="selpro_detial_img_Result">
+    <Property Type="Int32" Name="SKUId" Nullable="false" />
+    <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Goods_Description" Nullable="true" MaxLength="300" />
+    <Property Type="Decimal" Name="GoodPrice" Nullable="true" Precision="19" />
+    <Property Type="Int32" Name="inventory" Nullable="true" />
+    <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="SPUID" Nullable="true" />
+    <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="onclicknum" Nullable="true" />
+    <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="PhotoID" Nullable="false" />
+    <Property Type="String" Name="Photo_one" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Photo_two" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Photo_three" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Photo_four" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Photo_five" Nullable="true" MaxLength="150" />
+  </ComplexType>
   <ComplexType Name="selpro_detials_id_Result">
     <Property Type="Int32" Name="SKUId" Nullable="false" />
     <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
@@ -150,6 +234,7 @@
     <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="SPUID" Nullable="true" />
     <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="onclicknum" Nullable="true" />
     <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
@@ -169,6 +254,7 @@
     <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="SPUID" Nullable="true" />
     <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="onclicknum" Nullable="true" />
     <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
@@ -179,6 +265,31 @@
     <Property Type="String" Name="Photo_four" Nullable="true" MaxLength="150" />
     <Property Type="String" Name="Photo_five" Nullable="true" MaxLength="150" />
   </ComplexType>
+  <ComplexType Name="selpro_pingjia_id_Result">
+    <Property Type="Int32" Name="SKUId" Nullable="false" />
+    <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Goods_Description" Nullable="true" MaxLength="300" />
+    <Property Type="Decimal" Name="GoodPrice" Nullable="true" Precision="19" />
+    <Property Type="Int32" Name="inventory" Nullable="true" />
+    <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="SPUID" Nullable="true" />
+    <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="onclicknum" Nullable="true" />
+    <Property Type="Int32" Name="PhotoID" Nullable="false" />
+    <Property Type="String" Name="Photo_one" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Photo_two" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Photo_three" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Photo_four" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Photo_five" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="AppraiseID" Nullable="false" />
+    <Property Type="String" Name="content" Nullable="true" />
+    <Property Type="Int32" Name="Grade" Nullable="true" />
+    <Property Type="String" Name="Ratetime" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="nicheng" Nullable="true" MaxLength="50" />
+  </ComplexType>
   <ComplexType Name="selpro_zuixin_Result">
     <Property Type="Int32" Name="SKUId" Nullable="false" />
     <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
@@ -188,6 +299,7 @@
     <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="SPUID" Nullable="true" />
     <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="onclicknum" Nullable="true" />
     <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
@@ -207,6 +319,7 @@
     <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="SPUID" Nullable="true" />
     <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="onclicknum" Nullable="true" />
     <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
@@ -240,6 +353,7 @@
     <Property Type="Int32" Name="OrderID" Nullable="false" />
     <Property Type="String" Name="CreateTime" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="PayState" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Color_Name" Nullable="true" MaxLength="20" />
   </ComplexType>
   <ComplexType Name="selproxaingqing_Result">
     <Property Type="Int32" Name="SKUId" Nullable="false" />
@@ -250,11 +364,12 @@
     <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="SPUID" Nullable="true" />
     <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="onclicknum" Nullable="true" />
     <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
   </ComplexType>
-  <ComplexType Name="selproxaingqing_id_Result">
+  <ComplexType Name="selproxiangqing_rexiao_Result">
     <Property Type="Int32" Name="SKUId" Nullable="false" />
     <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Goods_Description" Nullable="true" MaxLength="300" />
@@ -263,6 +378,7 @@
     <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="SPUID" Nullable="true" />
     <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="onclicknum" Nullable="true" />
     <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
@@ -283,6 +399,7 @@
     <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="SPUID" Nullable="true" />
     <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="onclicknum" Nullable="true" />
     <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
@@ -296,108 +413,9 @@
     <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="SPUID" Nullable="true" />
     <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <EntityType Name="goodsSKUTables">
-    <Key>
-      <PropertyRef Name="SKUId" />
-    </Key>
-    <Property Name="SKUId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="SKUGoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Goods_Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-    <Property Name="GoodPrice" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="inventory" Type="Int32" />
-    <Property Name="GoodPhoto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="SPUID" Type="Int32" />
-    <Property Name="BusinName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="onclicknum" Type="Int32" />
-  </EntityType>
-  <ComplexType Name="selproxiangqing_rexiao_Result">
-    <Property Type="Int32" Name="SKUId" Nullable="false" />
-    <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Goods_Description" Nullable="true" MaxLength="300" />
-    <Property Type="Decimal" Name="GoodPrice" Nullable="true" Precision="19" />
-    <Property Type="Int32" Name="inventory" Nullable="true" />
-    <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="SPUID" Nullable="true" />
-    <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
     <Property Type="Int32" Name="onclicknum" Nullable="true" />
     <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <EntityType Name="UserTable">
-    <Key>
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="UserPassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="limits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Userstatus" Type="Int32" />
-    <Property Name="nicheng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Appraise">
-    <Key>
-      <PropertyRef Name="AppraiseID" />
-    </Key>
-    <Property Name="AppraiseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Grade" Type="Int32" />
-    <Property Name="Ratetime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="SKUId" Type="Int32" />
-    <Property Name="UserId" Type="Int32" />
-  </EntityType>
-  <ComplexType Name="selpro_pingjia_id_Result">
-    <Property Type="Int32" Name="SKUId" Nullable="false" />
-    <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Goods_Description" Nullable="true" MaxLength="300" />
-    <Property Type="Decimal" Name="GoodPrice" Nullable="true" Precision="19" />
-    <Property Type="Int32" Name="inventory" Nullable="true" />
-    <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="SPUID" Nullable="true" />
-    <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
-    <Property Type="Int32" Name="onclicknum" Nullable="true" />
-    <Property Type="Int32" Name="PhotoID" Nullable="false" />
-    <Property Type="String" Name="Photo_one" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="Photo_two" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="Photo_three" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="Photo_four" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="Photo_five" Nullable="true" MaxLength="150" />
-    <Property Type="Int32" Name="AppraiseID" Nullable="false" />
-    <Property Type="String" Name="content" Nullable="true" />
-    <Property Type="Int32" Name="Grade" Nullable="true" />
-    <Property Type="String" Name="Ratetime" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="UserId" Nullable="true" />
-    <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="selpro_pingjia_id1_Result">
-    <Property Type="Int32" Name="SKUId" Nullable="false" />
-    <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Goods_Description" Nullable="true" MaxLength="300" />
-    <Property Type="Decimal" Name="GoodPrice" Nullable="true" Precision="19" />
-    <Property Type="Int32" Name="inventory" Nullable="true" />
-    <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="SPUID" Nullable="true" />
-    <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
-    <Property Type="Int32" Name="onclicknum" Nullable="true" />
-    <Property Type="Int32" Name="PhotoID" Nullable="false" />
-    <Property Type="String" Name="Photo_one" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="Photo_two" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="Photo_three" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="Photo_four" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="Photo_five" Nullable="true" MaxLength="150" />
-    <Property Type="Int32" Name="AppraiseID" Nullable="false" />
-    <Property Type="String" Name="content" Nullable="true" />
-    <Property Type="Int32" Name="Grade" Nullable="true" />
-    <Property Type="String" Name="Ratetime" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="UserId" Nullable="true" />
-    <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="nicheng" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

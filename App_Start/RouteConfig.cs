@@ -22,7 +22,7 @@ namespace 栗子商城
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "zhuye", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

@@ -11,7 +11,7 @@
             <div class="col-12">
                 <div class="breadcrumb_content">
                     <ul>
-                        <li><a href="index.html">home</a></li>
+                        <li><a href="/zhuye/Index">home</a></li>
                         <li>/</li>
                         <li>checkout</li>
                     </ul>
@@ -55,50 +55,54 @@
                                             <td>商品名称</td>
                                             <td><strong id="SKUId" title="@item.SKUId">@item.SKUGoodName</strong></td>
                                         </tr>
-                                        <tr>
-                                            <td>商品数量</td>
-                                            <td><strong><span id="GoodNum">1</span></strong></td>
-                                        </tr>
+                                <tr>
+                                    <td>商品数量</td>
+                                    <td><strong><span id="GoodNum">1</span></strong></td>
+                                </tr>
 
-                                        <tr>
-                                            <td>商品介绍</td>
-                                            <td><strong id="tdpro2">@item.Goods_Description</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <td>商品价格</td>
-                                            <td>￥<strong id="Total" style="color:red;">@item.GoodPrice</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <td>商品图片</td>
-                                            <td><img src="~/Content/img/product/@item.GoodPhoto" style="width:270px;height:350px" alt="Alternate Text" /></td>
-                                        </tr>
-                                        <tr>
-                                            <td>商品剩余件数</td>
-                                            <td><strong id="tdpro4">@item.inventory</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <td>运费</td>
-                                            <td><strong id="TranMoney">20</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <td>应付金额</td>
-                                            <td>￥<strong style="color:red;" id="tdpro6">@item.GoodPrice</strong></td>
-                                        </tr>
+                                <tr>
+                                    <td>商品介绍</td>
+                                    <td><strong id="tdpro2">@item.Goods_Description</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>商品价格</td>
+                                    <td>￥<strong id="Total" style="color:red;">@item.GoodPrice</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>商品颜色</td>
+                                    <td><strong id="color" style="color:red;">@ViewBag.color</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>商品图片</td>
+                                    <td><img src="https://cdn.lizixs.top/img/lizishopping/img/product/@item.GoodPhoto" style="width:270px;height:350px" alt="Alternate Text" /></td>
+                                </tr>
+                                <tr>
+                                    <td>商品剩余件数</td>
+                                    <td><strong id="tdpro4">@item.inventory</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>运费</td>
+                                    <td><strong id="TranMoney">20</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>应付金额</td>
+                                    <td>￥<strong style="color:red;" id="tdpro6">@item.GoodPrice</strong></td>
+                                </tr>
 
-                                        <tr>
-                                            <td>实付金额</td>
-                                            <td>
-                                                <strong style="color:red;" id="GoodPrice">
-                                                    <script>
-                                                        var ss = document.getElementById("tdpro6").innerHTML;
-                                                        var ss1 = document.getElementById("GoodPrice");
-                                                        ss1.innerHTML = parseFloat(ss) + 20;
-                                                    </script>
-                                                </strong>
-                                            </td>
-                                        </tr>
+                                <tr>
+                                    <td>实付金额</td>
+                                    <td>
+                                        <strong style="color:red;" id="GoodPrice">
+                                            <script>
+                                                var ss = document.getElementById("tdpro6").innerHTML;
+                                                var ss1 = document.getElementById("GoodPrice");
+                                                ss1.innerHTML = parseFloat(ss) + 20;
+                                            </script>
+                                        </strong>
+                                    </td>
+                                </tr>
 
-                                    }
+                            }
                                 </tbody>
                             </table>
                         </div>
@@ -122,6 +126,7 @@
                                 var Total = $("#Total").html();
                                 var TranMoney = $("#TranMoney").html();
                                 var PayState = "已付款";
+                                var color = $("#color").html();
                                 var CreateTime = myDate.toLocaleString();
                                 var SKUId = $("#SKUId").attr("title");
                                 var GoodNum = $("#GoodNum").html().substring(0,1);
@@ -131,7 +136,7 @@
                                 $.ajax({
                                     url: "/zhuye/checkoutinfo",
                                     type: "post",
-                                    data: { "UserId": UserId, "AddressId": AddressId, "Total": Total, "TranMoney": TranMoney, "PayState": PayState, "CreateTime": CreateTime, "SKUId": SKUId, "GoodNum": GoodNum, "GoodPrice": GoodPrice, "inventory": tdpro4 - 1},
+                                    data: { "UserId": UserId, "AddressId": AddressId, "Total": Total, "TranMoney": TranMoney, "PayState": PayState, "CreateTime": CreateTime, "SKUId": SKUId, "GoodNum": GoodNum, "GoodPrice": GoodPrice, "inventory": tdpro4 - 1, "Color_Name": color },
                                     success: function(data) {
                                         if (data == "true") {
 
@@ -142,7 +147,7 @@
                                             window.location.href = "/zhuye/pro_details?SKUId=" + SKUId;
                                         }
                                     }
-                                    
+
                                 })
                             })
                             $("#quxiao_qian").click(function () {
@@ -151,6 +156,7 @@
                                 var Total = $("#Total").html();
                                 var TranMoney = $("#TranMoney").html();
                                 var PayState = "未付款";
+                                var color = $("#color").html();;
                                 var CreateTime = myDate.toLocaleString();
                                 var SKUId = $("#SKUId").attr("title");
                                 var GoodNum = $("#GoodNum").html();
@@ -160,7 +166,7 @@
                                 $.ajax({
                                     url: "/zhuye/checkoutinfo",
                                     type: "post",
-                                    data: { "UserId": UserId, "AddressId": AddressId, "Total": Total, "TranMoney": TranMoney, "PayState": PayState, "CreateTime": CreateTime, "SKUId": SKUId, "GoodNum": GoodNum, "GoodPrice": GoodPrice, "inventory": tdpro4},
+                                    data: { "UserId": UserId, "AddressId": AddressId, "Total": Total, "TranMoney": TranMoney, "PayState": PayState, "CreateTime": CreateTime, "SKUId": SKUId, "GoodNum": GoodNum, "GoodPrice": GoodPrice, "inventory": tdpro4, "Color_Name": color },
                                     success: function (data) {
                                         if (data == "true") {
                                             alert("付款失败")

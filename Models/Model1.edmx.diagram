@@ -4,18 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8dce52fe28d84799aa369427b17f4d77" Name="Diagram1">
-        <EntityTypeShape EntityType="lizishoppingModel.GoodsPhotoTable" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="lizishoppingModel.goodsSPUTables" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="lizishoppingModel.MangeAdmin" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="lizishoppingModel.OrderGoodslist" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="lizishoppingModel.OrderInfo" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="lizishoppingModel.ShopCategory" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="lizishoppingModel.ShoppCar" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="lizishoppingModel.User_addressTable" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="lizishoppingModel.goodsSKUTables" Width="1.5" PointX="3.375" PointY="7.75" />
-        <EntityTypeShape EntityType="lizishoppingModel.UserTable" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="lizishoppingModel.Appraise" Width="1.5" PointX="0.75" PointY="7.75" />
+      <Diagram DiagramId="da2d18d48ae2416c9daade48781716cb" Name="Diagram1">
+        <EntityTypeShape EntityType="lizishoppingModel.Appraise" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.GoodImg" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.GoodsPhotoTable" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.goodsSKUColor" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.goodsSKUTables" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.goodsSPUTables" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.MangeAdmin" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.OrderGoodslist" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.OrderInfo" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.ShopCategory" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.ShoppCar" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.shoucang" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.User_addressTable" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lizishoppingModel.UserTable" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

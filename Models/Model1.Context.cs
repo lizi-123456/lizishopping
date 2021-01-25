@@ -15,10 +15,10 @@ namespace 栗子商城.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class lizishoppingEntities1 : DbContext
+    public partial class lizishoppingEntities : DbContext
     {
-        public lizishoppingEntities1()
-            : base("name=lizishoppingEntities1")
+        public lizishoppingEntities()
+            : base("name=lizishoppingEntities")
         {
         }
     
@@ -27,19 +27,22 @@ namespace 栗子商城.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Appraise> Appraise { get; set; }
+        public virtual DbSet<GoodImg> GoodImg { get; set; }
         public virtual DbSet<GoodsPhotoTable> GoodsPhotoTable { get; set; }
+        public virtual DbSet<goodsSKUColor> goodsSKUColor { get; set; }
+        public virtual DbSet<goodsSKUTables> goodsSKUTables { get; set; }
         public virtual DbSet<goodsSPUTables> goodsSPUTables { get; set; }
         public virtual DbSet<MangeAdmin> MangeAdmin { get; set; }
         public virtual DbSet<OrderGoodslist> OrderGoodslist { get; set; }
         public virtual DbSet<OrderInfo> OrderInfo { get; set; }
         public virtual DbSet<ShopCategory> ShopCategory { get; set; }
         public virtual DbSet<ShoppCar> ShoppCar { get; set; }
+        public virtual DbSet<shoucang> shoucang { get; set; }
         public virtual DbSet<User_addressTable> User_addressTable { get; set; }
-        public virtual DbSet<goodsSKUTables> goodsSKUTables { get; set; }
         public virtual DbSet<UserTable> UserTable { get; set; }
-        public virtual DbSet<Appraise> Appraise { get; set; }
     
-        public virtual int add_order(Nullable<int> userId, Nullable<int> addressId, Nullable<decimal> total, Nullable<decimal> tranMoney, string payState, string createTime, Nullable<int> sKUId, Nullable<int> goodNum, Nullable<int> goodPrice)
+        public virtual int add_order(Nullable<int> userId, Nullable<int> addressId, Nullable<decimal> total, Nullable<decimal> tranMoney, string payState, string createTime, Nullable<int> sKUId, Nullable<int> goodNum, string goodColorname, Nullable<int> goodPrice)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("UserId", userId) :
@@ -73,11 +76,15 @@ namespace 栗子商城.Models
                 new ObjectParameter("GoodNum", goodNum) :
                 new ObjectParameter("GoodNum", typeof(int));
     
+            var goodColornameParameter = goodColorname != null ?
+                new ObjectParameter("GoodColorname", goodColorname) :
+                new ObjectParameter("GoodColorname", typeof(string));
+    
             var goodPriceParameter = goodPrice.HasValue ?
                 new ObjectParameter("GoodPrice", goodPrice) :
                 new ObjectParameter("GoodPrice", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("add_order", userIdParameter, addressIdParameter, totalParameter, tranMoneyParameter, payStateParameter, createTimeParameter, sKUIdParameter, goodNumParameter, goodPriceParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("add_order", userIdParameter, addressIdParameter, totalParameter, tranMoneyParameter, payStateParameter, createTimeParameter, sKUIdParameter, goodNumParameter, goodColornameParameter, goodPriceParameter);
         }
     
         public virtual int del_orders(Nullable<int> orderid)
@@ -106,6 +113,15 @@ namespace 栗子商城.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertin", sPUGoodNameParameter, goodInfoParameter, shopIDParameter);
         }
     
+        public virtual ObjectResult<selpro_detial_img_Result> selpro_detial_img(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selpro_detial_img_Result>("selpro_detial_img", idParameter);
+        }
+    
         public virtual ObjectResult<selpro_detials_id_Result> selpro_detials_id(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -122,6 +138,15 @@ namespace 栗子商城.Models
                 new ObjectParameter("SKUGoodName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selpro_detials_SKUGoodName_Result>("selpro_detials_SKUGoodName", sKUGoodNameParameter);
+        }
+    
+        public virtual ObjectResult<selpro_pingjia_id_Result> selpro_pingjia_id(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selpro_pingjia_id_Result>("selpro_pingjia_id", idParameter);
         }
     
         public virtual ObjectResult<selpro_zuixin_Result> selpro_zuixin()
@@ -161,13 +186,9 @@ namespace 栗子商城.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selproxaingqing_Result>("selproxaingqing");
         }
     
-        public virtual ObjectResult<selproxaingqing_id_Result> selproxaingqing_id(Nullable<int> id)
+        public virtual ObjectResult<selproxiangqing_rexiao_Result> selproxiangqing_rexiao()
         {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selproxaingqing_id_Result>("selproxaingqing_id", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selproxiangqing_rexiao_Result>("selproxiangqing_rexiao");
         }
     
         public virtual ObjectResult<selspuandshoptype_Result> selspuandshoptype()
@@ -187,29 +208,6 @@ namespace 栗子商城.Models
         public virtual ObjectResult<selspuandtype_top_Result> selspuandtype_top()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selspuandtype_top_Result>("selspuandtype_top");
-        }
-    
-        public virtual ObjectResult<selproxiangqing_rexiao_Result> selproxiangqing_rexiao()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selproxiangqing_rexiao_Result>("selproxiangqing_rexiao");
-        }
-    
-        public virtual ObjectResult<selpro_pingjia_id_Result> selpro_pingjia_id(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selpro_pingjia_id_Result>("selpro_pingjia_id", idParameter);
-        }
-    
-        public virtual ObjectResult<selpro_pingjia_id1_Result> selpro_pingjia_id1(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selpro_pingjia_id1_Result>("selpro_pingjia_id1", idParameter);
         }
     }
 }

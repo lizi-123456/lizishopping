@@ -1,31 +1,767 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿<!--shiping area start-->
+<div class="shipping_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="single_shipping">
+                    <p>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+                        <img src="https://cdn.lizixs.top/img/lizishopping/img/icon/shipping-icon.png" alt="">
+                        订单满$ 99免运费
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single_shipping">
+                    <p>
+                        <img src="https://cdn.lizixs.top/img/lizishopping/img/icon/comment-icon.png" alt="">
+                        订单满$ 99免运费
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single_shipping">
+                    <p>
+                        <img src="https://cdn.lizixs.top/img/lizishopping/img/icon/star-icon.png" alt="">
+                        订单满$ 99免运费
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single_shipping">
+                    <p>
+                        <img src="https://cdn.lizixs.top/img/lizishopping/img/icon/money-icon.png" alt="">
+                        订单满$ 99免运费
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!--shiping area end-->
+<!--slider section start-->
+<section class="slider_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-12">
+                <!--categorie menu start-->
+                <div class="categories_menu">
+                    <div class="categories_title">
+                        <h2 class="categori_toggle"><i class="fa fa-bars"></i>商品分类</h2>
+                    </div>
+                    <div class="categories_menu_inner">
+                        <ul>
+                            <li class="dropdown_list">
+                                <a href="#"><i class="fa fa-laptop"></i> 手机</a>
+                                <ul class="categories_mega_menu  column_1" style="text-align:center">
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=8&title=手机">手机</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=8&title=手机">手机</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=8&title=手机">手机</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=8&title=手机">手机</a></li>
+                                    <span>
+                                        @*<li>
+                                                <a href="#">Refrigerator</a>
+                                                <div class="categorie_sub_menu">
+                                                    <ul>
+                                                        <li><a href="">Digital Cameras</a></li>
+                                                        <li><a href="">Camcorders</a></li>
+                                                        <li><a href="">Photo Accessories</a></li>
+                                                        <li><a href="">Memory Cards</a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#">Washing machine</a>
+                                                <div class="categorie_sub_menu">
+                                                    <ul>
+                                                        <li><a href="">Apple Phones</a></li>
+                                                        <li><a href="">Samsung Phones</a></li>
+                                                        <li><a href="">Motorola Phones</a></li>
+                                                        <li><a href="">Lenovo Phones</a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span class="link_text">Air conditioners</span></a>
+                                                <div class="categorie_sub_menu">
+                                                    <ul>
+                                                        <li><a href="">Apple Phones</a></li>
+                                                        <li><a href="">Samsung Phones</a></li>
+                                                        <li><a href="">Motorola Phones</a></li>
+                                                        <li><a href="">Lenovo Phones</a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>*@
+                                    </span>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                                </ul>
+                            </li>
+                            <li class="dropdown_list">
+                                <a href="#"><i class="fa fa-shirtsinbulk" aria-hidden="true"></i>电脑</a>
+                                <ul class="categories_mega_menu column_1" style="text-align:center">
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=1&title=电脑">电脑</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=1&title=电脑">电脑</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=1&title=电脑">电脑</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=1&title=电脑">电脑</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown_list">
+                                <a href="#"><i class="fa fa-camera" aria-hidden="true"></i>美食</a>
+                                <ul class="categories_mega_menu column_1" style="text-align:center">
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=3&title=美食">美食</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=3&title=美食">美食</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=3&title=美食">美食</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=3&title=美食">美食</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown_list">
+                                <a href="#"><i class="fa fa-tablet" aria-hidden="true"></i>家居</a>
+                                <ul class="categories_mega_menu column_1" style="text-align:center">
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=2&title=家居">家居</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=2&title=家居">家居</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=2&title=家居">家居</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=2&title=家居">家居</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown_list">
+                                <a href="#"><i class="fa fa-shopping-basket" aria-hidden="true"></i>美妆</a>
+                                <ul class="categories_mega_menu column_1" style="text-align:center">
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=4&title=美妆">美妆</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=4&title=美妆">美妆</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=4&title=美妆">美妆</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=4&title=美妆">美妆</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown_list">
+                                <a href="#"> <i class="fa fa-car"></i>母婴</a>
+                                <ul class="categories_mega_menu column_1" style="text-align:center">
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=5&title=母婴">母婴</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=5&title=母婴">母婴</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=5&title=母婴">母婴</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=5&title=母婴">母婴</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown_list">
+                                <a href="#"><i class="fa fa-diamond" aria-hidden="true"></i>男装</a>
+                                <ul class="categories_mega_menu column_1" style="text-align:center">
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=6&title=男装">男装</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=6&title=男装">男装</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=6&title=男装">男装</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=6&title=男装">男装</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown_list">
+                                <a href="#"><i class="fa fa-gift" aria-hidden="true"></i>女装</a>
+                                <ul class="categories_mega_menu column_1" style="text-align:center">
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=7&title=女装">女装</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=7&title=女装">女装</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=7&title=女装">女装</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=7&title=女装">女装</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown_list">
+                                <a href="#"><i class="fa fa-binoculars" aria-hidden="true"></i>箱包</a>
+                                <ul class="categories_mega_menu column_1" style="text-align:center">
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=9&title=箱包">箱包</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=9&title=箱包">箱包</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=9&title=箱包">箱包</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=9&title=箱包">箱包</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown_list">
+                                <a href="#"><i class="fa fa-book" aria-hidden="true"></i>家具</a>
+                                <ul class="categories_mega_menu column_1" style="text-align:center">
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=11&title=家具">家具</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=11&title=家具">家具</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=11&title=家具">家具</a></li>
+                                    <li><a href="/zhuye/serach_fenlei?ShopID=11&title=家具">家具</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--categorie menu end-->
+            </div>
+            <div class="col-lg-6 col-md-8">
+                <!--slider area start-->
+                <div class="slider_area owl-carousel">
+                    <a href="/zhuye/pro_details?SKUId=33" style="display:block">
+                        <div class="single_slider slider_one">
+                        </div>
+                    </a>
+                    <a href="/zhuye/pro_details?SKUId=34" style="display:block">
+                        <div class="single_slider slider_two">
+                        </div>
+                    </a>
+                    <a href="/zhuye/pro_details?SKUId=24" style="display:block">
+                        <div class="single_slider slider_three">
+                        </div>
+                    </a>
+                </div>
+                <!--slider area end-->
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="best_seller_product">
+                    <div class="best_seller_titile">
+                        <h3>热销榜</h3>
+                    </div>
+                    <div class="bestseller_slider bestseller_column3">
+                        @foreach (var item in ViewData["pro"] as List<栗子商城.Models.selproxiangqing_rexiao_Result>)
+                        {
+                            <div class="single_bestseller">
+                                <div class="bestseller_thumb">
+                                    <a href="/zhuye/pro_details?SKUId=@item.SKUId">
+                                        <img class="primary_img" src="https://cdn.lizixs.top/img/lizishopping/img/product/@item.GoodPhoto" style="height:95px;" alt="">
+                                        <img class="secondary_img" src="https://cdn.lizixs.top/img/lizishopping/img/product/huawei6.jpg" style="height:95px;" alt="">
+                                    </a>
+                                </div>
+                                <div class="bestseller_content">
+                                    <h3><a href="/zhuye/pro_details?SKUId=@item.SKUId">@item.SKUGoodName</a></h3>
+                                    <div class="product_ratting">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product_price">
+                                        <span>£@item.GoodPrice</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</section>
+<!--slider section end-->
+<!--deals section area start-->
+<section class="deals_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-12">
+                <div class="newsletter_follow">
+                    <div class="newsletter_area">
+                        <div class="newsletter_title">
+                            <h3>Newsletter Signup</h3>
+                        </div>
+                        <div class="newsletter_desc">
+                            <p>Subscribe to our newsletter and join our 36 subscribers.</p>
+                            <form action="#">
+                                <input placeholder="Enter your email..." type="text">
+                                <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="follow_us">
+                        <h3>FOLLOW US</h3>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-8">
+                <div class="deals_product">
+                    <div class="deals_product_title">
+                        <h3>最新商品</h3>
+                    </div>
+                    <div class="deals_product_active owl-carousel">
+                        @foreach (var item in ViewData["zuixin"] as List<栗子商城.Models.selpro_zuixin_Result>)
+                        {
+                            <div class="single_deals_product">
+                                <div class="deals_product_content">
+                                    <h3><a href="/zhuye/pro_details?SKUId=@item.SKUId">@item.SKUGoodName</a></h3>
+                                    <div class="product_ratting">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="deals_product_price">
+                                        <span class="current_price">价格</span>
+                                        <span class="current_price">@item.GoodPrice</span>
+                                    </div>
+                                    <div class="deals_product_action">
+                                        <div class="add_to_cart">
+                                            <a href="/zhuye/pro_details?SKUId=@item.SKUId">查看详情</a>
+                                        </div>
+                                        <div class="add_to_links">
+                                            <ul>
+                                                <li><a href="#" title="Add to Wishlist"><i class="fa fa-heart"></i></a></li>
+                                                <li><a href="#" title="Add to Compare"><i class="fa fa-retweet"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product_timing">
+                                        <div data-countdown="2020/12/15"></div>
+                                    </div>
+                                </div>
+                                <div class="deals_product_thumb">
+                                    <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="https://cdn.lizixs.top/img/lizishopping/img/product/@item.GoodPhoto" alt=""></a>
+                                    <div class="quick_view">
+                                        <a href="#" data-toggle="modal" class="motaikuang_xiangqing" data-target="#modal_box" title="@item.SKUId"><i class="fa fa-eye"></i></a>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="banner_section">
+                    <div class="single_banner">
+                        <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner1.jpg" alt=""></a>
+                        <div class="banner_popup">
+                            <a class="video_popup" href="https://www.youtube.com/watch?v=VXtiLczH79Y"><i class="fa fa-film"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</section>
+<!--deals section area end-->
+<!--banner section area start-->
+<div class="banner_section banner_column3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="single_banner">
+                    <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner2.jpg" alt=""></a>
+                    <div class="banner_popup">
+                        <a class="video_popup" href="https://www.youtube.com/watch?v=24BzH0Af4N4"><i class="fa fa-image"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single_banner">
+                    <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner3.jpg" alt=""></a>
+                    <div class="banner_popup">
+                        <a class="video_popup" href="https://www.youtube.com/watch?v=zeZiu-pf1pI"><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single_banner banner_3">
+                    <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner4.jpg" alt=""></a>
+                    <div class="banner_popup">
+                        <a class="video_popup" href="https://www.youtube.com/watch?v=kf32dH6mx3w"><i class="fa fa-tags"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<!--banner section area end-->
+<!--product section start-->
+<section class="product_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section_title">
+                    <h3>FEATURED PRODUCTS</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="product_area product_column4 owl-carousel">
+
+                @foreach (var item in ViewData["pro_2"] as List<栗子商城.Models.selspuandtype_top_Result>)
+                {
+                    <div class="col-lg-3">
+                        <div class="single_product">
+                            <div class="product_thumb">
+                                <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="https://cdn.lizixs.top/img/lizishopping/img/product/@item.GoodPhoto" style="width:270px;height:350px" alt=""></a>
+                                <div class="product_hover">
+                                    <div class="product_ratting">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product_action">
+                                        <div class="action_button">
+                                            <ul>
+                                                <li><a class="add_links Wishlist" href="javascript:void(0)" title="Add to Wishlist"><i class="fa fa-heart"></i></a></li>
+                                                <li><a class="add_to_cart" href="/zhuye/pro_details?SKUId=@item.SKUId" title="点击下方小眼睛可查看大致信息">查看详情</a></li>
+                                                <li><a class="add_links Compare" href="javascript:void(0)" title="Add to Compare"><i class="fa fa-retweet"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="quick_button">
+                                            <a href="#" data-toggle="modal" class="motaikuang_xiangqing" data-target="#modal_box" title="@item.SKUId"><i class="fa fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_content">
+                                <h3><a href="/zhuye/pro_details?SKUId=@item.SKUId">@item.SKUGoodName</a></h3>
+                                <span class="current_price">￥@item.GoodPrice</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!--product section end-->
+<!-- modal area start-->
+<!-- modal area start-->
+<!--banner section area start-->
+<div class="banner_section banner_column1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="single_banner">
+                    <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner5.jpg" alt=""></a>
+                    <div class="banner_popup">
+                        <a class="video_popup" href="https://www.youtube.com/watch?v=7OycwyrZ6Hc&list=RDxyuLlnnfDcI&index=9"><i class="fa fa-tags"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--banner section area end-->
+<!--product categories area-->
+<section class="product_categorie">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="categorie_widget">
+                    <ul>
+                        <li><a href="javascript:void(0)">配饰</a></li>
+                        <li><a href="javascript:void(0)">包袋</a></li>
+                        <li><a href="javascript:void(0)">服装类</a></li>
+                        <li><a href="javascript:void(0)">鞋类</a></li>
+                        <li><a href="javascript:void(0)">沐浴与身体</a></li>
+                        <li><a href="javascript:void(0)">身体润肤霜</a></li>
+                        <li><a href="javascript:void(0)">除臭剂</a></li>
+                        <li><a href="javascript:void(0)">头发护理</a></li>
+                        <li><a href="javascript:void(0)">瑕疵控制</a></li>
+                        <li><a href="javascript:void(0)">清洁剂</a></li>
+                        <li><a href="javascript:void(0)">护唇</a></li>
+                        <li><a href="javascript:void(0)">皮肤护理</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="section_title">
+                    <h3>电脑专区</h3>
+                </div>
+                <div class="row">
+                    <div class="product_area product_column4 owl-carousel">
+                        @foreach (var item in ViewData["pro_3"] as List<栗子商城.Models.selspuandtype_id_Result>)
+                        {
+                            <div class="col-lg-3">
+                                <div class="single_product">
+                                    <div class="product_thumb">
+                                        <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="https://cdn.lizixs.top/img/lizishopping/img/product/@item.GoodPhoto" style="width:195px;height:252px;" alt=""></a>
+                                        <div class="product_hover">
+                                            <div class="product_ratting">
+                                                <ul>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="product_action">
+                                                <div class="action_button">
+                                                    <ul>
+                                                        <li><a class="add_links Wishlist" href="javascript:void(0)" title="Add to Wishlist"><i class="fa fa-heart"></i></a></li>
+                                                        <li><a class="add_to_cart" href="/zhuye/pro_details?SKUId=@item.SKUId" title="点击下方小眼睛可查看大致信息">查看详情</a></li>
+                                                        <li><a class="add_links Compare" href="javascript:void(0)" title="Add to Compare"><i class="fa fa-retweet"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box" class="motaikuang_xiangqing" title="@item.SKUId"><i class="fa fa-eye"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product_content">
+                                        <h3><a href="/zhuye/pro_details?SKUId=@item.SKUId">@item.SKUGoodName</a></h3>
+                                        <span class="current_price">£@item.GoodPrice</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--product categories end-->
+<!--banner section area start-->
+<div class="banner_section banner_column1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="single_banner">
+                    <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner6.jpg" alt=""></a>
+                    <div class="banner_popup">
+                        <a class="video_popup" href="https://www.youtube.com/watch?v=OC_7ch_v69Y"><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--banner section area end-->
+<!--product categories area-->
+<section class="product_categorie">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="categorie_widget">
+                    <ul>
+                        <li><a href="javascript:void(0)">配饰</a></li>
+                        <li><a href="javascript:void(0)">包袋</a></li>
+                        <li><a href="javascript:void(0)">服装类</a></li>
+                        <li><a href="javascript:void(0)">鞋类</a></li>
+                        <li><a href="javascript:void(0)">沐浴与身体</a></li>
+                        <li><a href="javascript:void(0)">身体润肤霜</a></li>
+                        <li><a href="javascript:void(0)">除臭剂</a></li>
+                        <li><a href="javascript:void(0)">头发护理</a></li>
+                        <li><a href="javascript:void(0)">瑕疵控制</a></li>
+                        <li><a href="javascript:void(0)">清洁剂</a></li>
+                        <li><a href="javascript:void(0)">护唇</a></li>
+                        <li><a href="javascript:void(0)">皮肤护理</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="section_title">
+                    <h3>手机专区</h3>
+                </div>
+                <div class="row">
+                    <div class="product_area product_column4 owl-carousel">
+
+                        @foreach (var item in ViewData["pro_4"] as List<栗子商城.Models.selspuandtype_id_Result>)
+                        {
+                            <div class="col-lg-3">
+                                <div class="single_product">
+                                    <div class="product_thumb">
+                                        <a href="/zhuye/pro_details?SKUId=@item.SKUId"><img src="https://cdn.lizixs.top/img/lizishopping/img/product/@item.GoodPhoto" style="width:195px;height:252px;" alt=""></a>
+                                        <div class="product_hover">
+                                            <div class="product_ratting">
+                                                <ul>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="product_action">
+                                                <div class="action_button">
+                                                    <ul>
+                                                        <li><a class="add_links Wishlist" href="javascript:void(0)" title="Add to Wishlist"><i class="fa fa-heart"></i></a></li>
+                                                        <li><a class="add_to_cart" href="/zhuye/pro_details?SKUId=@item.SKUId" title="点击下方小眼睛可查看大致信息">查看详情</a></li>
+                                                        <li><a class="add_links Compare" href="javascript:void(0)" title="Add to Compare"><i class="fa fa-retweet"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box" class="motaikuang_xiangqing" title="@item.SKUId"><i class="fa fa-eye"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product_content">
+                                        <h3><a href="/zhuye/pro_details?SKUId=@item.SKUId">@item.SKUGoodName</a></h3>
+                                        <span class="current_price">£@item.GoodPrice</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--product categories end-->
+<!--banner section area start-->
+<div class="banner_section banner_column1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="single_banner">
+                    <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner7.jpg" alt=""></a>
+                    <div class="banner_popup">
+                        <a class="video_popup" href="https://www.youtube.com/watch?v=Yfq1-YGbRiU"><i class="fa fa-image"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--banner section area end-->
+<!--blog area start-->
+<section class="blog_area">
+    @*<div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section_title">
+                        <h3>FROM THE BLOG</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="blog_active blog_column2 owl-carousel">
+                    <div class="col-lg-6">
+                        <div class="single_blog">
+                            <div class="blog_thumb">
+                                <a href="blog-details.html"><img src="~/Content/img/blog/blog1.png" alt=""></a>
+                                <div class="post_icone">
+                                    <a href="blog-details.html"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="blog_content">
+                                <div class="post_date">
+                                    <span class="day">10</span>
+                                    <span class="month">/ Dec</span>
+                                </div>
+                                <h3 class="post_title"><a href="blog-details.html">Blog image post format</a></h3>
+                                <p class="post_desc">Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex</p>
+                                <a class="read_more" href="blog-details.html">read more</a>
+                                <div class="post_meta">
+                                    <span><a href="#">admin</a></span>
+                                    <span><a href="#">/ 0  comments</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="single_blog">
+                            <div class="blog_thumb">
+                                <a href="blog-details.html"><img src="~/Content/img/blog/blog2.png" alt=""></a>
+                                <div class="post_icone">
+                                    <a href="blog-details.html"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="blog_content">
+                                <div class="post_date">
+                                    <span class="day">10</span>
+                                    <span class="month">/ Dec</span>
+                                </div>
+                                <h3 class="post_title"><a href="blog-details.html">format ectus fermentum</a></h3>
+                                <p class="post_desc">Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex</p>
+                                <a class="read_more" href="blog-details.html">read more</a>
+                                <div class="post_meta">
+                                    <span><a href="#">admin</a></span>
+                                    <span><a href="#">/ 0  comments</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="single_blog">
+                            <div class="blog_thumb">
+                                <a href="blog-details.html"><img src="~/Content/img/blog/blog3.png" alt=""></a>
+                                <div class="post_icone">
+                                    <a href="blog-details.html"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="blog_content">
+                                <div class="post_date">
+                                    <span class="day">10</span>
+                                    <span class="month">/ Dec</span>
+                                </div>
+                                <h3 class="post_title"><a href="blog-details.html">Post in Gallery </a></h3>
+                                <p class="post_desc">Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex</p>
+                                <a class="read_more" href="blog-details.html">read more</a>
+                                <div class="post_meta">
+                                    <span><a href="#">admin</a></span>
+                                    <span><a href="#">/ 0  comments</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+</section>
+<!--blog area end-->
+<!--bramd section area start-->
+<section class="brand_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="home_brands">
+                    <div class="brands_content">
+                        <h3>BRAND & CLIENTS</h3>
+                    </div>
+                    <div class="brands_carousel brand_column3 owl-carousel">
+                        <div class="brands_items">
+                            <div class="single_brand">
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand2.png" alt=""></a>
+                            </div>
+                            <div class="single_brand">
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand3.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="brands_items">
+                            <div class="single_brand">
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand4.png" alt=""></a>
+                            </div>
+                            <div class="single_brand">
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand5.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="brands_items">
+                            <div class="single_brand">
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand6.png" alt=""></a>
+                            </div>
+                            <div class="single_brand">
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand2.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="brands_items">
+                            <div class="single_brand">
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand3.png" alt=""></a>
+                            </div>
+                            <div class="single_brand">
+                                <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/brand/brand5.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
+                <div class="banner_section">
+                    <div class="single_banner">
+                        <a href="#"><img src="https://cdn.lizixs.top/img/lizishopping/img/bg/banner8.jpg" alt=""></a>
+                        <div class="banner_popup">
+                            <a class="video_popup" href="https://www.youtube.com/watch?v=7OycwyrZ6Hc&list=RDxyuLlnnfDcI&index=9"><i class="fa fa-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--bramd section area end-->
+<!--testimonial section area  start-->
+<!--testimonial section area  end-->

@@ -446,7 +446,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 /* 03. header css here */
 .header_inner {
-  background: url(../img/bg/header-bg.jpg) no-repeat scroll center center/cover;
+    background: url(https://cdn.lizixs.top/img/lizishopping/img/bg/header-bg.jpg) no-repeat scroll center center/cover;
 }
 
 .header_top {
@@ -1782,8 +1782,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .slider_one {
-  background: url(../img/slider/slider1.png) no-repeat scroll center center/cover;
-  height: 456px;
+    background: url(https://cdn.lizixs.top/img/lizishopping/img/slider/slider1.png) no-repeat scroll center center/cover;
+    height: 456px;
 }
 @media only screen and (max-width: 767px) {
   .slider_one {
@@ -1792,8 +1792,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .slider_two {
-  background: url(../img/slider/slider2.png) no-repeat scroll center center/cover;
-  height: 456px;
+    background: url(https://cdn.lizixs.top/img/lizishopping/img/slider/slider2.png) no-repeat scroll center center/cover;
+    height: 456px;
 }
 @media only screen and (max-width: 767px) {
   .slider_two {
@@ -1802,8 +1802,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .slider_three {
-  background: url(../img/slider/slider3.png) no-repeat scroll center center/cover;
-  height: 456px;
+    background: url(https://cdn.lizixs.top/img/lizishopping/img/slider/slider3.png) no-repeat scroll center center/cover;
+    height: 456px;
 }
 @media only screen and (max-width: 767px) {
   .slider_three {
@@ -1898,8 +1898,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 .slider_section_two .slider_one {
-  background: url(../img/slider/slide4.jpg) no-repeat scroll center center/cover;
-  height: 456px;
+    background: url(https://cdn.lizixs.top/img/lizishopping/img/slider/slide4.jpg) no-repeat scroll center center/cover;
+    height: 456px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .slider_section_two .slider_one {
@@ -1913,8 +1913,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 .slider_section_two .slider_two {
-  background: url(../img/slider/slide3.jpg) no-repeat scroll center center/cover;
-  height: 456px;
+    background: url(https://cdn.lizixs.top/img/lizishopping/img/slider/slide3.jpg) no-repeat scroll center center/cover;
+    height: 456px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .slider_section_two .slider_two {
@@ -2155,8 +2155,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 .slider_section_three .slider_one {
-  background: url(../img/slider/slide6.jpg) no-repeat scroll center center/cover;
-  height: 456px;
+    background: url(https://cdn.lizixs.top/img/lizishopping/img/slider/slide6.jpg) no-repeat scroll center center/cover;
+    height: 456px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .slider_section_three .slider_one {
@@ -2170,8 +2170,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 .slider_section_three .slider_two {
-  background: url(../img/slider/slide5.jpg) no-repeat scroll center center/cover;
-  height: 456px;
+    background: url(https://cdn.lizixs.top/img/lizishopping/img/slider/slide5.jpg) no-repeat scroll center center/cover;
+    height: 456px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .slider_section_three .slider_two {
@@ -2266,10 +2266,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .slider_section_four {
   padding-bottom: 37px;
 }
-.slider_section_four .slider_one {
-  background: url(../img/slider/slide7.jpg) no-repeat scroll center center/cover;
-  height: 493px;
-}
+    .slider_section_four .slider_one {
+        background: url(https://cdn.lizixs.top/img/lizishopping/img/slider/slide7.jpg) no-repeat scroll center center/cover;
+        height: 493px;
+    }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .slider_section_four .slider_one {
     height: 394px;
@@ -2286,8 +2286,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 .slider_section_four .slider_two {
-  background: url(../img/slider/slide8.jpg) no-repeat scroll center center/cover;
-  height: 493px;
+    background: url(https://cdn.lizixs.top/img/lizishopping/img/slider/slide8.jpg) no-repeat scroll center center/cover;
+    height: 493px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .slider_section_four .slider_two {
@@ -2385,8 +2385,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 .slider_section_five .slider_one {
-  background: url(../img/slider/slide9.jpg) no-repeat scroll center center/cover;
-  height: 470px;
+    background: url(https://cdn.lizixs.top/img/lizishopping/img/slider/slide9.jpg) no-repeat scroll center center/cover;
+    height: 470px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .slider_section_five .slider_one {
@@ -2399,8 +2399,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 .slider_section_five .slider_two {
-  background: url(../img/slider/slide10.jpg) no-repeat scroll center center/cover;
-  height: 470px;
+    background: url(https://cdn.lizixs.top/img/lizishopping/img/slider/slide10.jpg) no-repeat scroll center center/cover;
+    height: 470px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .slider_section_five .slider_two {
@@ -8871,7 +8871,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 /*newsletter popup css end*/
 /* 16. error page css heer */
 .error_page {
-  background: url(../img/bg/banner17.jpg) no-repeat scroll center center/cover;
+    background: url(https://cdn.lizixs.top/img/lizishopping/img/bg/banner17.jpg) no-repeat scroll center center/cover;
 }
 .error_page .row {
   height: 900px;

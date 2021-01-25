@@ -11,6 +11,14 @@
     <Property Name="SKUId" Type="int" />
     <Property Name="UserId" Type="int" />
   </EntityType>
+  <EntityType Name="GoodImg">
+    <Key>
+      <PropertyRef Name="GoodImg_ID" />
+    </Key>
+    <Property Name="GoodImg_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SKUID" Type="int" />
+    <Property Name="GoodImg_Url" Type="nvarchar" MaxLength="500" />
+  </EntityType>
   <EntityType Name="GoodsPhotoTable">
     <Key>
       <PropertyRef Name="PhotoID" />
@@ -22,6 +30,14 @@
     <Property Name="Photo_four" Type="nvarchar" MaxLength="150" />
     <Property Name="Photo_five" Type="nvarchar" MaxLength="150" />
     <Property Name="SKUId" Type="int" />
+  </EntityType>
+  <EntityType Name="goodsSKUColor">
+    <Key>
+      <PropertyRef Name="goodsSKUColor_ID" />
+    </Key>
+    <Property Name="goodsSKUColor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SKU_ID" Type="int" />
+    <Property Name="Color_Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="goodsSKUTables">
     <Key>
@@ -63,6 +79,7 @@
     <Property Name="GoodNum" Type="int" />
     <Property Name="GoodPrice" Type="int" />
     <Property Name="OrderID" Type="int" />
+    <Property Name="Color_Name" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="OrderInfo">
     <Key>
@@ -90,6 +107,15 @@
     <Property Name="ShopCardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserID" Type="int" />
     <Property Name="SKUId" Type="int" />
+  </EntityType>
+  <EntityType Name="shoucang">
+    <Key>
+      <PropertyRef Name="shoucang_id" />
+    </Key>
+    <Property Name="shoucang_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SKUID" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="shoucang_state" Type="int" />
   </EntityType>
   <EntityType Name="User_addressTable">
     <Key>
@@ -124,6 +150,7 @@
     <Parameter Name="CreateTime" Type="nvarchar" Mode="In" />
     <Parameter Name="SKUId" Type="int" Mode="In" />
     <Parameter Name="GoodNum" Type="int" Mode="In" />
+    <Parameter Name="GoodColorname" Type="nvarchar" Mode="In" />
     <Parameter Name="GoodPrice" Type="int" Mode="In" />
   </Function>
   <Function Name="del_orders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -133,6 +160,9 @@
     <Parameter Name="SPUGoodName" Type="varchar" Mode="In" />
     <Parameter Name="GoodInfo" Type="varchar" Mode="In" />
     <Parameter Name="ShopID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="selpro_detial_img" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
   </Function>
   <Function Name="selpro_detials_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
@@ -161,7 +191,9 @@
   <Function Name="selspuandtype_top" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="lizishoppingModelStoreContainer">
     <EntitySet Name="Appraise" EntityType="Self.Appraise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GoodImg" EntityType="Self.GoodImg" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GoodsPhotoTable" EntityType="Self.GoodsPhotoTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="goodsSKUColor" EntityType="Self.goodsSKUColor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="goodsSKUTables" EntityType="Self.goodsSKUTables" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="goodsSPUTables" EntityType="Self.goodsSPUTables" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MangeAdmin" EntityType="Self.MangeAdmin" Schema="dbo" store:Type="Tables" />
@@ -169,6 +201,7 @@
     <EntitySet Name="OrderInfo" EntityType="Self.OrderInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShopCategory" EntityType="Self.ShopCategory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShoppCar" EntityType="Self.ShoppCar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="shoucang" EntityType="Self.shoucang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User_addressTable" EntityType="Self.User_addressTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
   </EntityContainer>

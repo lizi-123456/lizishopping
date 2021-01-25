@@ -1,0 +1,110 @@
+﻿@model List<栗子商城.Models.GoodImg>
+
+@{
+    ViewBag.Title = "AddImg";
+    Layout = "~/Views/Shared/_houtaimuban.cshtml";
+}
+<link href="~/css/all.css" rel="stylesheet" type="text/css">
+<link href="~/js/editor/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="~/js/editor/css/froala_editor.min.css" rel="stylesheet" type="text/css">
+<link href="~/css/upload.css" rel="stylesheet" />
+<style type="text/css">
+    .tz:hover {
+        border: dashed 1px;
+        background-color: aliceblue;
+    }
+
+    dl:hover {
+        border: dashed 1px;
+        background-color: aliceblue;
+    }
+</style>
+<body style="background-color: #e6ecf5">
+    <h3 style="text-align:center;">商品图片管理</h3>
+    <div class="book_con01">
+        <div id="imgqu" style="height:200px;">
+            @foreach (var item in Model)
+            {
+                <dl style="width: 200px; margin: 0px auto; display:inline-block; ">
+                    <dt style="text-align:center;">
+                        <img src="https://cdn.lizixs.top/img/lizishopping/img/product/@item.GoodImg_Url" style="width:190px;height:150px;" />
+                    </dt>
+                    <dd style="text-align:center;">
+                        <input type="button" title="@item.GoodImg_ID" onclick="Delete(this)" value="移除" class="btn btn-sm btn-default" />
+                    </dd>
+                </dl>
+            }
+        </div>
+        <div class="tz" id="QU" style="width:600px;margin:0px auto;height:200px;text-align:center;line-height:200px;">可拖动多张图片到此区域</div>
+    </div>
+    <script type="text/javascript">
+        var loc = location.href;
+        var n1 = loc.length;//地址的总长度
+        var n2 = loc.indexOf("=");//取得=号的位置
+        var SKUId = decodeURI(loc.substr(n2 + 1, n1 - n2));//从=号后面的内容
+
+        var QU = document.getElementById("QU");
+        var imgQU = document.getElementById("imgqu");
+        QU.ondragover = function () {
+            return false;
+        }
+        var g = "";
+        QU.ondrop = function (e) {
+            var dls = $("#imgqu dl").length;
+            e.preventDefault();
+            var files = e.dataTransfer.files;
+            var count = dls + files.length;
+            if (count > 6) {
+                alert("最多允许6张商品图片");
+            } else {
+                for (var i = 0; i < files.length; i++) {
+                    var fd = new FormData();
+                    fd.append("SKUID", SKUId);
+                    fd.append("Imgs", files[i]);
+                    $.ajax({
+                        url: "/Admin/AddImgInfo",
+                        type: "post",
+                        data: fd,
+                        processData: false,
+                        contentType: false,
+                        success: function (data) {
+                            if (data == "false") {
+                                alert("第" + i + "张图片上传失败");
+                            }
+                            g = g + data;
+                            window.location.href = '/Admin/AddImgs?SKUID=' + SKUId;
+                        }
+                    })
+                }
+                if (g.indexOf("false") == -1) {
+                    alert("图片正在上传服务器，请耐心等待");
+                }
+            }
+        }
+
+
+        //删除事件
+        function Delete(e) {
+            if (confirm("确定移除吗?")) {
+                var id = e.title;
+                $.ajax({
+                    url: "/Admin/DeleteGoodImg",
+                    type: "post",
+                    data: { "id": id },
+                    success: function (data) {
+                        if (data == "true") {
+                            alert("删除成功");
+                            location.reload();
+                        } else {
+                            alert("删除失败");
+                        }
+                    }
+                })
+            }
+
+        }
+
+    </script>
+</body>
+
+

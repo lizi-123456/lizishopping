@@ -52,7 +52,7 @@
                             else {
 
                             }
-                            
+
                         })
                     })
                 </script>
@@ -62,16 +62,16 @@
                         <div class="tab-pane fade  show active" id="xinxi">
                             <h3>我的信息</h3>
                             <div class="table-responsive">
-                                
+
                                 @foreach (var item in ViewData["user_info"] as List<栗子商城.Models.UserTable>)
-                                        {
-                                <span>
-                                    邮箱：<input type="text" class="form-control" name="name" value="@item.Email" readonly="readonly" /><br />
-                                    密码：<input type="text" class="form-control" name="name" id="mima1" value="@item.UserPassWord" /><br />
-                                    昵称：<input type="text" class="form-control" name="name" id="nicheng1" value="@item.nicheng" /><br />
-                                </span>
-                                        }
-                                
+                                {
+                                    <span>
+                                        邮箱：<input type="text" class="form-control" name="name" value="@item.Email" readonly="readonly" /><br />
+                                        密码：<input type="text" class="form-control" name="name" id="mima1" value="@item.UserPassWord" /><br />
+                                        昵称：<input type="text" class="form-control" name="name" id="nicheng1" value="@item.nicheng" /><br />
+                                    </span>
+                                }
+
                                 <input type="button" name="name" class="btn btn-primary" id="xiugaixinxi" value="修改" />
                             </div>
                         </div>
@@ -97,20 +97,20 @@
                                     else {
 
                                     }
-                                    
+
                                 })
-                            }) 
+                            })
                         </script>
                         <div class="tab-pane fade" id="orders">
                             <h3>订单</h3>
-                            <div class="table-responsive">
+                            <div class="table-responsive" style="overflow:scroll;height:450px;">
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th>商品名</th>
                                             <th>商品价格</th>
                                             <th>下单时间</th>
-                                            <th>付款状态</th>
+                                            <th>商品颜色</th>
                                             <th>操作1</th>
                                             <th>操作2</th>
                                         </tr>
@@ -122,9 +122,9 @@
                                                 <td>@item.SKUGoodName</td>
                                                 <td><span class="danger">@item.GoodPrice</span></td>
                                                 <td><span class="danger">@item.CreateTime</span></td>
-                                                <td><span class="danger">@item.PayState</span></td>
+                                                <td><span class="danger">@item.Color_Name</span></td>
                                                 <td><a href="#" class="qupingjia" title="@item.SKUId">评价</a></td>
-                                                <td><a href="#" class="view">删除</a></td>
+                                                <td><a href="#" class="view del_order" title="@item.OrderID">删除</a></td>
                                             </tr>
                                         }
                                     </tbody>
@@ -136,6 +136,23 @@
                                             var SKUId = $(this).attr("title");
                                             var UserID = localStorage.getItem("userid");
                                             window.location.href = "/zhuye/shop_pingjia?SKUId=" + SKUId + "&UserId=" + UserID;
+                                        });
+                                        $(".del_order").click(function () {
+                                            var order_ID = $(this).attr("title");
+                                            $.ajax({
+                                                url: "/zhuye/Del_Order",
+                                                type: "get",
+                                                data: { "Order_Id": order_ID },
+                                                success: function (data) {
+                                                    if (data == "true") {
+                                                        location.reload();
+                                                    } else {
+                                                        alert("删除订单失败");
+                                                    }
+
+                                                    
+                                                }
+                                            })
                                         })
                                     })
                                 </script>
@@ -144,12 +161,12 @@
                         </div>
                         <div class="tab-pane fade" id="downloads">
                             <h3>未付款订单</h3>
-                            <div class="table-responsive">
+                            <div class="table-responsive" style="overflow:scroll;height:450px;">
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th>商品名</th>
-                                            <th>用户名</th>
+                                            <th>商品颜色</th>
                                             <th>商品价格</th>
                                             <th>下单时间</th>
                                             <th>付款状态</th>
@@ -162,7 +179,7 @@
                                         {
                                             <tr>
                                                 <td>@item.SKUGoodName</td>
-                                                <td>@item.UserName</td>
+                                                <td>@item.Color_Name</td>
                                                 <td><span class="danger">@item.GoodPrice</span></td>
                                                 <td><span class="danger">@item.CreateTime</span></td>
                                                 <td><span class="danger">@item.PayState</span></td>
@@ -388,7 +405,6 @@
                                 }
                             })
                         </script>
-
                     </div>
                 </div>
             </div>
@@ -396,4 +412,3 @@
     </div>
 </section>
 <!-- my account end   -->
-

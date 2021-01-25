@@ -19,5 +19,6 @@ namespace 栗子商城.Models
         public Nullable<int> GoodNum { get; set; }
         public Nullable<int> GoodPrice { get; set; }
         public Nullable<int> OrderID { get; set; }
+        public string Color_Name { get; set; }
     }
 }

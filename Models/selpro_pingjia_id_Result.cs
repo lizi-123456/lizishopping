@@ -35,5 +35,6 @@ namespace 栗子商城.Models
         public Nullable<int> UserId { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
+        public string nicheng { get; set; }
     }
 }

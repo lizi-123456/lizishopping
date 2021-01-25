@@ -21,6 +21,7 @@ namespace 栗子商城.Models
         public string GoodPhoto { get; set; }
         public Nullable<int> SPUID { get; set; }
         public string BusinName { get; set; }
+        public Nullable<int> onclicknum { get; set; }
         public string SPUGoodName { get; set; }
         public string GoodInfo { get; set; }
         public string TypeName { get; set; }

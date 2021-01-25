@@ -11,7 +11,7 @@ namespace 栗子商城.Controllers
 {
     public class kuangjiaController : Controller
     {
-        public lizishoppingEntities1 shop = new lizishoppingEntities1();
+        public lizishoppingEntities shop = new lizishoppingEntities();
         // GET: admin
         public ActionResult Index()
         {

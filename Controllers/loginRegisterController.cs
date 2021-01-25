@@ -10,7 +10,7 @@ namespace 栗子商城.Controllers
     public class loginRegisterController : Controller
     {
 
-        public lizishoppingEntities1 shop = new lizishoppingEntities1();
+        public lizishoppingEntities shop = new lizishoppingEntities();
         //public shoppingEntities1 shop = new shoppingEntities1();
 
         // GET: loginRegister

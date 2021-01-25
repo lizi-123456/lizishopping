@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="lizishoppingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="lizishoppingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Appraise">
           <Key>
             <PropertyRef Name="AppraiseID" />
@@ -15,6 +15,14 @@
           <Property Name="Ratetime" Type="nvarchar" MaxLength="100" />
           <Property Name="SKUId" Type="int" />
           <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="GoodImg">
+          <Key>
+            <PropertyRef Name="GoodImg_ID" />
+          </Key>
+          <Property Name="GoodImg_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SKUID" Type="int" />
+          <Property Name="GoodImg_Url" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="GoodsPhotoTable">
           <Key>
@@ -27,6 +35,14 @@
           <Property Name="Photo_four" Type="nvarchar" MaxLength="150" />
           <Property Name="Photo_five" Type="nvarchar" MaxLength="150" />
           <Property Name="SKUId" Type="int" />
+        </EntityType>
+        <EntityType Name="goodsSKUColor">
+          <Key>
+            <PropertyRef Name="goodsSKUColor_ID" />
+          </Key>
+          <Property Name="goodsSKUColor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SKU_ID" Type="int" />
+          <Property Name="Color_Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="goodsSKUTables">
           <Key>
@@ -68,6 +84,7 @@
           <Property Name="GoodNum" Type="int" />
           <Property Name="GoodPrice" Type="int" />
           <Property Name="OrderID" Type="int" />
+          <Property Name="Color_Name" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="OrderInfo">
           <Key>
@@ -95,6 +112,15 @@
           <Property Name="ShopCardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" />
           <Property Name="SKUId" Type="int" />
+        </EntityType>
+        <EntityType Name="shoucang">
+          <Key>
+            <PropertyRef Name="shoucang_id" />
+          </Key>
+          <Property Name="shoucang_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SKUID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="shoucang_state" Type="int" />
         </EntityType>
         <EntityType Name="User_addressTable">
           <Key>
@@ -129,6 +155,7 @@
           <Parameter Name="CreateTime" Type="nvarchar" Mode="In" />
           <Parameter Name="SKUId" Type="int" Mode="In" />
           <Parameter Name="GoodNum" Type="int" Mode="In" />
+          <Parameter Name="GoodColorname" Type="nvarchar" Mode="In" />
           <Parameter Name="GoodPrice" Type="int" Mode="In" />
         </Function>
         <Function Name="del_orders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -138,6 +165,9 @@
           <Parameter Name="SPUGoodName" Type="varchar" Mode="In" />
           <Parameter Name="GoodInfo" Type="varchar" Mode="In" />
           <Parameter Name="ShopID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="selpro_detial_img" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="selpro_detials_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -166,7 +196,9 @@
         <Function Name="selspuandtype_top" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="lizishoppingModelStoreContainer">
           <EntitySet Name="Appraise" EntityType="Self.Appraise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodImg" EntityType="Self.GoodImg" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsPhotoTable" EntityType="Self.GoodsPhotoTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="goodsSKUColor" EntityType="Self.goodsSKUColor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="goodsSKUTables" EntityType="Self.goodsSKUTables" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="goodsSPUTables" EntityType="Self.goodsSPUTables" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MangeAdmin" EntityType="Self.MangeAdmin" Schema="dbo" store:Type="Tables" />
@@ -174,13 +206,34 @@
           <EntitySet Name="OrderInfo" EntityType="Self.OrderInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShopCategory" EntityType="Self.ShopCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShoppCar" EntityType="Self.ShoppCar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shoucang" EntityType="Self.shoucang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_addressTable" EntityType="Self.User_addressTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="lizishoppingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Appraise">
+          <Key>
+            <PropertyRef Name="AppraiseID" />
+          </Key>
+          <Property Name="AppraiseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="Int32" />
+          <Property Name="Ratetime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SKUId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GoodImg">
+          <Key>
+            <PropertyRef Name="GoodImg_ID" />
+          </Key>
+          <Property Name="GoodImg_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SKUID" Type="Int32" />
+          <Property Name="GoodImg_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="GoodsPhotoTable">
           <Key>
             <PropertyRef Name="PhotoID" />
@@ -192,6 +245,28 @@
           <Property Name="Photo_four" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Photo_five" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="SKUId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="goodsSKUColor">
+          <Key>
+            <PropertyRef Name="goodsSKUColor_ID" />
+          </Key>
+          <Property Name="goodsSKUColor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SKU_ID" Type="Int32" />
+          <Property Name="Color_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="goodsSKUTables">
+          <Key>
+            <PropertyRef Name="SKUId" />
+          </Key>
+          <Property Name="SKUId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SKUGoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Goods_Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="GoodPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="inventory" Type="Int32" />
+          <Property Name="GoodPhoto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SPUID" Type="Int32" />
+          <Property Name="BusinName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="onclicknum" Type="Int32" />
         </EntityType>
         <EntityType Name="goodsSPUTables">
           <Key>
@@ -219,6 +294,7 @@
           <Property Name="GoodNum" Type="Int32" />
           <Property Name="GoodPrice" Type="Int32" />
           <Property Name="OrderID" Type="Int32" />
+          <Property Name="Color_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="OrderInfo">
           <Key>
@@ -247,6 +323,15 @@
           <Property Name="UserID" Type="Int32" />
           <Property Name="SKUId" Type="Int32" />
         </EntityType>
+        <EntityType Name="shoucang">
+          <Key>
+            <PropertyRef Name="shoucang_id" />
+          </Key>
+          <Property Name="shoucang_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SKUID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="shoucang_state" Type="Int32" />
+        </EntityType>
         <EntityType Name="User_addressTable">
           <Key>
             <PropertyRef Name="AddressId" />
@@ -259,15 +344,33 @@
           <Property Name="UserId" Type="Int32" />
           <Property Name="default_Address" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="lizishoppingEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="limits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Userstatus" Type="Int32" />
+          <Property Name="nicheng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="lizishoppingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Appraise" EntityType="Self.Appraise" />
+          <EntitySet Name="GoodImg" EntityType="Self.GoodImg" />
           <EntitySet Name="GoodsPhotoTable" EntityType="Self.GoodsPhotoTable" />
+          <EntitySet Name="goodsSKUColor" EntityType="Self.goodsSKUColor" />
+          <EntitySet Name="goodsSKUTables" EntityType="Self.goodsSKUTables" />
           <EntitySet Name="goodsSPUTables" EntityType="Self.goodsSPUTables" />
           <EntitySet Name="MangeAdmin" EntityType="Self.MangeAdmin" />
           <EntitySet Name="OrderGoodslist" EntityType="Self.OrderGoodslist" />
           <EntitySet Name="OrderInfo" EntityType="Self.OrderInfo" />
           <EntitySet Name="ShopCategory" EntityType="Self.ShopCategory" />
           <EntitySet Name="ShoppCar" EntityType="Self.ShoppCar" />
+          <EntitySet Name="shoucang" EntityType="Self.shoucang" />
           <EntitySet Name="User_addressTable" EntityType="Self.User_addressTable" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" />
           <FunctionImport Name="add_order">
             <Parameter Name="UserId" Mode="In" Type="Int32" />
             <Parameter Name="AddressId" Mode="In" Type="Int32" />
@@ -277,25 +380,32 @@
             <Parameter Name="CreateTime" Mode="In" Type="String" />
             <Parameter Name="SKUId" Mode="In" Type="Int32" />
             <Parameter Name="GoodNum" Mode="In" Type="Int32" />
+            <Parameter Name="GoodColorname" Mode="In" Type="String" />
             <Parameter Name="GoodPrice" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="del_orders">
-          <Parameter Name="orderid" Mode="In" Type="Int32" />
+            <Parameter Name="orderid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="insertin">
             <Parameter Name="SPUGoodName" Mode="In" Type="String" />
             <Parameter Name="GoodInfo" Mode="In" Type="String" />
             <Parameter Name="ShopID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="selpro_detial_img" ReturnType="Collection(lizishoppingModel.selpro_detial_img_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="selpro_detials_id" ReturnType="Collection(lizishoppingModel.selpro_detials_id_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="selpro_detials_SKUGoodName" ReturnType="Collection(lizishoppingModel.selpro_detials_SKUGoodName_Result)">
-          <Parameter Name="SKUGoodName" Mode="In" Type="String" />
+            <Parameter Name="SKUGoodName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="selpro_pingjia_id" ReturnType="Collection(lizishoppingModel.selpro_pingjia_id_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="selpro_zuixin" ReturnType="Collection(lizishoppingModel.selpro_zuixin_Result)" />
           <FunctionImport Name="selprocart_userid" ReturnType="Collection(lizishoppingModel.selprocart_userid_Result)">
-          <Parameter Name="userid" Mode="In" Type="Int32" />
+            <Parameter Name="userid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="selproorders_all" ReturnType="Collection(lizishoppingModel.selproorders_all_Result)" />
           <FunctionImport Name="selproorders_zhuangtai" ReturnType="Collection(lizishoppingModel.selproorders_zhuangtai_Result)">
@@ -303,25 +413,33 @@
             <Parameter Name="zhuangtai" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="selproxaingqing" ReturnType="Collection(lizishoppingModel.selproxaingqing_Result)" />
-          <FunctionImport Name="selproxaingqing_id" ReturnType="Collection(lizishoppingModel.selproxaingqing_id_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
+          <FunctionImport Name="selproxiangqing_rexiao" ReturnType="Collection(lizishoppingModel.selproxiangqing_rexiao_Result)" />
           <FunctionImport Name="selspuandshoptype" ReturnType="Collection(lizishoppingModel.selspuandshoptype_Result)" />
           <FunctionImport Name="selspuandtype_id" ReturnType="Collection(lizishoppingModel.selspuandtype_id_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="selspuandtype_top" ReturnType="Collection(lizishoppingModel.selspuandtype_top_Result)" />
-          <EntitySet Name="goodsSKUTables" EntityType="lizishoppingModel.goodsSKUTables" />
-          <FunctionImport Name="selproxiangqing_rexiao" ReturnType="Collection(lizishoppingModel.selproxiangqing_rexiao_Result)" />
-          <EntitySet Name="UserTable" EntityType="lizishoppingModel.UserTable" />
-          <EntitySet Name="Appraise" EntityType="lizishoppingModel.Appraise" />
-          <FunctionImport Name="selpro_pingjia_id" ReturnType="Collection(lizishoppingModel.selpro_pingjia_id_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="selpro_pingjia_id1" ReturnType="Collection(lizishoppingModel.selpro_pingjia_id1_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="selspuandtype_top" ReturnType="Collection(lizishoppingModel.selspuandtype_top_Result)" />
         </EntityContainer>
+        <ComplexType Name="selpro_detial_img_Result">
+          <Property Type="Int32" Name="SKUId" Nullable="false" />
+          <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Goods_Description" Nullable="true" MaxLength="300" />
+          <Property Type="Decimal" Name="GoodPrice" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="inventory" Nullable="true" />
+          <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SPUID" Nullable="true" />
+          <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="onclicknum" Nullable="true" />
+          <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PhotoID" Nullable="false" />
+          <Property Type="String" Name="Photo_one" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Photo_two" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Photo_three" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Photo_four" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Photo_five" Nullable="true" MaxLength="150" />
+        </ComplexType>
         <ComplexType Name="selpro_detials_id_Result">
           <Property Type="Int32" Name="SKUId" Nullable="false" />
           <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
@@ -331,6 +449,7 @@
           <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="SPUID" Nullable="true" />
           <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="onclicknum" Nullable="true" />
           <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
@@ -350,6 +469,7 @@
           <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="SPUID" Nullable="true" />
           <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="onclicknum" Nullable="true" />
           <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
@@ -360,6 +480,31 @@
           <Property Type="String" Name="Photo_four" Nullable="true" MaxLength="150" />
           <Property Type="String" Name="Photo_five" Nullable="true" MaxLength="150" />
         </ComplexType>
+        <ComplexType Name="selpro_pingjia_id_Result">
+          <Property Type="Int32" Name="SKUId" Nullable="false" />
+          <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Goods_Description" Nullable="true" MaxLength="300" />
+          <Property Type="Decimal" Name="GoodPrice" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="inventory" Nullable="true" />
+          <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SPUID" Nullable="true" />
+          <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="onclicknum" Nullable="true" />
+          <Property Type="Int32" Name="PhotoID" Nullable="false" />
+          <Property Type="String" Name="Photo_one" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Photo_two" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Photo_three" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Photo_four" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Photo_five" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="AppraiseID" Nullable="false" />
+          <Property Type="String" Name="content" Nullable="true" />
+          <Property Type="Int32" Name="Grade" Nullable="true" />
+          <Property Type="String" Name="Ratetime" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nicheng" Nullable="true" MaxLength="50" />
+        </ComplexType>
         <ComplexType Name="selpro_zuixin_Result">
           <Property Type="Int32" Name="SKUId" Nullable="false" />
           <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
@@ -369,6 +514,7 @@
           <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="SPUID" Nullable="true" />
           <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="onclicknum" Nullable="true" />
           <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
@@ -388,6 +534,7 @@
           <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="SPUID" Nullable="true" />
           <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="onclicknum" Nullable="true" />
           <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
@@ -421,6 +568,7 @@
           <Property Type="Int32" Name="OrderID" Nullable="false" />
           <Property Type="String" Name="CreateTime" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="PayState" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Color_Name" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="selproxaingqing_Result">
           <Property Type="Int32" Name="SKUId" Nullable="false" />
@@ -431,11 +579,12 @@
           <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="SPUID" Nullable="true" />
           <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="onclicknum" Nullable="true" />
           <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="selproxaingqing_id_Result">
+        <ComplexType Name="selproxiangqing_rexiao_Result">
           <Property Type="Int32" Name="SKUId" Nullable="false" />
           <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Goods_Description" Nullable="true" MaxLength="300" />
@@ -444,6 +593,7 @@
           <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="SPUID" Nullable="true" />
           <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="onclicknum" Nullable="true" />
           <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
@@ -464,6 +614,7 @@
           <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="SPUID" Nullable="true" />
           <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="onclicknum" Nullable="true" />
           <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
@@ -477,116 +628,38 @@
           <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="SPUID" Nullable="true" />
           <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <EntityType Name="goodsSKUTables">
-          <Key>
-            <PropertyRef Name="SKUId" />
-          </Key>
-          <Property Name="SKUId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SKUGoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Goods_Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="GoodPrice" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="inventory" Type="Int32" />
-          <Property Name="GoodPhoto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SPUID" Type="Int32" />
-          <Property Name="BusinName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="onclicknum" Type="Int32" />
-        </EntityType>
-        <ComplexType Name="selproxiangqing_rexiao_Result">
-          <Property Type="Int32" Name="SKUId" Nullable="false" />
-          <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Goods_Description" Nullable="true" MaxLength="300" />
-          <Property Type="Decimal" Name="GoodPrice" Nullable="true" Precision="19" />
-          <Property Type="Int32" Name="inventory" Nullable="true" />
-          <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="SPUID" Nullable="true" />
-          <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
           <Property Type="Int32" Name="onclicknum" Nullable="true" />
           <Property Type="String" Name="SPUGoodName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="GoodInfo" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <EntityType Name="UserTable">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserPassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="limits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Userstatus" Type="Int32" />
-          <Property Name="nicheng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Appraise">
-          <Key>
-            <PropertyRef Name="AppraiseID" />
-          </Key>
-          <Property Name="AppraiseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Grade" Type="Int32" />
-          <Property Name="Ratetime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SKUId" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
-        </EntityType>
-        <ComplexType Name="selpro_pingjia_id_Result">
-          <Property Type="Int32" Name="SKUId" Nullable="false" />
-          <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Goods_Description" Nullable="true" MaxLength="300" />
-          <Property Type="Decimal" Name="GoodPrice" Nullable="true" Precision="19" />
-          <Property Type="Int32" Name="inventory" Nullable="true" />
-          <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="SPUID" Nullable="true" />
-          <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="onclicknum" Nullable="true" />
-          <Property Type="Int32" Name="PhotoID" Nullable="false" />
-          <Property Type="String" Name="Photo_one" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Photo_two" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Photo_three" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Photo_four" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Photo_five" Nullable="true" MaxLength="150" />
-          <Property Type="Int32" Name="AppraiseID" Nullable="false" />
-          <Property Type="String" Name="content" Nullable="true" />
-          <Property Type="Int32" Name="Grade" Nullable="true" />
-          <Property Type="String" Name="Ratetime" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="UserId" Nullable="true" />
-          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="selpro_pingjia_id1_Result">
-          <Property Type="Int32" Name="SKUId" Nullable="false" />
-          <Property Type="String" Name="SKUGoodName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Goods_Description" Nullable="true" MaxLength="300" />
-          <Property Type="Decimal" Name="GoodPrice" Nullable="true" Precision="19" />
-          <Property Type="Int32" Name="inventory" Nullable="true" />
-          <Property Type="String" Name="GoodPhoto" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="SPUID" Nullable="true" />
-          <Property Type="String" Name="BusinName" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="onclicknum" Nullable="true" />
-          <Property Type="Int32" Name="PhotoID" Nullable="false" />
-          <Property Type="String" Name="Photo_one" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Photo_two" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Photo_three" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Photo_four" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Photo_five" Nullable="true" MaxLength="150" />
-          <Property Type="Int32" Name="AppraiseID" Nullable="false" />
-          <Property Type="String" Name="content" Nullable="true" />
-          <Property Type="Int32" Name="Grade" Nullable="true" />
-          <Property Type="String" Name="Ratetime" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="UserId" Nullable="true" />
-          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="nicheng" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="lizishoppingModelStoreContainer" CdmEntityContainer="lizishoppingEntities1">
+        <EntityContainerMapping StorageEntityContainer="lizishoppingModelStoreContainer" CdmEntityContainer="lizishoppingEntities">
+          <EntitySetMapping Name="Appraise">
+            <EntityTypeMapping TypeName="lizishoppingModel.Appraise">
+              <MappingFragment StoreEntitySet="Appraise">
+                <ScalarProperty Name="AppraiseID" ColumnName="AppraiseID" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Ratetime" ColumnName="Ratetime" />
+                <ScalarProperty Name="SKUId" ColumnName="SKUId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodImg">
+            <EntityTypeMapping TypeName="lizishoppingModel.GoodImg">
+              <MappingFragment StoreEntitySet="GoodImg">
+                <ScalarProperty Name="GoodImg_ID" ColumnName="GoodImg_ID" />
+                <ScalarProperty Name="SKUID" ColumnName="SKUID" />
+                <ScalarProperty Name="GoodImg_Url" ColumnName="GoodImg_Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="GoodsPhotoTable">
             <EntityTypeMapping TypeName="lizishoppingModel.GoodsPhotoTable">
               <MappingFragment StoreEntitySet="GoodsPhotoTable">
@@ -597,6 +670,30 @@
                 <ScalarProperty Name="Photo_four" ColumnName="Photo_four" />
                 <ScalarProperty Name="Photo_five" ColumnName="Photo_five" />
                 <ScalarProperty Name="SKUId" ColumnName="SKUId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="goodsSKUColor">
+            <EntityTypeMapping TypeName="lizishoppingModel.goodsSKUColor">
+              <MappingFragment StoreEntitySet="goodsSKUColor">
+                <ScalarProperty Name="goodsSKUColor_ID" ColumnName="goodsSKUColor_ID" />
+                <ScalarProperty Name="SKU_ID" ColumnName="SKU_ID" />
+                <ScalarProperty Name="Color_Name" ColumnName="Color_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="goodsSKUTables">
+            <EntityTypeMapping TypeName="lizishoppingModel.goodsSKUTables">
+              <MappingFragment StoreEntitySet="goodsSKUTables">
+                <ScalarProperty Name="SKUId" ColumnName="SKUId" />
+                <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
+                <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
+                <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
+                <ScalarProperty Name="inventory" ColumnName="inventory" />
+                <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
+                <ScalarProperty Name="SPUID" ColumnName="SPUID" />
+                <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+                <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -627,6 +724,7 @@
                 <ScalarProperty Name="GoodNum" ColumnName="GoodNum" />
                 <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="Color_Name" ColumnName="Color_Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -660,6 +758,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="shoucang">
+            <EntityTypeMapping TypeName="lizishoppingModel.shoucang">
+              <MappingFragment StoreEntitySet="shoucang">
+                <ScalarProperty Name="shoucang_id" ColumnName="shoucang_id" />
+                <ScalarProperty Name="SKUID" ColumnName="SKUID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="shoucang_state" ColumnName="shoucang_state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="User_addressTable">
             <EntityTypeMapping TypeName="lizishoppingModel.User_addressTable">
               <MappingFragment StoreEntitySet="User_addressTable">
@@ -673,9 +781,46 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UserTable">
+            <EntityTypeMapping TypeName="lizishoppingModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassWord" ColumnName="UserPassWord" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="limits" ColumnName="limits" />
+                <ScalarProperty Name="Userstatus" ColumnName="Userstatus" />
+                <ScalarProperty Name="nicheng" ColumnName="nicheng" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="add_order" FunctionName="lizishoppingModel.Store.add_order" />
           <FunctionImportMapping FunctionImportName="del_orders" FunctionName="lizishoppingModel.Store.del_orders" />
           <FunctionImportMapping FunctionImportName="insertin" FunctionName="lizishoppingModel.Store.insertin" />
+          <FunctionImportMapping FunctionImportName="selpro_detial_img" FunctionName="lizishoppingModel.Store.selpro_detial_img">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="lizishoppingModel.selpro_detial_img_Result">
+                <ScalarProperty Name="SKUId" ColumnName="SKUId" />
+                <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
+                <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
+                <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
+                <ScalarProperty Name="inventory" ColumnName="inventory" />
+                <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
+                <ScalarProperty Name="SPUID" ColumnName="SPUID" />
+                <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+                <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
+                <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
+                <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+                <ScalarProperty Name="Photo_one" ColumnName="Photo_one" />
+                <ScalarProperty Name="Photo_two" ColumnName="Photo_two" />
+                <ScalarProperty Name="Photo_three" ColumnName="Photo_three" />
+                <ScalarProperty Name="Photo_four" ColumnName="Photo_four" />
+                <ScalarProperty Name="Photo_five" ColumnName="Photo_five" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="selpro_detials_id" FunctionName="lizishoppingModel.Store.selpro_detials_id">
             <ResultMapping>
               <ComplexTypeMapping TypeName="lizishoppingModel.selpro_detials_id_Result">
@@ -687,6 +832,7 @@
                 <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
                 <ScalarProperty Name="SPUID" ColumnName="SPUID" />
                 <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+                <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
                 <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
                 <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -710,6 +856,7 @@
                 <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
                 <ScalarProperty Name="SPUID" ColumnName="SPUID" />
                 <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+                <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
                 <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
                 <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -719,6 +866,35 @@
                 <ScalarProperty Name="Photo_three" ColumnName="Photo_three" />
                 <ScalarProperty Name="Photo_four" ColumnName="Photo_four" />
                 <ScalarProperty Name="Photo_five" ColumnName="Photo_five" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="selpro_pingjia_id" FunctionName="lizishoppingModel.Store.selpro_pingjia_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="lizishoppingModel.selpro_pingjia_id_Result">
+                <ScalarProperty Name="SKUId" ColumnName="SKUId" />
+                <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
+                <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
+                <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
+                <ScalarProperty Name="inventory" ColumnName="inventory" />
+                <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
+                <ScalarProperty Name="SPUID" ColumnName="SPUID" />
+                <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+                <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
+                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+                <ScalarProperty Name="Photo_one" ColumnName="Photo_one" />
+                <ScalarProperty Name="Photo_two" ColumnName="Photo_two" />
+                <ScalarProperty Name="Photo_three" ColumnName="Photo_three" />
+                <ScalarProperty Name="Photo_four" ColumnName="Photo_four" />
+                <ScalarProperty Name="Photo_five" ColumnName="Photo_five" />
+                <ScalarProperty Name="AppraiseID" ColumnName="AppraiseID" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Ratetime" ColumnName="Ratetime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="nicheng" ColumnName="nicheng" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -733,6 +909,7 @@
                 <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
                 <ScalarProperty Name="SPUID" ColumnName="SPUID" />
                 <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+                <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
                 <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
                 <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -756,6 +933,7 @@
                 <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
                 <ScalarProperty Name="SPUID" ColumnName="SPUID" />
                 <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+                <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
                 <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
                 <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -797,6 +975,7 @@
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="PayState" ColumnName="PayState" />
+                <ScalarProperty Name="Color_Name" ColumnName="Color_Name" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -811,6 +990,25 @@
                 <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
                 <ScalarProperty Name="SPUID" ColumnName="SPUID" />
                 <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+                <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
+                <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
+                <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="selproxiangqing_rexiao" FunctionName="lizishoppingModel.Store.selproxiangqing_rexiao">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="lizishoppingModel.selproxiangqing_rexiao_Result">
+                <ScalarProperty Name="SKUId" ColumnName="SKUId" />
+                <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
+                <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
+                <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
+                <ScalarProperty Name="inventory" ColumnName="inventory" />
+                <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
+                <ScalarProperty Name="SPUID" ColumnName="SPUID" />
+                <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+                <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
                 <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
                 <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -839,6 +1037,7 @@
                 <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
                 <ScalarProperty Name="SPUID" ColumnName="SPUID" />
                 <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+                <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
                 <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
                 <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -856,96 +1055,10 @@
                 <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
                 <ScalarProperty Name="SPUID" ColumnName="SPUID" />
                 <ScalarProperty Name="BusinName" ColumnName="BusinName" />
-                <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
-                <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
-                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="goodsSKUTables">
-            <EntityTypeMapping TypeName="lizishoppingModel.goodsSKUTables">
-              <MappingFragment StoreEntitySet="goodsSKUTables">
-                <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
-                <ScalarProperty Name="BusinName" ColumnName="BusinName" />
-                <ScalarProperty Name="SPUID" ColumnName="SPUID" />
-                <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
-                <ScalarProperty Name="inventory" ColumnName="inventory" />
-                <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
-                <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
-                <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
-                <ScalarProperty Name="SKUId" ColumnName="SKUId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="selproxiangqing_rexiao" FunctionName="lizishoppingModel.Store.selproxiangqing_rexiao">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="lizishoppingModel.selproxiangqing_rexiao_Result">
-                <ScalarProperty Name="SKUId" ColumnName="SKUId" />
-                <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
-                <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
-                <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
-                <ScalarProperty Name="inventory" ColumnName="inventory" />
-                <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
-                <ScalarProperty Name="SPUID" ColumnName="SPUID" />
-                <ScalarProperty Name="BusinName" ColumnName="BusinName" />
                 <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
                 <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
                 <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="UserTable">
-            <EntityTypeMapping TypeName="lizishoppingModel.UserTable">
-              <MappingFragment StoreEntitySet="UserTable">
-                <ScalarProperty Name="nicheng" ColumnName="nicheng" />
-                <ScalarProperty Name="Userstatus" ColumnName="Userstatus" />
-                <ScalarProperty Name="limits" ColumnName="limits" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="UserPassWord" ColumnName="UserPassWord" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Appraise">
-            <EntityTypeMapping TypeName="lizishoppingModel.Appraise">
-              <MappingFragment StoreEntitySet="Appraise">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="SKUId" ColumnName="SKUId" />
-                <ScalarProperty Name="Ratetime" ColumnName="Ratetime" />
-                <ScalarProperty Name="Grade" ColumnName="Grade" />
-                <ScalarProperty Name="content" ColumnName="content" />
-                <ScalarProperty Name="AppraiseID" ColumnName="AppraiseID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="selpro_pingjia_id1" FunctionName="lizishoppingModel.Store.selpro_pingjia_id">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="lizishoppingModel.selpro_pingjia_id1_Result">
-                <ScalarProperty Name="SKUId" ColumnName="SKUId" />
-                <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
-                <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
-                <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
-                <ScalarProperty Name="inventory" ColumnName="inventory" />
-                <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
-                <ScalarProperty Name="SPUID" ColumnName="SPUID" />
-                <ScalarProperty Name="BusinName" ColumnName="BusinName" />
-                <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
-                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
-                <ScalarProperty Name="Photo_one" ColumnName="Photo_one" />
-                <ScalarProperty Name="Photo_two" ColumnName="Photo_two" />
-                <ScalarProperty Name="Photo_three" ColumnName="Photo_three" />
-                <ScalarProperty Name="Photo_four" ColumnName="Photo_four" />
-                <ScalarProperty Name="Photo_five" ColumnName="Photo_five" />
-                <ScalarProperty Name="AppraiseID" ColumnName="AppraiseID" />
-                <ScalarProperty Name="content" ColumnName="content" />
-                <ScalarProperty Name="Grade" ColumnName="Grade" />
-                <ScalarProperty Name="Ratetime" ColumnName="Ratetime" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="nicheng" ColumnName="nicheng" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

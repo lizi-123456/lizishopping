@@ -9,21 +9,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.ico">
-
     <!-- CSS
     ========================= -->
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.lizixs.top/css/lizishopping/bootstrap.min.css">
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="~/Content/css/plugins.css">
     <!-- Jquery JS -->
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="https://cdn.lizixs.top/js/lizishopping/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.lizixs.top/js/lizishopping/jquery.unobtrusive-ajax.js"></script>
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="https://cdn.lizixs.top/css/lizishopping/style.css">
 
     <!-- Modernizer JS -->
-    <script src="~/Content/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://cdn.lizixs.top/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
@@ -56,18 +55,11 @@
                                     <li><a href="#" class="btn_cart">购物车</a></li>
                                     <li><a href="#" class="chakan">查看</a></li>
                                 </ul>
+
                                 <script>
                                     var username_cookies = document.getElementById("username_cookies");
                                     var zhuce = document.getElementById("zhuce");
-                                    $(".btn_cart").click(function () {
-                                        if (localStorage.getItem("username") == null) {
-                                            alert("请先登录才能使用购物车功能")
-                                        }
-                                        else {
-                                            window.location.href = "/zhuye/shopcart?UserID=" + localStorage.getItem("userid");
-                                        }
-                                    }
-                                    );
+
 
                                     $(".chakan").click(function () {
                                         alert("暂无可查看的东西")
@@ -77,7 +69,7 @@
                                         username_cookies.innerHTML = "登录";
                                     }
                                     else {
-                                        username_cookies.innerHTML = "欢迎："+localStorage.getItem("username");
+                                        username_cookies.innerHTML = "欢迎：" + localStorage.getItem("username");
                                     }
 
                                     if (username_cookies.innerHTML == "登录") {
@@ -116,7 +108,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-3">
                             <div class="logo">
-                                <a href="/zhuye/Index"><img src="~/Content/img/logo/logo00.png" alt=""></a>
+                                <a href="/zhuye/Index"><img src="https://cdn.lizixs.top/img/lizishopping/img/logo/logo00.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-6">
@@ -166,48 +158,59 @@
                         </div>
                         <div class="col-lg-2 col-md-3">
                             <div class="shipping_cart">
-                                <a href="#">
+                                <a href="#" class="btn_cart">
                                     <span>购物车</span>
                                     <span class="cart_icon"><i class="fa fa-shopping-bag"></i></span>
                                 </a>
+                                <script>
+                                    $(".btn_cart").click(function () {
+                                        if (localStorage.getItem("username") == null) {
+                                            alert("请先登录才能使用购物车功能")
+                                        }
+                                        else {
+                                            window.location.href = "/zhuye/shopcart?UserID=" + localStorage.getItem("userid");
+                                        }
+                                    }
+                                    );
+                                </script>
                                 <!--mini cart-->
-                                <div class="mini_cart">
+                                @*<div class="mini_cart">
 
 
 
-                                    <div class="cart_item">
-                                        <div class="cart_img">
-                                            <a href="product-details.html"><img src="~/Content/img/s_product/product1.jpg" alt=""></a>
+                                        <div class="cart_item">
+                                            <div class="cart_img">
+                                                <a href="product-details.html"><img src="https://cdn.lizixs.top/img/lizishopping/img/s_product/product1.jpg" alt=""></a>
+                                            </div>
+                                            <div class="cart_info">
+                                                <a href="product-details.html">Etiam molestie</a>
+                                                <span class="cart_price">£95.00</span>
+                                                <div class="cart_remove">
+                                                    <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                                </div>
+                                            </div>
+
                                         </div>
-                                        <div class="cart_info">
-                                            <a href="product-details.html">Etiam molestie</a>
-                                            <span class="cart_price">£95.00</span>
-                                            <div class="cart_remove">
-                                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                        <div class="cart_item">
+                                            <div class="cart_img">
+                                                <a href="product-details.html"><img src="https://cdn.lizixs.top/img/lizishopping/img/s_product/product2.jpg" alt=""></a>
+                                            </div>
+                                            <div class="cart_info">
+                                                <a href="product-details.html">Congue lectus</a>
+                                                <span class="cart_price">£115.00</span>
+                                                <div class="cart_remove">
+                                                    <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                                </div>
                                             </div>
                                         </div>
-
-                                    </div>
-                                    <div class="cart_item">
-                                        <div class="cart_img">
-                                            <a href="product-details.html"><img src="~/Content/img/s_product/product2.jpg" alt=""></a>
+                                        <div class="total_price">
+                                            <span> Subtotal:  </span>
+                                            <span class="prices">  $160.00  </span>
                                         </div>
-                                        <div class="cart_info">
-                                            <a href="product-details.html">Congue lectus</a>
-                                            <span class="cart_price">£115.00</span>
-                                            <div class="cart_remove">
-                                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                            </div>
+                                        <div class="cart_button">
+                                            <a class="button" href="checkout.html"> Check out</a>
                                         </div>
-                                    </div>
-                                    <div class="total_price">
-                                        <span> Subtotal:  </span>
-                                        <span class="prices">  $160.00  </span>
-                                    </div>
-                                    <div class="cart_button">
-                                        <a class="button" href="checkout.html"> Check out</a>
-                                    </div>
-                                </div>
+                                    </div>*@
                                 <!--mini cart end-->
                             </div>
                         </div>
@@ -234,19 +237,19 @@
                                                 <a href="/zhuye/Index">主页</a>
                                             </li>
                                             <li>
-                                                <a href="blog.html">社区</a>
+                                                <a href="Javascript::">社区</a>
 
                                             </li>
                                             <li>
-                                                <a href="#">排行</a>
+                                                <a href="Javascript::">排行</a>
 
                                             </li>
                                             <li>
-                                                <a href="#">人工客服</a>
+                                                <a href="Javascript::">人工客服</a>
 
                                             </li>
                                             <li>
-                                                <a href="index.html">售后服务</a>
+                                                <a href="Javascript::">售后服务</a>
 
                                             </li>
                                         </ul>
@@ -259,9 +262,9 @@
                     <div class="col-lg-5 col-md-12">
                         <div class="contact_link text-right">
                             <ul>
-                                <li><i class="fa  fa-phone"></i><strong>Phone:</strong> 0987. 654. 321</li>
+                                <li><i class="fa  fa-phone"></i><strong>联系站长</strong>15224787219</li>
                                 <li>/</li>
-                                <li><strong><i class="fa fa-envelope"></i> Email:</strong><a href="#">info@roadthemes.com</a></li>
+                                <li><strong><i class="fa fa-envelope"></i> Email:</strong><a href="JavaScript::">669606722@qq.com</a></li>
                             </ul>
                         </div>
                     </div>
@@ -290,12 +293,12 @@
                                 <br />
                                 <p>
                                     <i class="fa fa-envelope"></i>
-                                    <span><a href="http://www.hanqian.club/">九里商城</a></span>
+                                    <span><a href="http://www.hanqian.club/" target="_blank">九里商城</a></span>
                                 </p>
                                 <br />
                                 <p>
                                     <i class="fa fa-phone"></i>
-                                    <span><a href="https://mvc.lizixs.top/">靓装商城</a></span>
+                                    <span><a href="https://giao.lizixs.top/" target="_blank">栗子音乐</a></span>
                                 </p>
                             </div>
                         </div>
@@ -478,6 +481,7 @@
             </div>
         </div>
     </div>
+    @* 模态框 *@
     <script>
         $(function () {
             $("#guanbimodal").click(function () {
@@ -494,14 +498,14 @@
                         if (data != "false") {
                             var shuju = data.split("分隔符");
 
-                            $("#tp1_motai").attr("src", "../Content/img/product/" + shuju[0] + '?' + Math.random())
-                            $("#tp1_link_motai").attr("src", "../Content/img/product/" + shuju[0] + '?' + Math.random())
-                            $("#tp2_motai").attr("src", "../Content/img/product/" + shuju[1] + '?' + Math.random())
-                            $("#tp2_link_motai").attr("src", "../Content/img/product/" + shuju[1] + '?' + Math.random())
-                            $("#tp3_motai").attr("src", "../Content/img/product/" + shuju[2] + '?' + Math.random())
-                            $("#tp3_link_motai").attr("src", "../Content/img/product/" + shuju[2] + '?' + Math.random())
-                            $("#tp4_motai").attr("src", "../Content/img/product/" + shuju[3] + '?' + Math.random())
-                            $("#tp4_link_motai").attr("src", "../Content/img/product/" + shuju[3] + '?' + Math.random())
+                            $("#tp1_motai").attr("src", "https://cdn.lizixs.top/img/lizishopping/img/product/" + shuju[0] + '?' + Math.random())
+                            $("#tp1_link_motai").attr("src", "https://cdn.lizixs.top/img/lizishopping/img/product/" + shuju[0] + '?' + Math.random())
+                            $("#tp2_motai").attr("src", "https://cdn.lizixs.top/img/lizishopping/img/product/" + shuju[1] + '?' + Math.random())
+                            $("#tp2_link_motai").attr("src", "https://cdn.lizixs.top/img/lizishopping/img/product/" + shuju[1] + '?' + Math.random())
+                            $("#tp3_motai").attr("src", "https://cdn.lizixs.top/img/lizishopping/img/product/" + shuju[2] + '?' + Math.random())
+                            $("#tp3_link_motai").attr("src", "https://cdn.lizixs.top/img/lizishopping/img/product/" + shuju[2] + '?' + Math.random())
+                            $("#tp4_motai").attr("src", "https://cdn.lizixs.top/img/lizishopping/img/product/" + shuju[3] + '?' + Math.random())
+                            $("#tp4_link_motai").attr("src", "https://cdn.lizixs.top/img/lizishopping/img/product/" + shuju[3] + '?' + Math.random())
                             $("#motai_SKUGoodName").html(shuju[6]);
                             $("#motai_GoodPrice").html(shuju[7]);
                             $("#motai_SPUGoodName").html(shuju[8]);
@@ -519,6 +523,26 @@
                 window.location.href = "/zhuye/pro_details?SKUId=" + id;
             });
         })
+    </script>
+    @* 添加收藏 *@
+    <script>
+        function add_shoucang(e) {
+            var userid = localStorage.getItem("userid");
+            $.ajax({
+                url: "/zhuye/add_shoucang",
+                type: "post",
+                data: { "UserID": userid, "SKUID": e.title, "shoucang": 0 },
+                success: function (data) {
+                    if (data == "true") {
+                        alert("已添加收藏");
+                    }
+                    if (data == "false") {
+                        alert("已收藏过此商品，无需再次收藏");
+                    }
+
+                }
+            });
+        }
     </script>
 
 
@@ -671,19 +695,17 @@
     <!-- JS
     ============================================ -->
     <!-- jQuery JS -->
-    <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
-
+    <script src="https://cdn.lizixs.top/js/vendor/jquery-1.12.4.min.js"></script>
     <!-- Popper JS -->
-    <script src="~/Content/js/popper.min.js"></script>
+    <script src="https://cdn.lizixs.top/js/lizishopping/popper.min.js"></script>
     <!-- Bootstrap JS -->
-    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="https://cdn.lizixs.top/js/lizishopping/bootstrap.min.js"></script>
     <!-- Plugins JS -->
-    <script src="~/Content/js/plugins.js"></script>
+    <script src="https://cdn.lizixs.top/js/lizishopping/plugins.js"></script>
     <!-- Ajax Mail -->
-    <script src="~/Content/js/ajax-mail.js"></script>
+    <script src="https://cdn.lizixs.top/js/lizishopping/ajax-mail.js"></script>
     <!-- Main JS -->
-    <script src="~/Content/js/main.js"></script>
+    <script src="https://cdn.lizixs.top/js/lizishopping/main.js"></script>
 </body>
-
 </html>
 

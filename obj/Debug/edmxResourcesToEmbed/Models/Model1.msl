@@ -1,6 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="lizishoppingModelStoreContainer" CdmEntityContainer="lizishoppingEntities1">
+  <EntityContainerMapping StorageEntityContainer="lizishoppingModelStoreContainer" CdmEntityContainer="lizishoppingEntities">
+    <EntitySetMapping Name="Appraise">
+      <EntityTypeMapping TypeName="lizishoppingModel.Appraise">
+        <MappingFragment StoreEntitySet="Appraise">
+          <ScalarProperty Name="AppraiseID" ColumnName="AppraiseID" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Ratetime" ColumnName="Ratetime" />
+          <ScalarProperty Name="SKUId" ColumnName="SKUId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GoodImg">
+      <EntityTypeMapping TypeName="lizishoppingModel.GoodImg">
+        <MappingFragment StoreEntitySet="GoodImg">
+          <ScalarProperty Name="GoodImg_ID" ColumnName="GoodImg_ID" />
+          <ScalarProperty Name="SKUID" ColumnName="SKUID" />
+          <ScalarProperty Name="GoodImg_Url" ColumnName="GoodImg_Url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="GoodsPhotoTable">
       <EntityTypeMapping TypeName="lizishoppingModel.GoodsPhotoTable">
         <MappingFragment StoreEntitySet="GoodsPhotoTable">
@@ -11,6 +32,30 @@
           <ScalarProperty Name="Photo_four" ColumnName="Photo_four" />
           <ScalarProperty Name="Photo_five" ColumnName="Photo_five" />
           <ScalarProperty Name="SKUId" ColumnName="SKUId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="goodsSKUColor">
+      <EntityTypeMapping TypeName="lizishoppingModel.goodsSKUColor">
+        <MappingFragment StoreEntitySet="goodsSKUColor">
+          <ScalarProperty Name="goodsSKUColor_ID" ColumnName="goodsSKUColor_ID" />
+          <ScalarProperty Name="SKU_ID" ColumnName="SKU_ID" />
+          <ScalarProperty Name="Color_Name" ColumnName="Color_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="goodsSKUTables">
+      <EntityTypeMapping TypeName="lizishoppingModel.goodsSKUTables">
+        <MappingFragment StoreEntitySet="goodsSKUTables">
+          <ScalarProperty Name="SKUId" ColumnName="SKUId" />
+          <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
+          <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
+          <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
+          <ScalarProperty Name="inventory" ColumnName="inventory" />
+          <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
+          <ScalarProperty Name="SPUID" ColumnName="SPUID" />
+          <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+          <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -41,6 +86,7 @@
           <ScalarProperty Name="GoodNum" ColumnName="GoodNum" />
           <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="Color_Name" ColumnName="Color_Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -74,6 +120,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="shoucang">
+      <EntityTypeMapping TypeName="lizishoppingModel.shoucang">
+        <MappingFragment StoreEntitySet="shoucang">
+          <ScalarProperty Name="shoucang_id" ColumnName="shoucang_id" />
+          <ScalarProperty Name="SKUID" ColumnName="SKUID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="shoucang_state" ColumnName="shoucang_state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="User_addressTable">
       <EntityTypeMapping TypeName="lizishoppingModel.User_addressTable">
         <MappingFragment StoreEntitySet="User_addressTable">
@@ -87,9 +143,46 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="UserTable">
+      <EntityTypeMapping TypeName="lizishoppingModel.UserTable">
+        <MappingFragment StoreEntitySet="UserTable">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPassWord" ColumnName="UserPassWord" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="limits" ColumnName="limits" />
+          <ScalarProperty Name="Userstatus" ColumnName="Userstatus" />
+          <ScalarProperty Name="nicheng" ColumnName="nicheng" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="add_order" FunctionName="lizishoppingModel.Store.add_order" />
     <FunctionImportMapping FunctionImportName="del_orders" FunctionName="lizishoppingModel.Store.del_orders" />
     <FunctionImportMapping FunctionImportName="insertin" FunctionName="lizishoppingModel.Store.insertin" />
+    <FunctionImportMapping FunctionImportName="selpro_detial_img" FunctionName="lizishoppingModel.Store.selpro_detial_img">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="lizishoppingModel.selpro_detial_img_Result">
+          <ScalarProperty Name="SKUId" ColumnName="SKUId" />
+          <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
+          <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
+          <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
+          <ScalarProperty Name="inventory" ColumnName="inventory" />
+          <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
+          <ScalarProperty Name="SPUID" ColumnName="SPUID" />
+          <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+          <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
+          <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
+          <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+          <ScalarProperty Name="Photo_one" ColumnName="Photo_one" />
+          <ScalarProperty Name="Photo_two" ColumnName="Photo_two" />
+          <ScalarProperty Name="Photo_three" ColumnName="Photo_three" />
+          <ScalarProperty Name="Photo_four" ColumnName="Photo_four" />
+          <ScalarProperty Name="Photo_five" ColumnName="Photo_five" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="selpro_detials_id" FunctionName="lizishoppingModel.Store.selpro_detials_id">
       <ResultMapping>
         <ComplexTypeMapping TypeName="lizishoppingModel.selpro_detials_id_Result">
@@ -101,6 +194,7 @@
           <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
           <ScalarProperty Name="SPUID" ColumnName="SPUID" />
           <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+          <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
           <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
           <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -124,6 +218,7 @@
           <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
           <ScalarProperty Name="SPUID" ColumnName="SPUID" />
           <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+          <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
           <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
           <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -133,6 +228,35 @@
           <ScalarProperty Name="Photo_three" ColumnName="Photo_three" />
           <ScalarProperty Name="Photo_four" ColumnName="Photo_four" />
           <ScalarProperty Name="Photo_five" ColumnName="Photo_five" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="selpro_pingjia_id" FunctionName="lizishoppingModel.Store.selpro_pingjia_id">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="lizishoppingModel.selpro_pingjia_id_Result">
+          <ScalarProperty Name="SKUId" ColumnName="SKUId" />
+          <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
+          <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
+          <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
+          <ScalarProperty Name="inventory" ColumnName="inventory" />
+          <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
+          <ScalarProperty Name="SPUID" ColumnName="SPUID" />
+          <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+          <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
+          <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+          <ScalarProperty Name="Photo_one" ColumnName="Photo_one" />
+          <ScalarProperty Name="Photo_two" ColumnName="Photo_two" />
+          <ScalarProperty Name="Photo_three" ColumnName="Photo_three" />
+          <ScalarProperty Name="Photo_four" ColumnName="Photo_four" />
+          <ScalarProperty Name="Photo_five" ColumnName="Photo_five" />
+          <ScalarProperty Name="AppraiseID" ColumnName="AppraiseID" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Ratetime" ColumnName="Ratetime" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="nicheng" ColumnName="nicheng" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -147,6 +271,7 @@
           <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
           <ScalarProperty Name="SPUID" ColumnName="SPUID" />
           <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+          <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
           <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
           <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -170,6 +295,7 @@
           <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
           <ScalarProperty Name="SPUID" ColumnName="SPUID" />
           <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+          <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
           <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
           <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -211,6 +337,7 @@
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
           <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
           <ScalarProperty Name="PayState" ColumnName="PayState" />
+          <ScalarProperty Name="Color_Name" ColumnName="Color_Name" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -225,6 +352,25 @@
           <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
           <ScalarProperty Name="SPUID" ColumnName="SPUID" />
           <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+          <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
+          <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
+          <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="selproxiangqing_rexiao" FunctionName="lizishoppingModel.Store.selproxiangqing_rexiao">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="lizishoppingModel.selproxiangqing_rexiao_Result">
+          <ScalarProperty Name="SKUId" ColumnName="SKUId" />
+          <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
+          <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
+          <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
+          <ScalarProperty Name="inventory" ColumnName="inventory" />
+          <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
+          <ScalarProperty Name="SPUID" ColumnName="SPUID" />
+          <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+          <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
           <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
           <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -253,6 +399,7 @@
           <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
           <ScalarProperty Name="SPUID" ColumnName="SPUID" />
           <ScalarProperty Name="BusinName" ColumnName="BusinName" />
+          <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
           <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
           <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -270,96 +417,10 @@
           <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
           <ScalarProperty Name="SPUID" ColumnName="SPUID" />
           <ScalarProperty Name="BusinName" ColumnName="BusinName" />
-          <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
-          <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
-          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <EntitySetMapping Name="goodsSKUTables">
-      <EntityTypeMapping TypeName="lizishoppingModel.goodsSKUTables">
-        <MappingFragment StoreEntitySet="goodsSKUTables">
-          <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
-          <ScalarProperty Name="BusinName" ColumnName="BusinName" />
-          <ScalarProperty Name="SPUID" ColumnName="SPUID" />
-          <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
-          <ScalarProperty Name="inventory" ColumnName="inventory" />
-          <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
-          <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
-          <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
-          <ScalarProperty Name="SKUId" ColumnName="SKUId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="selproxiangqing_rexiao" FunctionName="lizishoppingModel.Store.selproxiangqing_rexiao">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="lizishoppingModel.selproxiangqing_rexiao_Result">
-          <ScalarProperty Name="SKUId" ColumnName="SKUId" />
-          <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
-          <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
-          <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
-          <ScalarProperty Name="inventory" ColumnName="inventory" />
-          <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
-          <ScalarProperty Name="SPUID" ColumnName="SPUID" />
-          <ScalarProperty Name="BusinName" ColumnName="BusinName" />
           <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
           <ScalarProperty Name="SPUGoodName" ColumnName="SPUGoodName" />
           <ScalarProperty Name="GoodInfo" ColumnName="GoodInfo" />
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <EntitySetMapping Name="UserTable">
-      <EntityTypeMapping TypeName="lizishoppingModel.UserTable">
-        <MappingFragment StoreEntitySet="UserTable">
-          <ScalarProperty Name="nicheng" ColumnName="nicheng" />
-          <ScalarProperty Name="Userstatus" ColumnName="Userstatus" />
-          <ScalarProperty Name="limits" ColumnName="limits" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="UserPassWord" ColumnName="UserPassWord" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Appraise">
-      <EntityTypeMapping TypeName="lizishoppingModel.Appraise">
-        <MappingFragment StoreEntitySet="Appraise">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="SKUId" ColumnName="SKUId" />
-          <ScalarProperty Name="Ratetime" ColumnName="Ratetime" />
-          <ScalarProperty Name="Grade" ColumnName="Grade" />
-          <ScalarProperty Name="content" ColumnName="content" />
-          <ScalarProperty Name="AppraiseID" ColumnName="AppraiseID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="selpro_pingjia_id1" FunctionName="lizishoppingModel.Store.selpro_pingjia_id">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="lizishoppingModel.selpro_pingjia_id1_Result">
-          <ScalarProperty Name="SKUId" ColumnName="SKUId" />
-          <ScalarProperty Name="SKUGoodName" ColumnName="SKUGoodName" />
-          <ScalarProperty Name="Goods_Description" ColumnName="Goods_Description" />
-          <ScalarProperty Name="GoodPrice" ColumnName="GoodPrice" />
-          <ScalarProperty Name="inventory" ColumnName="inventory" />
-          <ScalarProperty Name="GoodPhoto" ColumnName="GoodPhoto" />
-          <ScalarProperty Name="SPUID" ColumnName="SPUID" />
-          <ScalarProperty Name="BusinName" ColumnName="BusinName" />
-          <ScalarProperty Name="onclicknum" ColumnName="onclicknum" />
-          <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
-          <ScalarProperty Name="Photo_one" ColumnName="Photo_one" />
-          <ScalarProperty Name="Photo_two" ColumnName="Photo_two" />
-          <ScalarProperty Name="Photo_three" ColumnName="Photo_three" />
-          <ScalarProperty Name="Photo_four" ColumnName="Photo_four" />
-          <ScalarProperty Name="Photo_five" ColumnName="Photo_five" />
-          <ScalarProperty Name="AppraiseID" ColumnName="AppraiseID" />
-          <ScalarProperty Name="content" ColumnName="content" />
-          <ScalarProperty Name="Grade" ColumnName="Grade" />
-          <ScalarProperty Name="Ratetime" ColumnName="Ratetime" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="nicheng" ColumnName="nicheng" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
